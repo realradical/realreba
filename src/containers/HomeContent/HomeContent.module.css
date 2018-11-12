@@ -1,0 +1,9 @@
+.HomeContent img {
+    height: 500px;
+}
+
+.HomeContent {
+    position: relative;
+    bottom: -100px;
+    text-align: center;
+}
