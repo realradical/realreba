@@ -1,12 +1,17 @@
 import React from 'react';
+import {NavLink} from "react-router-dom";
 
 import classes from './NavigationItem.module.css';
 
 const navigationItem = ( props ) => (
     <li className={classes.NavigationItem}>
-        <a
-            href={props.link}
-            className={props.active ? classes.active : null}>{props.children}</a>
+        <NavLink to={props.link}
+                 activeStyle={
+                     {backgroundColor: '#FFFFFF',
+                         borderBottom: '4px solid #7f7a85',
+                         color: 'black'}}
+                 onClick={props.clickHandler}
+                 >{props.children}</NavLink>
     </li>
 );
 
