@@ -16,14 +16,12 @@ class App extends Component {
     return (
         <AppProvider>
             <BrowserRouter>
-              <div>
                 <Layout>
                     <Route path="/" exact component={HomeContent}/>
                     <Route path="/about-us" exact component={AboutUs}/>
                     <Route path="/authentication" exact component={HomeContent}/>
                     <Route path="/login" exact component={Login}/>
                 </Layout>
-              </div>
             </BrowserRouter>
         </AppProvider>
     );

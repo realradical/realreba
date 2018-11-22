@@ -6,6 +6,9 @@ import PropTypes from 'prop-types';
 import { auth } from '../../firebase/';
 
 import classes from "./CredentialForm.module.css";
+import FlashMessage from "../FlashMessage/FlashMessage";
+
+
 
 class CredentialForm extends Component {
     constructor(props) {
@@ -56,6 +59,7 @@ class CredentialForm extends Component {
                 type="password"
                 autoComplete="none"
                 placeholder="Confirm Password"
+                onChange={this.props.onChange}
             />)
             :null;
 
@@ -67,6 +71,7 @@ class CredentialForm extends Component {
                     type="email"
                     placeholder="Email Address"
                     ref={this.email}
+                    onChange={this.props.onChange}
                 />
                 <input
                     name="password"
@@ -74,8 +79,10 @@ class CredentialForm extends Component {
                     autoComplete="none"
                     placeholder="Password"
                     ref={this.password}
+                    onChange={this.props.onChange}
                 />
                 {confirmPassword}
+                <FlashMessage/>
                 <div style={{textAlign:"center"}}>
                     <button type="submit" >{this.props.formType==="Signup" ? "Create Account" : "Login"}</button>
                 </div>

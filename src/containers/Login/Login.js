@@ -3,7 +3,8 @@ import { withRouter } from 'react-router-dom';
 
 import {Consumer} from "../../components/AppProvider";
 import CredentialForm from "../../components/CredentialForm/CredentialForm";
-import FlashMessage from "../../components/FlashMessage";
+import WithContext from "../../hoc/WithContext";
+
 
 import classes from "./Login.module.css";
 
@@ -14,6 +15,11 @@ class Login extends Component {
     state = {
         toggleActive: "Login"
     };
+
+    clickHandler = (toggleType) => {
+        this.setState({toggleActive: toggleType});
+        this.props.context.clearMessage();
+    }
 
     render() {
         let loginForm = null;
@@ -31,6 +37,7 @@ class Login extends Component {
                                 this.props.history.push('/');
                             }}
                             onError={({ message }) => context.setMessage(`${message}`)}
+                            onChange={context.clearMessage}
                         />
                     )}
                 </Consumer>
@@ -48,6 +55,7 @@ class Login extends Component {
                                 this.props.history.push('/');
                             }}
                             onError={({ message }) => context.setMessage(`${message}`)}
+                            onChange={context.clearMessage}
                         />
                     )}
                 </Consumer>
@@ -55,28 +63,22 @@ class Login extends Component {
         }
 
         return (
-            <>
-                <div className={classes["login-wrap"]}>
-                    <div className={classes["login-toggle"]}>
-                        <div className={this.state.toggleActive==='Signup' ?
-                            [classes["toggle-option"],
+                    <div className={classes["login-wrap"]}>
+                        <div className={classes["login-toggle"]}>
+                            <div className={this.state.toggleActive==='Signup' ?
+                                [classes["toggle-option"],
+                                    classes["toggle-option-active"]].join(" ") : classes["toggle-option"]}
+                                onClick={()=>this.clickHandler("Signup")}
+                            >Sign Up</div>
+                            <div className={this.state.toggleActive==='Login' ? [classes["toggle-option"],
                                 classes["toggle-option-active"]].join(" ") : classes["toggle-option"]}
-                            onClick={() => {this.setState({toggleActive: "Signup"})}}
-                        >Sign Up</div>
-                        <div className={this.state.toggleActive==='Login' ? [classes["toggle-option"],
-                            classes["toggle-option-active"]].join(" ") : classes["toggle-option"]}
-                             onClick={() => {this.setState({toggleActive: "Login"})}}
-                        >Login</div>
+                                 onClick={()=>this.clickHandler("Login")}
+                            >Login</div>
+                        </div>
+                        {loginForm}
                     </div>
-                    {loginForm}
-                    <FlashMessage/>
-                </div>
-
-
-            </>
-
         );
     }
 }
 
-export default withRouter(Login);
+export default withRouter(WithContext(Login));
