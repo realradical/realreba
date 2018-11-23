@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { auth } from '../../firebase/';
+import WithContext from '../../hoc/WithContext';
 
 import classes from "./CredentialForm.module.css";
 import FlashMessage from "../FlashMessage/FlashMessage";
@@ -16,6 +17,7 @@ class CredentialForm extends Component {
 
         this.email = createRef();
         this.password = createRef();
+        this.password2 = createRef();
         this.handleSuccess = this.handleSuccess.bind(this);
         this.handleErrors = this.handleErrors.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,14 +37,18 @@ class CredentialForm extends Component {
         const {
             email,
             password,
-            props: { action }
+            props: {action}
         } = this;
 
-        auth.userSession(
-            action,
-            email.current.value,
-            password.current.value
-        ).then(this.handleSuccess).catch(this.handleErrors);
+        if (action === "createUser" && this.password.current.value != this.password2.current.value) {
+            this.props.context.setMessage("Password does not match the confirm password.");
+        } else {
+            auth.userSession(
+                action,
+                email.current.value,
+                password.current.value
+            ).then(this.handleSuccess).catch(this.handleErrors);
+        }
     }
 
     resetForm() {
@@ -59,6 +65,7 @@ class CredentialForm extends Component {
                 type="password"
                 autoComplete="none"
                 placeholder="Confirm Password"
+                ref={this.password2}
                 onChange={this.props.onChange}
             />)
             :null;
@@ -104,4 +111,4 @@ CredentialForm.defaultProps = {
     password: ''
 };
 
-export default CredentialForm;
+export default WithContext(CredentialForm);
