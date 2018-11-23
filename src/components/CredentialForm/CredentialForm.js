@@ -40,7 +40,7 @@ class CredentialForm extends Component {
             props: {action}
         } = this;
 
-        if (action === "createUser" && this.password.current.value != this.password2.current.value) {
+        if (action === "createUser" && this.password.current.value !== this.password2.current.value) {
             this.props.context.setMessage("Password does not match the confirm password.");
         } else {
             auth.userSession(
