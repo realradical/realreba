@@ -13,12 +13,29 @@
     z-index: 90;
 }
 
+.box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.box:first-child > div { margin-right: auto; }
+
+.box:last-child  > ul { margin-left: auto;  }
+
+
 .Toolbar nav {
     height: 100%;
 }
 
 .Logo {
     height: 80%;
+}
+
+.name {
+    color:#FFFFFF;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 34px;
 }
 
 @media (max-width: 499px) {
