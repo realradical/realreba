@@ -4,10 +4,16 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { auth } from '../../firebase/';
+import {facebookProvider} from "../../firebase/firebase";
+
 import WithContext from '../../hoc/WithContext';
 
+import LoginButton from "../LoginButton/LoginButton";
 import classes from "./CredentialForm.module.css";
 import FlashMessage from "../FlashMessage/FlashMessage";
+
+
+
 
 
 
@@ -40,7 +46,7 @@ class CredentialForm extends Component {
             props: {action}
         } = this;
 
-        if (action === "createUser" && this.password.current.value != this.password2.current.value) {
+        if (action === "createUser" && this.password.current.value !== this.password2.current.value) {
             this.props.context.setMessage("Password does not match the confirm password.");
         } else {
             auth.userSession(
@@ -58,6 +64,12 @@ class CredentialForm extends Component {
         this.password.current.value = password;
     }
 
+    facebookClickHandler = () => {
+        auth.facebookLogin(facebookProvider)
+        .then((result) => console.log(result)
+        )
+    }
+
     render() {
         let confirmPassword = this.props.formType==="Signup" ?
             (<input
@@ -71,6 +83,8 @@ class CredentialForm extends Component {
             :null;
 
         return (
+            <>
+            <LoginButton name="Facebook" onClick={this.facebookClickHandler}/>
             <form className={classes.credentialForm} onSubmit={this.handleSubmit}>
                 <h3>{this.props.title}</h3>
                 <input
@@ -91,9 +105,10 @@ class CredentialForm extends Component {
                 {confirmPassword}
                 <FlashMessage/>
                 <div style={{textAlign:"center"}}>
-                    <button type="submit" >{this.props.formType==="Signup" ? "Create Account" : "Login"}</button>
+                    <button className={classes["credentialForm-button"]} type="submit" >{this.props.formType==="Signup" ? "Create Account" : "Login"}</button>
                 </div>
             </form>
+            </>
         )
     }
 }
