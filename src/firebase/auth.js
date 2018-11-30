@@ -14,12 +14,15 @@ const userSession = (action, email, password) => auth[`${action}WithEmailAndPass
 const logout = () => auth.signOut();
 
 /**
- * Facebook Login
+ * Social Login
  */
-const facebookLogin = (provider) => auth.signInWithPopup(provider);
+const socialLoginRedirect = (provider) => auth.signInWithRedirect(provider);
+
+const socialLoginPopup = (provider) => auth.signInWithPopup(provider);
 
 export {
     userSession,
     logout,
-    facebookLogin
+    socialLoginRedirect,
+    socialLoginPopup
 }

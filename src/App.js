@@ -6,9 +6,9 @@ import Layout from './hoc/Layout/Layout'
 import HomeContent from './containers/HomeContent/HomeContent';
 import AboutUs from "./containers/AboutUs/AboutUs";
 import Login from "./containers/Login/Login";
+import Account from "./containers/Account/Account"
 import Error from "./containers/ErrorPage/ErrorPage"
 import AppProvider from "./components/AppProvider"
-
 
 class App extends Component {
   render() {
@@ -20,6 +20,7 @@ class App extends Component {
                         <Route path="/about-us" component={AboutUs}/>
                         <Route path="/authentication"  component={HomeContent}/>
                         <Route path="/login" component={Login}/>
+                        <Route path="/myaccount" component={Account}/>
                         <Route path="/" exact component={HomeContent}/>
                         <Route component={Error}/>
                     </Switch>
