@@ -5,6 +5,12 @@ import { devConfig } from './config';
 
 const auth = firebase.auth();
 
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+
+const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+
 export {
-    auth
+    auth,
+    googleAuthProvider,
+    facebookAuthProvider
 }

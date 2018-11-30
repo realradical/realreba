@@ -4,17 +4,15 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { auth } from '../../firebase/';
-import {facebookProvider} from "../../firebase/firebase";
+import {facebookAuthProvider, googleAuthProvider} from "../../firebase/firebase";
+import {isMobile} from "react-device-detect";
+
 
 import WithContext from '../../hoc/WithContext';
 
 import LoginButton from "../LoginButton/LoginButton";
 import classes from "./CredentialForm.module.css";
 import FlashMessage from "../FlashMessage/FlashMessage";
-
-
-
-
 
 
 class CredentialForm extends Component {
@@ -65,9 +63,32 @@ class CredentialForm extends Component {
     }
 
     facebookClickHandler = () => {
-        auth.facebookLogin(facebookProvider)
-        .then((result) => console.log(result)
-        )
+        /**
+         * Web Responsive Login with popup
+         * Mobile Device Login with redirect
+         */
+        console.log(isMobile);
+        if (!isMobile) {
+            auth.socialLoginPopup(facebookAuthProvider)
+                .then(this.handleSuccess).catch(this.handleErrors);
+        } else {
+            auth.socialLoginRedirect(facebookAuthProvider)
+                .then(this.handleSuccess).catch(this.handleErrors);
+        }
+    }
+
+    googleClickHandler = () => {
+        /**
+         * Web Responsive Login with popup
+         * Mobile Device Login with redirect
+         */
+        if (!isMobile) {
+            auth.socialLoginPopup(googleAuthProvider)
+                .then(this.handleSuccess).catch(this.handleErrors);
+        } else {
+            auth.socialLoginRedirect(googleAuthProvider)
+                .then(this.handleSuccess).catch(this.handleErrors);
+        }
     }
 
     render() {
@@ -84,30 +105,33 @@ class CredentialForm extends Component {
 
         return (
             <>
-            <LoginButton name="Facebook" onClick={this.facebookClickHandler}/>
-            <form className={classes.credentialForm} onSubmit={this.handleSubmit}>
-                <h3>{this.props.title}</h3>
-                <input
-                    name="email"
-                    type="email"
-                    placeholder="Email Address"
-                    ref={this.email}
-                    onChange={this.props.onChange}
-                />
-                <input
-                    name="password"
-                    type="password"
-                    autoComplete="none"
-                    placeholder="Password"
-                    ref={this.password}
-                    onChange={this.props.onChange}
-                />
-                {confirmPassword}
-                <FlashMessage/>
-                <div style={{textAlign:"center"}}>
-                    <button className={classes["credentialForm-button"]} type="submit" >{this.props.formType==="Signup" ? "Create Account" : "Login"}</button>
-                </div>
-            </form>
+                <h3 className={classes["welcome-message"]}>{this.props.title}</h3>
+                <LoginButton name="Facebook" action={this.props.action} onClick={this.facebookClickHandler}/>
+                <LoginButton name="Google" action={this.props.action} onClick={this.googleClickHandler}/>
+                <h4 className={classes["center-text"]}><span>Or</span></h4>
+                <form className={classes.credentialForm} onSubmit={this.handleSubmit}>
+
+                    <input
+                        name="email"
+                        type="email"
+                        placeholder="Email Address"
+                        ref={this.email}
+                        onChange={this.props.onChange}
+                    />
+                    <input
+                        name="password"
+                        type="password"
+                        autoComplete="none"
+                        placeholder="Password"
+                        ref={this.password}
+                        onChange={this.props.onChange}
+                    />
+                    {confirmPassword}
+                    <FlashMessage/>
+                    <div style={{textAlign:"center"}}>
+                        <button className={classes["credentialForm-button"]} type="submit" >{this.props.formType==="Signup" ? "Create Account" : "Login"}</button>
+                    </div>
+                </form>
             </>
         )
     }
