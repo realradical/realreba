@@ -67,7 +67,6 @@ class CredentialForm extends Component {
          * Web Responsive Login with popup
          * Mobile Device Login with redirect
          */
-        console.log(isMobile);
         if (!isMobile) {
             auth.socialLoginPopup(facebookAuthProvider)
                 .then(this.handleSuccess).catch(this.handleErrors);
@@ -75,7 +74,7 @@ class CredentialForm extends Component {
             auth.socialLoginRedirect(facebookAuthProvider)
                 .then(this.handleSuccess).catch(this.handleErrors);
         }
-    }
+    };
 
     googleClickHandler = () => {
         /**
@@ -89,7 +88,7 @@ class CredentialForm extends Component {
             auth.socialLoginRedirect(googleAuthProvider)
                 .then(this.handleSuccess).catch(this.handleErrors);
         }
-    }
+    };
 
     render() {
         let confirmPassword = this.props.formType==="Signup" ?
@@ -129,7 +128,8 @@ class CredentialForm extends Component {
                     {confirmPassword}
                     <FlashMessage/>
                     <div style={{textAlign:"center"}}>
-                        <button className={classes["credentialForm-button"]} type="submit" >{this.props.formType==="Signup" ? "Create Account" : "Login"}</button>
+                        <button className={classes["credentialForm-button"]}
+                                type="submit" >{this.props.formType==="Signup" ? "Create Account" : "Login"}</button>
                     </div>
                 </form>
             </>

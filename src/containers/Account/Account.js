@@ -5,8 +5,8 @@ import WithContext from "../../hoc/WithContext";
 
 
 
-const aboutUs = (props) => {
-    console.log(props.context.state.currentUser);
+const aboutUs = () => {
+
     return (
         <div className={classes.AboutUs}>
             <h1>My Account</h1>

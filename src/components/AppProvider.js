@@ -12,14 +12,20 @@ export const {
 
 class AppProvider extends Component {
     state = {
-        currentUser: AppProvider.defaultProps.currentUser,
+        currentUser: JSON.parse(localStorage.getItem('authUser')),
         message: AppProvider.defaultProps.message
     };
 
     componentDidMount() {
-        this.listener = firebase.auth.onAuthStateChanged(user => user && this.setState({
-            currentUser: user
-        }))
+        this.listener = firebase.auth.onAuthStateChanged(authUser => {
+            if (authUser) {
+                localStorage.setItem('authUser', JSON.stringify(authUser));
+                this.setState({currentUser: JSON.parse(localStorage.getItem('authUser'))});
+            } else {
+                localStorage.removeItem('authUser')
+            }
+            }
+        )
     }
 
     componentWillUnmount() {
