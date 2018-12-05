@@ -19,47 +19,36 @@ class Login extends Component {
     clickHandler = (toggleType) => {
         this.setState({toggleActive: toggleType});
         this.props.context.clearMessage();
-    }
+    };
+
+    credentialFormRender = (action, title) => {
+        return (<Consumer>
+            {({  ...context }) => (
+                <CredentialForm
+                    action={action}
+                    title={title}
+                    formType={this.state.toggleActive}
+                    onSuccess={() => {
+                        context.clearMessage();
+                        this.props.history.push('/');
+                    }}
+                    onError={({ message }) => context.setMessage(`${message}`)}
+                    onChange={context.clearMessage}
+                />
+            )}
+        </Consumer>)
+    };
 
     render() {
         let loginForm = null;
 
-        if (this.state.toggleActive === "Signup") {
-            loginForm =(
-                <Consumer>
-                    {({  ...context }) => (
-                        <CredentialForm
-                            action="createUser"
-                            title="Let's get started!"
-                            formType={this.state.toggleActive}
-                            onSuccess={() => {
-                                context.clearMessage();
-                                this.props.history.push('/');
-                            }}
-                            onError={({ message }) => context.setMessage(`${message}`)}
-                            onChange={context.clearMessage}
-                        />
-                    )}
-                </Consumer>
-            )
-        } else if (this.state.toggleActive === "Login") {
-            loginForm =(
-                <Consumer>
-                    {({  ...context }) => (
-                        <CredentialForm
-                            action="signIn"
-                            title="Welcome back!"
-                            formType={this.state.toggleActive}
-                            onSuccess={() => {
-                                context.clearMessage();
-                                this.props.history.push('/');
-                            }}
-                            onError={({ message }) => context.setMessage(`${message}`)}
-                            onChange={context.clearMessage}
-                        />
-                    )}
-                </Consumer>
-            )
+        switch (this.state.toggleActive) {
+            case "Signup":
+                loginForm = this.credentialFormRender("createUser","Let's get started!");
+                break;
+            case "Login":
+                loginForm = this.credentialFormRender("signIn","Welcome back!");
+                break;
         }
 
         return (

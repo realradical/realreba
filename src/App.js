@@ -10,6 +10,9 @@ import Account from "./containers/Account/Account"
 import Error from "./containers/ErrorPage/ErrorPage"
 import AppProvider from "./components/AppProvider"
 import PrivateRoute from "./hoc/PrivateRoute";
+import Authentication from "./containers/Authentication/Authentication";
+
+
 
 
 
@@ -21,7 +24,7 @@ class App extends Component {
                 <Layout>
                     <Switch>
                         <Route path="/about-us" component={AboutUs}/>
-                        <Route path="/authentication"  component={HomeContent}/>
+                        <Route path="/authentication"  component={Authentication}/>
                         <Route path="/login" component={Login}/>
                         <PrivateRoute path="/myaccount" component={Account}/>
                         <Route path="/" exact component={HomeContent}/>
