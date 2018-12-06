@@ -41,28 +41,35 @@ class Login extends Component {
 
     render() {
         let loginForm = null;
+        let buttonCssSignup = classes["toggle-option"];
+        let buttonCssLogin = classes["toggle-option"];
 
         switch (this.state.toggleActive) {
             case "Signup":
                 loginForm = this.credentialFormRender("createUser","Let's get started!");
+                buttonCssSignup = `${classes["toggle-option"]} ${classes["toggle-option-active"]}`;
                 break;
             case "Login":
                 loginForm = this.credentialFormRender("signIn","Welcome back!");
+                buttonCssLogin = `${classes["toggle-option"]} ${classes["toggle-option-active"]}`;
                 break;
+            default:
+                loginForm = (<p>Toggle state is incorrect!</p>)
         }
 
         return (
                     <div className={classes["login-wrap"]}>
                         <div className={classes["login-toggle"]}>
-                            <div className={this.state.toggleActive==='Signup' ?
-                                [classes["toggle-option"],
-                                    classes["toggle-option-active"]].join(" ") : classes["toggle-option"]}
+                            <div
+                                className={buttonCssSignup}
                                 onClick={()=>this.clickHandler("Signup")}
-                            >Sign Up</div>
-                            <div className={this.state.toggleActive==='Login' ? [classes["toggle-option"],
-                                classes["toggle-option-active"]].join(" ") : classes["toggle-option"]}
-                                 onClick={()=>this.clickHandler("Login")}
-                            >Login</div>
+                            >Sign Up
+                            </div>
+                            <div
+                                className={buttonCssLogin}
+                                onClick={()=>this.clickHandler("Login")}
+                            >Login
+                            </div>
                         </div>
                         {loginForm}
                     </div>
