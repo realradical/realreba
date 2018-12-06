@@ -16,18 +16,17 @@
     transform: translateY(-50%);
     display:block;
     margin: auto;
+    width: 1200px;
 }
 
-.menu-wrap {
-    max-width: 33%;
-    min-width: 500px;
+.content {
     margin: auto;
-    background: #ecedec;
-    box-sizing: border-box;
 }
 
-.menu :after, :before {
-    box-sizing: border-box;
+@media (min-width: 1200px) {
+    .content{
+        width: 1200px;
+    }
 }
 
 .menu-toggle {
