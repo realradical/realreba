@@ -4,7 +4,9 @@ import WithContext from "../../hoc/WithContext";
 import classes from "./Authentication.module.css";
 import BannerImg from "../../assets/images/test_authBanner.jpg";
 import HowItWorks from "../../components/HowItWorks/HowItWorks";
-import ImageUpload from '../../components/UploadImage/Uploadimagefunct.js';
+import ImageUpload from '../../components/UploadImage/newuploadfunct.js';
+
+
 
 class Authentication extends Component {
     state = {

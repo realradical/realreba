@@ -1,0 +1,19 @@
+.picsection {
+    box-sizing: border-box;
+    margin-left: 20%;
+    margin-right: 15%;
+}
+
+.column {
+    margin-top: 20px;
+    float: left;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
