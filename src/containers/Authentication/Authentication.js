@@ -4,7 +4,7 @@ import WithContext from "../../hoc/WithContext";
 import classes from "./Authentication.module.css";
 import BannerImg from "../../assets/images/test_authBanner.jpg";
 import HowItWorks from "../../components/HowItWorks/HowItWorks";
-
+import ImageUpload from '../../components/UploadImage/Uploadimagefunct.js';
 
 class Authentication extends Component {
     state = {
@@ -30,6 +30,13 @@ class Authentication extends Component {
                 contentComponent = (<HowItWorks/>)
                 break;
             case "T3":
+                const user = this.props.context.state.currentUser;
+                if (user) {
+                    contentComponent = (<ImageUpload user={this.props.context.state.currentUser} />)
+                }
+                else{
+                    contentComponent = (<h3> Fucking Login </h3>)}
+
                 buttonCssT3 = `${classes["toggle-option"]} ${classes["toggle-option-active"]}`;
                 break;
             default:
