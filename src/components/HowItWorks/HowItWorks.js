@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from "./HowItWorks.module.css";
+// import classes from "./HowItWorks.module.css";
 
 
 const howItWorks = () => {
