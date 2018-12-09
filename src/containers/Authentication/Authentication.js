@@ -4,6 +4,7 @@ import WithContext from "../../hoc/WithContext";
 import classes from "./Authentication.module.css";
 import BannerImg from "../../assets/images/test_authBanner.jpg";
 import HowItWorks from "../../components/HowItWorks/HowItWorks";
+import RecentWork from "../../components/RecentWork/RecentWork";
 import ImageUpload from '../../components/UploadImage/newuploadfunct.js';
 
 
@@ -26,10 +27,11 @@ class Authentication extends Component {
         switch (this.state.toggleActive) {
             case "T1":
                 buttonCssT1 = `${classes["toggle-option"]} ${classes["toggle-option-active"]}`;
+                contentComponent = (<RecentWork/>);
                 break;
             case "T2":
                 buttonCssT2 = `${classes["toggle-option"]} ${classes["toggle-option-active"]}`;
-                contentComponent = (<HowItWorks/>)
+                contentComponent = (<HowItWorks/>);
                 break;
             case "T3":
                 const user = this.props.context.state.currentUser;
