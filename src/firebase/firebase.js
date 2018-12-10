@@ -11,9 +11,16 @@ const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
 
 const storage = firebase.storage();
 
+const db = firebase.firestore();
+
+db.settings({
+    timestampsInSnapshots: true
+});
+
 export {
     auth,
     googleAuthProvider,
     facebookAuthProvider,
-    storage
+    storage,
+    db
 }
