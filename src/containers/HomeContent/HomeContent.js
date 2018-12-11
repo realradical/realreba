@@ -1,4 +1,6 @@
 import React from 'react';
+import CountUp from 'react-countup';
+
 import HomeImg from '../../assets/images/test_Home.png';
 import classes from './HomeContent.module.css';
 
@@ -6,6 +8,31 @@ const homeContent = () => {
     return (
         <div className={classes.HomeContent}>
             <img src={HomeImg} alt='Home Content'/>
+            <CountUp
+                className={classes.itemsSpan}
+                start={10000}
+                end={65139}
+                duration={2}
+                separator=","
+                suffix=" Items Authenticated"
+            />
+            <CountUp
+                className={classes.yearsSpan}
+                start={0}
+                end={35}
+                duration={2}
+                separator=","
+                suffix=" Years Experience Combined"
+            />
+            <CountUp
+                className={classes.responseSpan}
+                start={168}
+                end={23}
+                duration={2}
+                separator=","
+                prefix="Average "
+                suffix=" Hours In Response Time"
+            />
         </div>
     );
 };

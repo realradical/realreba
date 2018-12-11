@@ -1,9 +1,43 @@
 .HomeContent img {
-    height: 500px;
+    height: 600px;
 }
 
 .HomeContent {
-    position: relative;
-    bottom: -100px;
+    margin: auto;
     text-align: center;
+    position: relative;
+    top:100px;
+}
+
+@media (min-width: 1200px) {
+    .HomeContent{
+        width: 1200px;
+    }
+}
+
+.HomeContent span {
+    background-color: #e8e4e3;
+    color: #2e2e2e;
+    padding: 10px 20px;
+    font-size: 28px;
+    font-weight: bold;
+    font-style: italic;
+    position:absolute;
+    z-index: 100;
+    font-family: "Roboto";
+}
+
+.itemsSpan {
+    top: 0px;
+    right: -50px;
+}
+
+.yearsSpan {
+    top: 180px;
+    left: -70px;
+}
+
+.responseSpan {
+    bottom: 10px;
+    right: -50px;
 }
