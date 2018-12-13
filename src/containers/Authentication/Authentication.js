@@ -5,7 +5,10 @@ import classes from "./Authentication.module.css";
 import BannerImg from "../../assets/images/test_authBanner.jpg";
 import HowItWorks from "../../components/HowItWorks/HowItWorks";
 import RecentWork from "../../components/RecentWork/RecentWork";
-import ImageUpload from '../../components/UploadImage/newuploadfunct.js';
+import StartAuth from '../../components/StartAuth/StartAuth.js';
+import Login from "../Login/Login";
+
+
 
 
 
@@ -36,10 +39,10 @@ class Authentication extends Component {
             case "T3":
                 const user = this.props.context.state.currentUser;
                 if (user) {
-                    contentComponent = (<ImageUpload user={this.props.context.state.currentUser} />)
+                    contentComponent = (<StartAuth user={user} />)
                 }
                 else{
-                    contentComponent = (<h3> Fucking Login </h3>)}
+                    contentComponent = <Login/>}
 
                 buttonCssT3 = `${classes["toggle-option"]} ${classes["toggle-option-active"]}`;
                 break;

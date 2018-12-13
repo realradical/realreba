@@ -9,20 +9,27 @@ import {db, storage} from "../../firebase/firebase";
 // import classes from './RecentWork.module.css';
 
 class RecentWork extends Component {
+    _isMounted = false;
+
     state = {
         loading: true,
         imgArray: []
     };
 
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
     componentDidMount() {
+        this._isMounted = true;
+
         let imgArray = [];
 
         let storageRef = storage.ref();
         let ordersStorageRef = storageRef.child('orders');
 
-        let ordersDbRef = db.collection("orders");
-        let processedOrderQuery = ordersDbRef.where('status','==','processed')
-            .orderBy("processedAt","desc").limit(12);
+        let ordersDbRef = db.collection("processedOrders");
+        let processedOrderQuery = ordersDbRef.orderBy("processedAt","desc").limit(12);
         processedOrderQuery.get().then((querySnapshot) => {
             querySnapshot.forEach(
                 (doc) => {
@@ -34,7 +41,9 @@ class RecentWork extends Component {
                                 legit: doc.data().legit,
                                 thumbnailLink: response
                         });
-                            this.setState({imgArray: imgArray, loading: false});
+                            if (this._isMounted) {
+                                this.setState({imgArray: imgArray, loading: false});
+                            }
                     });
                 }
             );

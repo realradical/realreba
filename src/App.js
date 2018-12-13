@@ -25,7 +25,7 @@ class App extends Component {
                     <Switch>
                         <Route path="/about-us" component={AboutUs}/>
                         <Route path="/authentication"  component={Authentication}/>
-                        <Route path="/login" component={Login}/>
+                        <Route path="/login" render={() => <Login redirect/>}/>
                         <PrivateRoute path="/myaccount" component={Account}/>
                         <Route path="/" exact component={HomeContent}/>
                         <Route component={Error}/>

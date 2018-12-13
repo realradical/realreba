@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import Dropzone from "react-dropzone";
+
+
 import { storage } from '../../firebase/firebase.js';
+import classes from "./StartAuth.module.css";
+
 import Uploadedwrapper from '../imagesdashboard/imagedash.js';
 
-class ImageUpload extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+class StartAuth extends Component {
+
+    state = {
       image: ['http://via.placeholder.com/400x300',
               'http://via.placeholder.com/400x300',
               'http://via.placeholder.com/400x300',
@@ -14,18 +19,16 @@ class ImageUpload extends Component {
               'http://via.placeholder.com/400x300'],
       url: '',
       progress: 0
-    }
+    };
 
-    // this.handleChange = this
-    //   .handleChange
-    //   .bind(this);
-    //   this.handleUpload = this.handleUpload.bind(this);
-  }
 
   componentDidMount(){
       console.log(this.props.user);
   };
 
+  onDropHandler = (file, rejectedFiles) => {
+      console.log(file)
+  }
 
   // handleChange = e => {
   //   if (e.target.files[0]) {
@@ -87,8 +90,41 @@ handleClick = (e) => {
 
   render() {
     return (
-      <div >
-      <progress value={this.state.progress} max="100"/>
+      <div className={classes["form-wrap"]}>
+          <Form>
+              <FormGroup>
+                  <Label for="itemName">Item Name</Label>
+                  <Input type="text" name="itemName" id="itemName" placeholder="e.g. Air Jordan 11 Concord" />
+              </FormGroup>
+              <FormGroup>
+                  <Label for="description">Description</Label>
+                  <Input type="textarea" name="description" id="description"
+                         maxLength={200}
+                         rows={3}
+                         placeholder="Anything you think is worth mentioning" />
+              </FormGroup>
+              <FormGroup>
+                  <Dropzone onDrop={this.onDropHandler}>
+                          {({getRootProps, getInputProps, isDragActive}) => {
+                              return (
+                                  <div
+                                      {...getRootProps()}
+                                  >
+                                      <input {...getInputProps()} />
+                                      {
+                                          isDragActive ?
+                                              <p>Drop files here...</p> :
+                                              <p>Try dropping some files here, or click to select files to upload.</p>
+                                      }
+                                  </div>
+                              )
+                          }}
+                      </Dropzone>
+              </FormGroup>
+          </Form>
+
+
+
       <br/>
         <input type="file" ref="uploadImg" onChange={this._onChange} style={{ display: 'none' }}/>
         {/*<button onClick={this.handleUpload} >Upload</button>*/}
@@ -99,4 +135,4 @@ handleClick = (e) => {
   }
 }
 
-export default ImageUpload;
+export default StartAuth;
