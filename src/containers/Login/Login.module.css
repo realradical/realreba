@@ -1,14 +1,14 @@
 .login-wrap {
     max-width: 33%;
     min-width: 500px;
-    margin: 112px auto;
+    margin: 50px auto;
     background: #ecedec;
     box-sizing: border-box;
 }
 
-.login-wrap :after, :before {
-      box-sizing: border-box;
-  }
+/*.login-wrap :after, :before {*/
+      /*box-sizing: border-box;*/
+  /*}*/
 
 .login-toggle {
     display: flex;

@@ -30,7 +30,9 @@ class Login extends Component {
                     formType={this.state.toggleActive}
                     onSuccess={() => {
                         context.clearMessage();
-                        this.props.history.push('/');
+                        if (this.props.redirect) {
+                            this.props.history.push('/');
+                        }
                     }}
                     onError={({ message }) => context.setMessage(`${message}`)}
                     onChange={context.clearMessage}

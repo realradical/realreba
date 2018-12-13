@@ -24,7 +24,7 @@
     font-style: italic;
     position:absolute;
     z-index: 100;
-    font-family: "Roboto";
+    /*font-family: "Ubuntu";*/
 }
 
 .itemsSpan {
@@ -34,10 +34,10 @@
 
 .yearsSpan {
     top: 180px;
-    left: -70px;
+    left: -20px;
 }
 
 .responseSpan {
     bottom: 10px;
-    right: -50px;
+    right: -60px;
 }
