@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
+import {Button, Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
 import Dropzone from "react-dropzone";
 import {isMobile} from "react-device-detect";
 
@@ -48,13 +48,12 @@ class StartAuth extends Component {
     };
 
     onDropHandler = (file, rejectedFiles, label) => {
-      console.log(file);
-      console.log(rejectedFiles);
-      console.log(label);
-      let foundIndex = this.state.dropItems.findIndex(x => x.label === label);
-      const newdropItems = [...this.state.dropItems];
-      newdropItems[foundIndex] = {...newdropItems[foundIndex], placeholder: URL.createObjectURL(file[0])};
-      this.setState({dropItems:newdropItems});
+      if (file.length>0) {
+          let foundIndex = this.state.dropItems.findIndex(x => x.label === label);
+          const newdropItems = [...this.state.dropItems];
+          newdropItems[foundIndex] = {...newdropItems[foundIndex], placeholder: URL.createObjectURL(file[0])};
+          this.setState({dropItems: newdropItems});
+      };
     };
 
     render() {
@@ -73,13 +72,20 @@ class StartAuth extends Component {
                                   <Dropzone onDrop={(file, rejectedFiles) => this.onDropHandler(file, rejectedFiles, i.label)}
                                             accept="image/*"
                                             multiple={false}
-                                            maxSize={1000000}
+                                            maxSize={10000000}
                                             disableClick={false}
                                   >
-                                      {({getRootProps, getInputProps,isDragActive}) => {
+                                      {({getRootProps, getInputProps,isDragActive,isDragReject}) => {
+                                          let dragZoneCss = classes["dropzone-wrap"];
+                                          if (isDragReject) {
+                                              dragZoneCss = `${classes["dropzone-wrap"]} ${classes["dropzone-wrap-reject"]}`;
+                                          } else if (isDragActive) {
+                                              dragZoneCss = `${classes["dropzone-wrap"]} ${classes["dropzone-wrap-active"]}`;
+                                          }
+
                                           return (
                                               <div {...getRootProps()}
-                                                   className={classes["dropzone-wrap"]}
+                                                   className={dragZoneCss}
                                               >
                                                   <input {...getInputProps()} />
                                                   <img src={i.placeholder} alt=" "/>
@@ -111,6 +117,7 @@ class StartAuth extends Component {
                   </FormGroup>
                   <Label>{isMobile ? "Upload pictures" : "Drag and drop picture or click to upload"}</Label>
                   {dropItems}
+                  <Button>Proceed</Button>
               </Form>
           </div>
         )
