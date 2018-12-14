@@ -127,7 +127,7 @@ class CredentialForm extends Component {
                     />
                     {confirmPassword}
                     <FlashMessage/>
-                    <div style={{textAlign:"center"}}>
+                    <div style={{textAlign:"center", paddingBottom:"10px"}}>
                         <button className={classes["credentialForm-button"]}
                                 type="submit" >{this.props.formType==="Signup" ? "Create Account" : "Login"}</button>
                     </div>

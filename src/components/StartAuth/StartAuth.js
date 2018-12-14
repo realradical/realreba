@@ -6,6 +6,9 @@ import {isMobile} from "react-device-detect";
 import overallImg from "../../assets/images/test_overall.png";
 import classes from "./StartAuth.module.css";
 
+const IMAGEMAXSIZE = 10000000;
+const ACCEPTEDFILETYPES = 'image/x-png, image/png, image/jpg, image/jpeg, image/gif';
+const acceptedFileTypesArray = ACCEPTEDFILETYPES.split(",").map((item) => item.trim());
 
 class StartAuth extends Component {
 
@@ -38,6 +41,23 @@ class StartAuth extends Component {
         ]
     };
 
+    verifyFile = (files) => {
+        if (files && files.length > 0) {
+            const currentFile = files[0];
+            const currentFileType = currentFile.type;
+            const currentFileSize = currentFile.size;
+            if (!acceptedFileTypesArray.includes(currentFileType)) {
+                alert("Only images are allowed.");
+                return false;
+            }
+            if (currentFileSize > IMAGEMAXSIZE) {
+                alert("This image is too large. Image size should be less than 10MB.");
+                return false;
+            }
+            return true;
+        }
+    };
+
     componentWillUnmount() {
         // Make sure to revoke the data uris to avoid memory leaks
         this.state.dropItems.forEach(file => URL.revokeObjectURL(file.placeholder));
@@ -47,13 +67,20 @@ class StartAuth extends Component {
       console.log(this.props.user);
     };
 
-    onDropHandler = (file, rejectedFiles, label) => {
-      if (file.length>0) {
+    onDropHandler = (files, rejectedFiles, label) => {
+        if (files && files.length>0) {
           let foundIndex = this.state.dropItems.findIndex(x => x.label === label);
           const newdropItems = [...this.state.dropItems];
-          newdropItems[foundIndex] = {...newdropItems[foundIndex], placeholder: URL.createObjectURL(file[0])};
+          newdropItems[foundIndex] = {...newdropItems[foundIndex], placeholder: URL.createObjectURL(files[0])};
           this.setState({dropItems: newdropItems});
-      };
+        }
+        if (rejectedFiles && rejectedFiles.length>0) {
+          this.verifyFile(rejectedFiles);
+        }
+    };
+
+    onDropRejectedHandler = (rejectedFiles) => {
+        console.log(rejectedFiles);
     };
 
     render() {
@@ -70,9 +97,10 @@ class StartAuth extends Component {
                           <Col sm={12} md={6} lg={6} xl={4} key={i.label}>
                               <FormGroup>
                                   <Dropzone onDrop={(file, rejectedFiles) => this.onDropHandler(file, rejectedFiles, i.label)}
-                                            accept="image/*"
+                                            onDropRejected={this.onDropRejectedHandler}
+                                            accept={ACCEPTEDFILETYPES}
                                             multiple={false}
-                                            maxSize={10000000}
+                                            maxSize={IMAGEMAXSIZE}
                                             disableClick={false}
                                   >
                                       {({getRootProps, getInputProps,isDragActive,isDragReject}) => {
