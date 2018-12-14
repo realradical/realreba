@@ -16,27 +16,39 @@ class StartAuth extends Component {
         dropItems: [
             {
                 label: 'overall',
-                placeholder: overallImg
+                hasFile: false,
+                placeholder: overallImg,
+                optional: false
             },
             {
                 label: 'itemlabel',
-                placeholder: overallImg
+                hasFile: false,
+                placeholder: overallImg,
+                optional: false
             },
             {
                 label: 'stitching',
-                placeholder: overallImg
+                hasFile: false,
+                placeholder: overallImg,
+                optional: false
             },
             {
                 label: 'insole',
-                placeholder: overallImg
+                hasFile: false,
+                placeholder: overallImg,
+                optional: false
             },
             {
                 label: 'boxlabel',
-                placeholder: overallImg
+                hasFile: false,
+                placeholder: overallImg,
+                optional: false
             },
             {
                 label: 'seal',
-                placeholder: overallImg
+                hasFile: false,
+                placeholder: overallImg,
+                optional: false
             }
         ]
     };
@@ -67,11 +79,11 @@ class StartAuth extends Component {
       console.log(this.props.user);
     };
 
-    onDropHandler = (files, rejectedFiles, label) => {
+    onDropHandler = (files, rejectedFiles, selectedLabel) => {
         if (files && files.length>0) {
-          let foundIndex = this.state.dropItems.findIndex(x => x.label === label);
+          let foundIndex = this.state.dropItems.findIndex(x => x.label === selectedLabel);
           const newdropItems = [...this.state.dropItems];
-          newdropItems[foundIndex] = {...newdropItems[foundIndex], placeholder: URL.createObjectURL(files[0])};
+          newdropItems[foundIndex] = {...newdropItems[foundIndex], hasFile: true, placeholder: URL.createObjectURL(files[0])};
           this.setState({dropItems: newdropItems});
         }
         if (rejectedFiles && rejectedFiles.length>0) {
@@ -79,8 +91,37 @@ class StartAuth extends Component {
         }
     };
 
-    onDropRejectedHandler = (rejectedFiles) => {
-        console.log(rejectedFiles);
+    onClickRemoveHandler = (selectedLabel) => {
+        let foundIndex = this.state.dropItems.findIndex(x => x.label === selectedLabel);
+        const newdropItems = [...this.state.dropItems];
+
+        if (newdropItems[foundIndex].optional) {
+            console.log(foundIndex);
+            newdropItems.splice(foundIndex,1);
+            console.log(newdropItems);
+            this.setState({dropItems: newdropItems});
+        } else {
+            newdropItems[foundIndex] = {...newdropItems[foundIndex], hasFile: false, placeholder: overallImg};
+            this.setState({dropItems: newdropItems});
+        }
+    };
+
+    onClickAddHandler = () => {
+        const newdropItems = [...this.state.dropItems];
+        const additionalLabelArray = newdropItems.map((i) => i.label).filter(x => x.startsWith('additional'));
+        let largestLabelNr = 0;
+        if (additionalLabelArray.length > 0) {
+            largestLabelNr = +additionalLabelArray.sort()[additionalLabelArray.length - 1].substring(10);
+        }
+
+        newdropItems.push({
+            label: 'additional' + (largestLabelNr + 1),
+            hasFile: false,
+            placeholder: overallImg,
+            optional: true
+        });
+        console.log(newdropItems);
+        this.setState({dropItems: newdropItems});
     };
 
     render() {
@@ -121,6 +162,11 @@ class StartAuth extends Component {
                                           )
                                       }}
                                   </Dropzone>
+                                  { (i.hasFile || i.optional) ?
+                                  <span className={classes["dropzone-remove-icon"]}
+                                        onClick={()=> this.onClickRemoveHandler(i.label)}>
+                                      <i className="far fa-times-circle"></i>
+                                  </span> : null}
                               </FormGroup>
                           </Col>
                       ))}
@@ -145,7 +191,14 @@ class StartAuth extends Component {
                   </FormGroup>
                   <Label>{isMobile ? "Upload pictures" : "Drag and drop picture or click to upload"}</Label>
                   {dropItems}
-                  <Button>Proceed</Button>
+                  <FormGroup className={classes["add-item"]}>
+                      <span onClick={this.onClickAddHandler}>
+                          <i className="fas fa-plus"></i>
+                      </span>
+                  </FormGroup>
+                  <FormGroup style={{textAlign:'center'}}>
+                    <Button>Proceed</Button>
+                  </FormGroup>
               </Form>
           </div>
         )
