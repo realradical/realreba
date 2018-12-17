@@ -2,9 +2,12 @@ import React, {Component} from 'react';
 import {Button, Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
 import Dropzone from "react-dropzone";
 import {isMobile} from "react-device-detect";
-
 import overallImg from "../../assets/images/test_overall.png";
 import classes from "./StartAuth.module.css";
+import { storage, db } from '../../firebase/firebase.js';
+
+
+
 
 const IMAGEMAXSIZE = 10000000;
 const ACCEPTEDFILETYPES = 'image/x-png, image/png, image/jpg, image/jpeg, image/gif';
@@ -50,7 +53,10 @@ class StartAuth extends Component {
                 placeholder: overallImg,
                 optional: false
             }
-        ]
+        ],
+        currentuser: this.props.user,
+        imagefile: [null,null,null,null,null,null],
+        filename:[]
     };
 
     verifyFile = (files) => {
@@ -76,8 +82,10 @@ class StartAuth extends Component {
     }
 
     componentDidMount(){
-      console.log(this.props.user);
+      console.log(this.state.currentuser.providerData[0].displayName);
+
     };
+
 
     onDropHandler = (files, rejectedFiles, selectedLabel) => {
         if (files && files.length>0) {
@@ -85,7 +93,33 @@ class StartAuth extends Component {
           const newdropItems = [...this.state.dropItems];
           newdropItems[foundIndex] = {...newdropItems[foundIndex], hasFile: true, placeholder: URL.createObjectURL(files[0])};
           this.setState({dropItems: newdropItems});
+
+          const newimagefile = [...this.state.imagefile];
+          newimagefile[foundIndex] = {...files};
+          this.setState({imagefile: newimagefile }, () =>{
+          console.log(this.state.imagefile);});
+
+          const newimagefilename = [...this.state.filename];
+          if (newimagefilename.includes(files[0].name)) {
+              alert("this file exist already.");
+              console.log("this file exist already");
+              const newimagefiledrop = [...this.state.imagefile];
+              newimagefiledrop.splice(foundIndex, 1)
+              this.setState({imagefile: newimagefiledrop}, () =>{
+              console.log(this.state.imagefile);});
+
+          const newdropItems = [...this.state.dropItems];
+            newdropItems.splice(foundIndex,1);
+            console.log(newdropItems);
+            this.setState({dropItems: newdropItems});
+          }
+
+          else{
+          newimagefilename.push(files[0].name);
+          this.setState({filename: newimagefilename }, () =>{
+          console.log(this.state.filename);});}
         }
+
         if (rejectedFiles && rejectedFiles.length>0) {
           this.verifyFile(rejectedFiles);
         }
@@ -95,11 +129,17 @@ class StartAuth extends Component {
         let foundIndex = this.state.dropItems.findIndex(x => x.label === selectedLabel);
         const newdropItems = [...this.state.dropItems];
 
+            const newimagefiledrop = [...this.state.imagefile];
+            newimagefiledrop.splice(foundIndex, 1)
+            this.setState({imagefile: newimagefiledrop}, () =>{
+            console.log(this.state.imagefile);});
+
         if (newdropItems[foundIndex].optional) {
             console.log(foundIndex);
             newdropItems.splice(foundIndex,1);
             console.log(newdropItems);
             this.setState({dropItems: newdropItems});
+
         } else {
             newdropItems[foundIndex] = {...newdropItems[foundIndex], hasFile: false, placeholder: overallImg};
             this.setState({dropItems: newdropItems});
@@ -124,6 +164,33 @@ class StartAuth extends Component {
         this.setState({dropItems: newdropItems});
     };
 
+    onClickProceedHandler = () => {
+
+        if (this.state.filename.length > 5) {
+            db.collection("testing").add({
+                name: this.state.currentuser.providerData[0].displayName
+            })
+                .then((docRef) => {
+                    console.log("Document written with ID: ", docRef.id);
+                    const storageRef = storage.ref(docRef.id);
+                    this.state.imagefile.forEach((file) => {
+                        console.log(file[0].name)
+                        storageRef.child(`${file[0].name}`).put(file[0])
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error adding document: ", error);
+                });
+        }
+        else{
+            alert("Please upload more images");
+        }
+
+        window.location.reload();
+    }
+
+
+
     render() {
         let rowArray = this.state.dropItems.map(
           (item, index) => {
@@ -143,6 +210,7 @@ class StartAuth extends Component {
                                             multiple={false}
                                             maxSize={IMAGEMAXSIZE}
                                             disableClick={false}
+
                                   >
                                       {({getRootProps, getInputProps,isDragActive,isDragReject}) => {
                                           let dragZoneCss = classes["dropzone-wrap"];
@@ -197,7 +265,7 @@ class StartAuth extends Component {
                       </span>
                   </FormGroup>
                   <FormGroup style={{textAlign:'center'}}>
-                    <Button>Proceed</Button>
+                    <Button onClick={this.onClickProceedHandler} >Proceed</Button>
                   </FormGroup>
               </Form>
           </div>
