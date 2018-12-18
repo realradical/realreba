@@ -49,13 +49,19 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/components/ProceedButton/ProceedButtonFunction.js" />
-        <option value="$PROJECT_DIR$/../../master_dev_authworks/src/components/UploadImage/newuploadfunct.js" />
+        <option value="$USER_HOME$/master_dev_authworks/src/components/UploadImage/newuploadfunct.js" />
         <option value="$PROJECT_DIR$/src/components/StartAuth/StartAuth.js" />
       </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
@@ -113,6 +119,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545107047925" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -274,12 +281,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../master_dev_authworks/src/components/UploadImage/Uploadimagefunct.js">
+    <entry file="file://$USER_HOME$/master_dev_authworks/src/components/UploadImage/Uploadimagefunct.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-246" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../master_dev_authworks/src/components/upload_buton/uploadbutton.js">
+    <entry file="file://$USER_HOME$/master_dev_authworks/src/components/upload_buton/uploadbutton.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="12" selection-end-column="42" />
@@ -350,7 +357,7 @@
     <entry file="file://$PROJECT_DIR$/src/containers/AboutUs/AboutUs.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../master_dev_authworks/src/components/UploadImage/newuploadfunct.js">
+    <entry file="file://$USER_HOME$/master_dev_authworks/src/components/UploadImage/newuploadfunct.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
           <caret line="66" column="33" lean-forward="true" selection-start-line="66" selection-start-column="33" selection-end-line="66" selection-end-column="33" />
