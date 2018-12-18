@@ -23,7 +23,7 @@
     font-weight: bold;
     font-style: italic;
     position:absolute;
-    z-index: 100;
+    z-index: 50;
     /*font-family: "Ubuntu";*/
 }
 
