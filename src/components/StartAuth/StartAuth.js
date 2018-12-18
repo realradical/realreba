@@ -54,9 +54,58 @@ class StartAuth extends Component {
                 optional: false
             }
         ],
+        dropItems2: [
+            {
+                label: 'overall',
+                hasFile: false,
+                placeholder: overallImg,
+                optional: false
+            },
+            {
+                label: 'itemlabel',
+                hasFile: false,
+                placeholder: overallImg,
+                optional: false
+            },
+            {
+                label: 'stitching',
+                hasFile: false,
+                placeholder: overallImg,
+                optional: false
+            },
+            {
+                label: 'insole',
+                hasFile: false,
+                placeholder: overallImg,
+                optional: false
+            },
+            {
+                label: 'boxlabel',
+                hasFile: false,
+                placeholder: overallImg,
+                optional: false
+            },
+            {
+                label: 'seal',
+                hasFile: false,
+                placeholder: overallImg,
+                optional: false
+            }
+        ],
         currentuser: this.props.user,
         imagefile: [null,null,null,null,null,null],
-        filename:[]
+        filename:[],
+        ItemName:null,
+        ItemDescription:null
+    };
+
+    onTypeInputItemName = (event) => {
+        this.setState({ItemName : event.target.value});
+        console.log(this.state.ItemName);
+    };
+    onTypeInputItemDescription = (event) => {
+        this.setState({ItemDescription: event.target.value});
+        console.log(this.state.ItemDescription);
     };
 
     verifyFile = (files) => {
@@ -83,7 +132,6 @@ class StartAuth extends Component {
 
     componentDidMount(){
       console.log(this.state.currentuser.providerData[0].displayName);
-
     };
 
 
@@ -112,7 +160,7 @@ class StartAuth extends Component {
             newdropItems.splice(foundIndex,1);
             console.log(newdropItems);
             this.setState({dropItems: newdropItems});
-          }
+            }
 
           else{
           newimagefilename.push(files[0].name);
@@ -167,15 +215,24 @@ class StartAuth extends Component {
     onClickProceedHandler = () => {
         if (this.state.filename.length > 5) {
             db.collection("testing").add({
-                name: this.state.currentuser.providerData[0].displayName
+                name: this.state.currentuser.providerData[0].displayName,
+                itemName: this.state.ItemName,
+                itemdescription: this.state.ItemDescription
             })
                 .then((docRef) => {
                     console.log("Document written with ID: ", docRef.id);
-                    const storageRef = storage.ref(docRef.id);
-                    this.state.imagefile.forEach((file) => {
-                        console.log(file[0].name)
-                        storageRef.child(`${file[0].name}`).put(file[0])
+                    const filteredimages = this.state.imagefile.filter( (el) => {
+                        return el != null;
                     });
+                    const storageRef = storage.ref(docRef.id);
+                    filteredimages.forEach((file) => {
+                        console.log(file[0].name);
+                        storageRef.child(`${file[0].name}`).put(file[0])  ;
+                        });
+                        this.setState({dropItems: this.state.dropItems2,
+                        imagefile: [null,null,null,null,null,null],
+                        filename: [], ItemName: null,
+                        ItemDescription: null}, () =>{console.log("upload request completed");});
                 })
                 .catch((error) => {
                     console.error("Error adding document: ", error);
@@ -184,7 +241,6 @@ class StartAuth extends Component {
         else{
             alert("Please upload more images");
         }
-        window.location.reload();
     }
 
 
@@ -246,14 +302,20 @@ class StartAuth extends Component {
               <Form>
                   <FormGroup>
                       <Label for="itemName">Item Name</Label>
-                      <Input type="text" name="itemName" id="itemName" placeholder="e.g. Air Jordan 11 Concord" />
+                      <Input type="text"
+                             onChange = {this.onTypeInputItemName}
+                             ame="itemName" id="itemName"
+                             placeholder="e.g. Air Jordan 11 Concord" />
                   </FormGroup>
                   <FormGroup>
                       <Label for="description">Description</Label>
-                      <Input type="textarea" name="description" id="description"
+                      <Input type="textarea"
+                             name ="description" id="description"
+                             onChange={this.onTypeInputItemDescription}
                              maxLength={200}
                              rows={3}
                              placeholder="Anything you think is worth mentioning" />
+
                   </FormGroup>
                   <Label>{isMobile ? "Upload pictures" : "Drag and drop picture or click to upload"}</Label>
                   {dropItems}
