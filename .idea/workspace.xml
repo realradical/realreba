@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list id="4f3144ae-89ee-4c28-be8c-33b63a96453f" name="New changelist" comment="edited codes for upload and drop zone" />
-    <list default="true" id="8807b321-190b-4ce4-ba3e-d17128086bd4" name="Default" comment="create logic to upload to firebase db and firestore with order id.">
+    <list default="true" id="8807b321-190b-4ce4-ba3e-d17128086bd4" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StartAuth/StartAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StartAuth/StartAuth.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,8 +19,8 @@
       <file leaf-file-name="StartAuth.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/StartAuth/StartAuth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-19">
-              <caret line="235" column="18" lean-forward="true" selection-start-line="235" selection-start-column="18" selection-end-line="235" selection-end-column="18" />
+            <state relative-caret-position="90">
+              <caret line="177" column="10" selection-start-line="177" selection-start-column="10" selection-end-line="177" selection-end-column="10" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -71,8 +69,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="147" />
-    <option name="y" value="104" />
+    <option name="x" value="112" />
+    <option name="y" value="46" />
     <option name="width" value="1168" />
     <option name="height" value="687" />
   </component>
@@ -88,6 +86,24 @@
             <path>
               <item name="authlab" type="b2602c69:ProjectViewProjectNode" />
               <item name="authlab" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="authlab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="authlab" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="authlab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="authlab" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="authlab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="authlab" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="StartAuth" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -121,7 +137,6 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="8807b321-190b-4ce4-ba3e-d17128086bd4" name="Default" comment="" />
-      <changelist id="4f3144ae-89ee-4c28-be8c-33b63a96453f" name="New changelist" comment="edited codes for upload and drop zone" />
       <created>1544990433639</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -155,33 +170,25 @@
       <option name="project" value="LOCAL" />
       <updated>1545104338435</updated>
     </task>
-    <task id="LOCAL-00005" summary="create logic to upload to firebase db and firestore with order id.">
-      <created>1545104713362</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1545104713362</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="147" y="104" width="1168" height="687" extended-state="0" />
-    <editor active="true" />
+    <frame x="112" y="46" width="1168" height="687" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5008881" side_tool="true" weight="0.32881355" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5017762" side_tool="true" visible="true" weight="0.32881355" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4982238" weight="0.32881355" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" sideWeight="0.4982238" visible="true" weight="0.32881355" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32881355" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.4991119" visible="true" weight="0.32881355" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4949495" visible="true" weight="0.25399646" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32881355" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49747476" visible="true" weight="0.25399646" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" sideWeight="0.50252527" side_tool="true" weight="0.24955595" />
-      <window_info id="Favorites" order="2" sideWeight="0.5050505" side_tool="true" weight="0.25399646" />
+      <window_info id="Favorites" order="2" sideWeight="0.50252527" side_tool="true" weight="0.24955595" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -330,11 +337,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/firebase/firebase.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-42">
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-42" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/firebase/config.js">
@@ -375,8 +378,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/StartAuth/StartAuth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-19">
-          <caret line="235" column="18" lean-forward="true" selection-start-line="235" selection-start-column="18" selection-end-line="235" selection-end-column="18" />
+        <state relative-caret-position="90">
+          <caret line="177" column="10" selection-start-line="177" selection-start-column="10" selection-end-line="177" selection-end-column="10" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
