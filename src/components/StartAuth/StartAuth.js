@@ -165,7 +165,6 @@ class StartAuth extends Component {
     };
 
     onClickProceedHandler = () => {
-
         if (this.state.filename.length > 5) {
             db.collection("testing").add({
                 name: this.state.currentuser.providerData[0].displayName
@@ -185,7 +184,6 @@ class StartAuth extends Component {
         else{
             alert("Please upload more images");
         }
-
         window.location.reload();
     }
 
