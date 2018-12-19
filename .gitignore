@@ -25,4 +25,4 @@ yarn-error.log*
 /src/firebase/config.js
 *.cache
 
-/.idea/workspace.xml
+/.idea/workspace.*
