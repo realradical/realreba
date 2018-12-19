@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import {Button, Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
 import Dropzone from "react-dropzone";
 import {isMobile} from "react-device-detect";
+import {Elements, StripeProvider} from 'react-stripe-elements';
+
 import overallImg from "../../assets/images/test_overall.png";
 import classes from "./StartAuth.module.css";
 import { storage, db } from '../../firebase/firebase.js';
-
-
+import CheckoutForm from "../CheckoutForm/CheckoutForm";
 
 
 const IMAGEMAXSIZE = 10000000;
@@ -16,6 +17,7 @@ const acceptedFileTypesArray = ACCEPTEDFILETYPES.split(",").map((item) => item.t
 class StartAuth extends Component {
 
     state = {
+        checkout: false,
         dropItems: [
             {
                 label: 'overall',
@@ -213,37 +215,36 @@ class StartAuth extends Component {
     };
 
     onClickProceedHandler = () => {
-        if (this.state.filename.length > 5) {
-            db.collection("testing").add({
-                name: this.state.currentuser.providerData[0].displayName,
-                itemName: this.state.ItemName,
-                itemdescription: this.state.ItemDescription
-            })
-                .then((docRef) => {
-                    console.log("Document written with ID: ", docRef.id);
-                    const filteredimages = this.state.imagefile.filter( (el) => {
-                        return el != null;
-                    });
-                    const storageRef = storage.ref(docRef.id);
-                    filteredimages.forEach((file) => {
-                        console.log(file[0].name);
-                        storageRef.child(`${file[0].name}`).put(file[0])  ;
-                        });
-                        this.setState({dropItems: this.state.dropItems2,
-                        imagefile: [null,null,null,null,null,null],
-                        filename: [], ItemName: null,
-                        ItemDescription: null}, () =>{console.log("upload request completed");});
-                })
-                .catch((error) => {
-                    console.error("Error adding document: ", error);
-                });
-        }
-        else{
-            alert("Please upload more images");
-        }
-    }
-
-
+        // if (this.state.filename.length > 5) {
+        //     db.collection("testing").add({
+        //         name: this.state.currentuser.providerData[0].displayName,
+        //         itemName: this.state.ItemName,
+        //         itemdescription: this.state.ItemDescription
+        //     })
+        //         .then((docRef) => {
+        //             console.log("Document written with ID: ", docRef.id);
+        //             const filteredimages = this.state.imagefile.filter( (el) => {
+        //                 return el != null;
+        //             });
+        //             const storageRef = storage.ref(docRef.id);
+        //             filteredimages.forEach((file) => {
+        //                 console.log(file[0].name);
+        //                 storageRef.child(`${file[0].name}`).put(file[0])  ;
+        //                 });
+        //                 this.setState({dropItems: this.state.dropItems2,
+        //                 imagefile: [null,null,null,null,null,null],
+        //                 filename: [], ItemName: null,
+        //                 ItemDescription: null}, () =>{console.log("upload request completed");});
+        //         })
+        //         .catch((error) => {
+        //             console.error("Error adding document: ", error);
+        //         });
+        // }
+        // else{
+        //     alert("Please upload more images");
+        // }
+        this.setState({checkOut: true});
+    };
 
     render() {
         let rowArray = this.state.dropItems.map(
@@ -297,37 +298,52 @@ class StartAuth extends Component {
           }
         );
 
-        return (
-          <div className={classes["form-wrap"]}>
-              <Form>
-                  <FormGroup>
-                      <Label for="itemName">Item Name</Label>
-                      <Input type="text"
-                             onChange = {this.onTypeInputItemName}
-                             ame="itemName" id="itemName"
-                             placeholder="e.g. Air Jordan 11 Concord" />
-                  </FormGroup>
-                  <FormGroup>
-                      <Label for="description">Description</Label>
-                      <Input type="textarea"
-                             name ="description" id="description"
-                             onChange={this.onTypeInputItemDescription}
-                             maxLength={200}
-                             rows={3}
-                             placeholder="Anything you think is worth mentioning" />
+        const payForm = (
+            <StripeProvider apiKey="pk_test_8N728o3SWuoCjeXHczqnetIK">
+                <div className="example">
+                    <h1>React Stripe Elements Example</h1>
+                    <Elements>
+                        <CheckoutForm />
+                    </Elements>
+                </div>
+            </StripeProvider>
+        );
 
-                  </FormGroup>
-                  <Label>{isMobile ? "Upload pictures" : "Drag and drop picture or click to upload"}</Label>
-                  {dropItems}
-                  <FormGroup className={classes["add-item"]}>
+        const userForm = (
+            <Form>
+                <FormGroup>
+                    <Label for="itemName">Item Name</Label>
+                    <Input type="text"
+                           onChange = {this.onTypeInputItemName}
+                           ame="itemName" id="itemName"
+                           placeholder="e.g. Air Jordan 11 Concord" />
+                </FormGroup>
+                <FormGroup>
+                    <Label for="description">Description</Label>
+                    <Input type="textarea"
+                           name ="description" id="description"
+                           onChange={this.onTypeInputItemDescription}
+                           maxLength={200}
+                           rows={3}
+                           placeholder="Anything you think is worth mentioning" />
+
+                </FormGroup>
+                <Label>{isMobile ? "Upload pictures" : "Drag and drop picture or click to upload"}</Label>
+                {dropItems}
+                <FormGroup className={classes["add-item"]}>
                       <span onClick={this.onClickAddHandler}>
                           <i className="fas fa-plus"></i>
                       </span>
-                  </FormGroup>
-                  <FormGroup style={{textAlign:'center'}}>
+                </FormGroup>
+                <FormGroup style={{textAlign:'center'}}>
                     <Button onClick={this.onClickProceedHandler} >Proceed</Button>
-                  </FormGroup>
-              </Form>
+                </FormGroup>
+            </Form>
+        );
+
+        return (
+          <div className={classes["form-wrap"]}>
+
           </div>
         )
     }
