@@ -1,0 +1,7 @@
+.StripeElement {
+    background-color: white;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    border-radius: .25rem;
+    border: 1px solid #ced4da;
+}

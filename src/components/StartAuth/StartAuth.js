@@ -243,7 +243,7 @@ class StartAuth extends Component {
         // else{
         //     alert("Please upload more images");
         // }
-        this.setState({checkOut: true});
+        this.setState({checkout: true});
     };
 
     render() {
@@ -300,8 +300,7 @@ class StartAuth extends Component {
 
         const payForm = (
             <StripeProvider apiKey="pk_test_8N728o3SWuoCjeXHczqnetIK">
-                <div className="example">
-                    <h1>React Stripe Elements Example</h1>
+                <div>
                     <Elements>
                         <CheckoutForm />
                     </Elements>
@@ -312,11 +311,17 @@ class StartAuth extends Component {
         const userForm = (
             <Form>
                 <FormGroup>
-                    <Label for="itemName">Item Name</Label>
+                    <Label for="itemName">Item name</Label>
                     <Input type="text"
                            onChange = {this.onTypeInputItemName}
-                           ame="itemName" id="itemName"
-                           placeholder="e.g. Air Jordan 11 Concord" />
+                           name="itemName" id="itemName"
+                           placeholder="e.g. Air Jordan 11 Concord"
+                           style={{
+                               '::placeholder': {
+                                   fontStyle: 'italic'
+                               }
+                           }}
+                    />
                 </FormGroup>
                 <FormGroup>
                     <Label for="description">Description</Label>
@@ -325,7 +330,13 @@ class StartAuth extends Component {
                            onChange={this.onTypeInputItemDescription}
                            maxLength={200}
                            rows={3}
-                           placeholder="Anything you think is worth mentioning" />
+                           placeholder="Anything you think is worth mentioning"
+                           style={{
+                               '::placeholder': {
+                                   fontStyle: 'italic'
+                               }
+                           }}
+                    />
 
                 </FormGroup>
                 <Label>{isMobile ? "Upload pictures" : "Drag and drop picture or click to upload"}</Label>
@@ -343,7 +354,7 @@ class StartAuth extends Component {
 
         return (
           <div className={classes["form-wrap"]}>
-
+              {this.state.checkout ? payForm : userForm}
           </div>
         )
     }
