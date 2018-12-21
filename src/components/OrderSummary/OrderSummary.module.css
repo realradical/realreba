@@ -1,0 +1,42 @@
+.wholeBox {
+    margin-bottom: 1.875rem;
+    box-sizing: border-box;
+}
+
+.wholeBox span {
+    font-size: 1.5rem;
+}
+
+.title {
+    margin-bottom: .5rem;
+}
+
+.summary-box {
+    border: 1px solid #ced4da;
+    background-color: #f3f3f2;
+    padding: 1rem 1.2rem;
+}
+
+.summary-line {
+    display: flex;
+    align-items: baseline;
+    margin: 0;
+    vertical-align: baseline;
+}
+
+.summary-line:not(:last-child) {
+    padding-bottom: 0.5rem;
+}
+
+.summary-line h4 {
+    flex-basis: 20%;
+    font-size: 1rem;
+    margin-bottom:0;
+}
+
+.summary-line p {
+    font-size: 1rem;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+

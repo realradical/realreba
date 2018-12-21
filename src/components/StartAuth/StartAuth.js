@@ -8,7 +8,7 @@ import overallImg from "../../assets/images/test_overall.png";
 import classes from "./StartAuth.module.css";
 import { storage, db } from '../../firebase/firebase.js';
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
-
+import OrderSummary from "../OrderSummary/OrderSummary";
 
 const IMAGEMAXSIZE = 10000000;
 const ACCEPTEDFILETYPES = 'image/x-png, image/png, image/jpg, image/jpeg, image/gif';
@@ -154,7 +154,7 @@ class StartAuth extends Component {
               alert("this file exist already.");
               console.log("this file exist already");
               const newimagefiledrop = [...this.state.imagefile];
-              newimagefiledrop.splice(foundIndex, 1)
+              newimagefiledrop.splice(foundIndex, 1);
               this.setState({imagefile: newimagefiledrop}, () =>{
               console.log(this.state.imagefile);});
 
@@ -180,7 +180,7 @@ class StartAuth extends Component {
         const newdropItems = [...this.state.dropItems];
 
             const newimagefiledrop = [...this.state.imagefile];
-            newimagefiledrop.splice(foundIndex, 1)
+            newimagefiledrop.splice(foundIndex, 1);
             this.setState({imagefile: newimagefiledrop}, () =>{
             console.log(this.state.imagefile);});
 
@@ -246,13 +246,14 @@ class StartAuth extends Component {
         this.setState({checkout: true});
     };
 
+
     render() {
         let rowArray = this.state.dropItems.map(
           (item, index) => {
               return index % 6 === 0 ? this.state.dropItems.slice(index, index + 6) : null;
           }).filter(x => x != null);
 
-        let dropItems = rowArray.map(
+        const dropItems = rowArray.map(
           (item, index) => {
               return (
                   <Row form key={index}>
@@ -300,18 +301,21 @@ class StartAuth extends Component {
 
         const payForm = (
             <StripeProvider apiKey="pk_test_8N728o3SWuoCjeXHczqnetIK">
-                <div>
-                    <Elements>
-                        <CheckoutForm />
-                    </Elements>
-                </div>
+                <>
+                    <OrderSummary/>
+                    <div>
+                        <Elements>
+                            <CheckoutForm/>
+                        </Elements>
+                    </div>
+                </>
             </StripeProvider>
         );
 
         const userForm = (
             <Form>
                 <FormGroup>
-                    <Label for="itemName">Item name</Label>
+                    <Label for="itemName">Item Name</Label>
                     <Input type="text"
                            onChange = {this.onTypeInputItemName}
                            name="itemName" id="itemName"
@@ -339,7 +343,7 @@ class StartAuth extends Component {
                     />
 
                 </FormGroup>
-                <Label>{isMobile ? "Upload pictures" : "Drag and drop picture or click to upload"}</Label>
+                <Label>{isMobile ? "Upload Pictures" : "Drag and Drop Picture or Click to Upload"}</Label>
                 {dropItems}
                 <FormGroup className={classes["add-item"]}>
                       <span onClick={this.onClickAddHandler}>
@@ -347,7 +351,7 @@ class StartAuth extends Component {
                       </span>
                 </FormGroup>
                 <FormGroup style={{textAlign:'center'}}>
-                    <Button onClick={this.onClickProceedHandler} >Proceed</Button>
+                    <Button onClick={this.onClickProceedHandler} block size="lg" color="info">Proceed</Button>
                 </FormGroup>
             </Form>
         );

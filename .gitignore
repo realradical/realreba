@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+/functions/node_modules
+
 /.pnp
 .pnp.js
 
@@ -26,3 +28,10 @@ yarn-error.log*
 *.cache
 
 /.idea/workspace.*
+
+## Compiled JavaScript files
+**/*.js
+**/*.js.map
+
+# Typescript v1 declaration files
+/functions/typings/
