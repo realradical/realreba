@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
-import {Button, Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
+import {Button, Form, FormGroup, Label, Input } from 'reactstrap';
+
 import "./CheckoutForm.css";
 
 
@@ -12,31 +13,28 @@ class CheckoutForm extends Component {
     }
 
     async submit(ev) {
-        // User clicked submit
+        let {token} = await this.props.stripe.createToken({name: "Name"});
+        console.log(token)
     }
 
     render() {
         return (
             <Form>
                 <FormGroup>
-                    <Label for="holderName">Cardholder name</Label>
+                    <Label for="holderName">Cardholder Name</Label>
                     <Input type="text"
                            onChange = {this.onTypeInputItemName}
                            name="holderName" id="holderName"
-                           placeholder="Cardholder name"
-                           style={{fontStyle:'italic'}}
+                           placeholder="Full name (on card)"
                     />
                 </FormGroup>
 
                 <FormGroup>
-                    <Label for="cardDetails">Card details</Label>
+                    <Label for="cardDetails">Credit or Debit Card</Label>
                     <CardElement name="cardDetails" id="cardDetails"
                                  style={{
                                      base: {
                                          fontSize: '16px',
-                                         '::placeholder': {
-                                             fontStyle: 'italic'
-                                         },
                                          fontFamily: '-apple-system,"Ubuntu", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",\n' +
                                              '    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue" '
                                      }
@@ -44,7 +42,7 @@ class CheckoutForm extends Component {
                 </FormGroup>
 
                 <FormGroup style={{textAlign:'center'}}>
-                    <Button onClick={this.submit}>Pay</Button>
+                    <Button onClick={this.submit} block size="lg" color="info">Pay</Button>
                 </FormGroup>
             </Form>
         );
