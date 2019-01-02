@@ -6,15 +6,17 @@ import {Elements, StripeProvider} from 'react-stripe-elements';
 
 import overallImg from "../../assets/images/test_overall.png";
 import classes from "./StartAuth.module.css";
-import { storage, db } from '../../firebase/firebase.js';
+// import { storage, db } from '../../firebase/firebase.js';
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
 import OrderSummary from "../OrderSummary/OrderSummary";
+
 
 const IMAGEMAXSIZE = 10000000;
 const ACCEPTEDFILETYPES = 'image/x-png, image/png, image/jpg, image/jpeg, image/gif';
 const acceptedFileTypesArray = ACCEPTEDFILETYPES.split(",").map((item) => item.trim());
 
 class StartAuth extends Component {
+    _isMounted = false;
 
     state = {
         checkout: false,
@@ -101,6 +103,16 @@ class StartAuth extends Component {
         ItemDescription:null
     };
 
+    componentWillUnmount() {
+        this._isMounted = false;
+        // Make sure to revoke the data uris to avoid memory leaks
+        this.state.dropItems.forEach(file => URL.revokeObjectURL(file.placeholder));
+    }
+
+    componentDidMount(){
+        this._isMounted = true;
+    };
+
     onTypeInputItemName = (event) => {
         this.setState({ItemName : event.target.value});
         console.log(this.state.ItemName);
@@ -126,16 +138,6 @@ class StartAuth extends Component {
             return true;
         }
     };
-
-    componentWillUnmount() {
-        // Make sure to revoke the data uris to avoid memory leaks
-        this.state.dropItems.forEach(file => URL.revokeObjectURL(file.placeholder));
-    }
-
-    componentDidMount(){
-      console.log(this.state.currentuser.providerData[0].displayName);
-    };
-
 
     onDropHandler = (files, rejectedFiles, selectedLabel) => {
         if (files && files.length>0) {
@@ -299,15 +301,20 @@ class StartAuth extends Component {
           }
         );
 
+        const checkoutForm = (
+            <div>
+                <Elements>
+                    <CheckoutForm currentuser={this.state.currentuser}
+                    />
+                </Elements>
+            </div>
+        );
+
         const payForm = (
             <StripeProvider apiKey="pk_test_8N728o3SWuoCjeXHczqnetIK">
                 <>
                     <OrderSummary/>
-                    <div>
-                        <Elements>
-                            <CheckoutForm/>
-                        </Elements>
-                    </div>
+                    {checkoutForm}
                 </>
             </StripeProvider>
         );

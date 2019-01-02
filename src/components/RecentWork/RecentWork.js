@@ -4,6 +4,8 @@ import { Container, Row, Col } from 'reactstrap/lib';
 import Image from "./Image/Image";
 import Spinner from "../Spinner/Spinner";
 import {db, storage} from "../../firebase/firebase";
+import classes from "./RecentWork.module.css";
+
 
 
 // import classes from './RecentWork.module.css';
@@ -74,7 +76,7 @@ class RecentWork extends Component {
 
 
         return (
-            <Container>
+            <Container className={classes.container}>
                 {this.state.loading ? <Spinner/> : null}
                 {gallery}
             </Container>
