@@ -5,6 +5,7 @@
     padding: 50px 50px 10px;
     background: #ecedec;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .form-wrap textarea {

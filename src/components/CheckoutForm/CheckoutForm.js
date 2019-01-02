@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
 import {Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
+import Api from "../../axios";
+import Spinner from "../Spinner/Spinner";
 import "./CheckoutForm.css";
 
 
@@ -12,13 +14,41 @@ class CheckoutForm extends Component {
         this.submit = this.submit.bind(this);
     }
 
-    async submit(ev) {
-        let {token} = await this.props.stripe.createToken({name: "Name"});
-        console.log(token)
+    state = {
+        paymentSuccess: false,
+        loading: false,
+        holderName: null
+    };
+
+    startLoading = () => {
+        this.setState({loading: true});
+    };
+
+    endLoading = () => {
+        this.setState({loading: false});
+    };
+
+    async submit(event) {
+        event.preventDefault();
+
+        const {token} = await this.props.stripe.createToken({name: this.state.holderName});
+        const uid = this.props.currentuser.uid;
+        this.startLoading();
+
+        Api.post("/charge/", {token,uid})
+            .then(res => {
+                this.setState({paymentSuccess: true});
+                this.endLoading();
+            })
+            .catch(err => console.log(err.response));
     }
 
+    onTypeInputItemName = (e) => {
+        this.setState({holderName:e.target.value});
+    };
+
     render() {
-        return (
+        const checkOut = (
             <Form>
                 <FormGroup>
                     <Label for="holderName">Cardholder Name</Label>
@@ -31,7 +61,7 @@ class CheckoutForm extends Component {
 
                 <FormGroup>
                     <Label for="cardDetails">Credit or Debit Card</Label>
-                    <CardElement name="cardDetails" id="cardDetails"
+                    <CardElement id="cardDetails"
                                  style={{
                                      base: {
                                          fontSize: '16px',
@@ -45,6 +75,14 @@ class CheckoutForm extends Component {
                     <Button onClick={this.submit} block size="lg" color="info">Pay</Button>
                 </FormGroup>
             </Form>
+        );
+
+        const paymentSuccess = (
+            <h2>Payment Complete</h2>
+        );
+
+        return (
+            this.state.loading ? (<Spinner/>) : (this.state.paymentSuccess ? paymentSuccess : checkOut)
         );
     }
 }
