@@ -39,17 +39,20 @@ async function charge(req, res) {
         }).then(async chargeItem => {
             try {
                 const updateOrderCall = admin.firestore().collection('orders').doc(orderRef.id).set({
+                    uid: uid,
                     status: 'paid'
                 }, {merge: true});
 
                 const updatePaymentCall = admin.firestore().collection('payments').doc(orderRef.id).set({
+                    uid: uid,
                     charge: chargeItem,
                     token: token,
                 });
                 await updateOrderCall;
                 await updatePaymentCall;
                 send(res, 200, {
-                    message: 'Success'
+                    message: 'Success',
+                    orderId: orderRef.id
                 });
             } catch (err) {
                 console.log("Firestore-UpdateOrder&Payment: " + err);
@@ -73,10 +76,10 @@ async function charge(req, res) {
 }
 
 function send(res, code, body) {
-    res.status(code).send({
+    res.status(code).json({
         statusCode: code,
         headers: {'Access-Control-Allow-Origin': '*'},
-        body: JSON.stringify(body),
+        body: body,
     });
 }
 

@@ -1,0 +1,17 @@
+.title {
+    margin-bottom: .5rem;
+}
+
+.title span {
+    font-size: 1.5rem;
+}
+
+.title p {
+    font-size: 1rem;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.progress {
+    margin-bottom: 0.5rem;
+}
