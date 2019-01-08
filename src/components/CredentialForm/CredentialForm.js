@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { auth } from '../../firebase/';
 import {facebookAuthProvider, googleAuthProvider} from "../../firebase/firebase";
 import {isMobile} from "react-device-detect";
+import { Button } from 'reactstrap'
 
 
 import WithContext from '../../hoc/WithContext';
@@ -128,8 +129,10 @@ class CredentialForm extends Component {
                     {confirmPassword}
                     <FlashMessage/>
                     <div style={{textAlign:"center", paddingBottom:"10px"}}>
-                        <button className={classes["credentialForm-button"]}
-                                type="submit" >{this.props.formType==="Signup" ? "Create Account" : "Login"}</button>
+                        <Button block
+                                color="info"
+                                size="lg"
+                                type="submit" >{this.props.formType==="Signup" ? "Create Account" : "Login"}</Button>
                     </div>
                 </form>
             </>

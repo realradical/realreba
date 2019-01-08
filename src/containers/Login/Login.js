@@ -16,9 +16,13 @@ class Login extends Component {
         toggleActive: "Login"
     };
 
-    clickHandler = (toggleType) => {
-        this.setState({toggleActive: toggleType});
+    componentWillUnmount() {
         this.props.context.clearMessage();
+    }
+
+    clickHandler = (toggleType) => {
+        this.props.context.clearMessage();
+        this.setState({toggleActive: toggleType});
     };
 
     credentialFormRender = (action, title) => {

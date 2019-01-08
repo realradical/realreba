@@ -5,6 +5,7 @@
     padding: 50px 50px 10px;
     background: #ecedec;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .form-wrap textarea {
@@ -49,8 +50,8 @@
 
 .dropzone-remove-icon {
     position: absolute;
-    top: 0;
-    right: 5px;
+    top: -0.4rem;
+    right: 0.1rem;
     font-size: 2em;
     cursor: pointer;
 }
@@ -69,4 +70,8 @@
 
 .add-item span:hover {
     background-color: #cacbca;
+}
+
+.invalid {
+    border: 1px solid #dc3545;
 }
