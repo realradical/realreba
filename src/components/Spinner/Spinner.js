@@ -5,8 +5,9 @@ import classes from "./Spinner.module.css";
 
 const spinner = () => {
     return (
-        <div className={classes.loader}>
-            Loading...
+        <div className={classes["spinner"]}>
+            <div className={classes.dot1}></div>
+            <div className={classes.dot2}></div>
         </div>
     );
 };

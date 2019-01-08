@@ -4,6 +4,7 @@
     margin: 50px auto;
     background: #ecedec;
     box-sizing: border-box;
+    padding: 20px;
 }
 
 /*.login-wrap :after, :before {*/
