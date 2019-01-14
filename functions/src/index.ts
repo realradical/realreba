@@ -5,7 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-const allowedOrigins = ['http://localhost:3000'];
+const allowedOrigins = ['http://localhost:3000', 'https://realreba-c557f.firebaseapp.com'];
 // TODO: Remember to set token using >> firebase functions:config:set stripe.token="SECRET_STRIPE_TOKEN_HERE"
 const stripe = require('stripe')(functions.config().stripe.token);
 
@@ -15,6 +15,8 @@ async function charge(req, res) {
     const body = req.body;
     const uid = body.uid;
     const token = body.token;
+    const itemname = body.itemName;
+    const description = body.itemDescription;
     const amount = 500;
     const currency = 'usd';
 
@@ -40,7 +42,9 @@ async function charge(req, res) {
             try {
                 const updateOrderCall = admin.firestore().collection('orders').doc(orderRef.id).set({
                     uid: uid,
-                    status: 'paid'
+                    status: 'paid',
+                    itemName: itemname,
+                    description: description,
                 }, {merge: true});
 
                 const updatePaymentCall = admin.firestore().collection('payments').doc(orderRef.id).set({

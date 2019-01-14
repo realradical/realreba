@@ -72,6 +72,7 @@ class CheckoutForm extends Component {
         })
     };
 
+
     async submit(event) {
         event.preventDefault();
 
@@ -82,18 +83,24 @@ class CheckoutForm extends Component {
         if (valid) {
             const {token} = await this.props.stripe.createToken({name: this.state.holderName});
             const uid = this.props.context.state.currentUser.uid;
+            const itemName = this.props.state.itemName;
+            const itemDescription = this.props.state.itemDescription;
             this.startLoading();
 
-            Api.post("/charge/", {token,uid})
+            Api.post("/charge/", {token, uid, itemName, itemDescription})
                 .then(res => {
                     if (this._isMounted) {
                         this.setState({paymentSuccess: true});
                         this.endLoading();
 
-                        Promise.all(this.props.state.dropItems.filter(item => item.hasFile).map(async (item) => {
-                            const content = await this.uploadImageAsPromise(res.data.body.orderId, item.label, item.file) ;
+                        const orderId = res.data.body.orderId;
+
+                        let uploadImage = this.props.state.dropItems.filter(item => item.hasFile).map(async (item) => {
+                            const content = await this.uploadImageAsPromise(orderId, item.label, item.file) ;
                             return content;
-                        })).then(values => {
+                        });
+
+                        Promise.all(uploadImage).then(values => {
                             if (this._isMounted) {
                                 this.setState({uploadStatus: 'finish'});
                             }
@@ -170,6 +177,8 @@ class CheckoutForm extends Component {
                         <li key={item.label}>
                             <Progress
                                 className={classes.progress}
+                                style = {{fontSize: "1rem",
+                                    height: "1.5rem"}}
                                 striped
                                 value= {this.state[`${item.label}Percentage`]}
                                 >{this.state[`${item.label}Percentage`]}%
