@@ -28,6 +28,7 @@ class CheckoutForm extends Component {
         holderName: '',
         valid: false,
         uploadStatus: '',
+        fileDownloadURL: [],
     };
 
     componentWillUnmount() {
@@ -63,8 +64,13 @@ class CheckoutForm extends Component {
             }, function(error) {
                 // Handle unsuccessful uploads
                 reject(error);
-            }, function() {
-                resolve('upload finish');
+            }, () => {
+                task.snapshot.ref.getDownloadURL().then( downloadURL => {
+                    let fileDownloadURL = this.state.fileDownloadURL;
+                    fileDownloadURL.push(downloadURL);
+                    this.setState({fileDownloadURL: fileDownloadURL});
+                    resolve('upload finish');
+                });
                 // Handle successful uploads on complete
                 // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             });
@@ -101,6 +107,8 @@ class CheckoutForm extends Component {
                         });
 
                         Promise.all(uploadImage).then(values => {
+                            Api.post("/pushorder/", {orderId, fileDownloadURL: this.state.fileDownloadURL})
+                                .then();
                             if (this._isMounted) {
                                 this.setState({uploadStatus: 'finish'});
                             }
