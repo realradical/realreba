@@ -102,8 +102,7 @@ class CheckoutForm extends Component {
                         const orderId = res.data.body.orderId;
 
                         let uploadImage = this.props.state.dropItems.filter(item => item.hasFile).map(async (item) => {
-                            const content = await this.uploadImageAsPromise(orderId, item.label, item.file) ;
-                            return content;
+                            return await this.uploadImageAsPromise(orderId, item.label, item.file) ;
                         });
 
                         Promise.all(uploadImage).then(values => {
