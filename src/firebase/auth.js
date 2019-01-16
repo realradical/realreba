@@ -13,6 +13,8 @@ const userSession = (action, email, password) => auth[`${action}WithEmailAndPass
  */
 const logout = () => auth.signOut();
 
+const reset = (email) => auth.sendPasswordResetEmail(email);
+
 /**
  * Social Login
  */
@@ -24,5 +26,6 @@ export {
     userSession,
     logout,
     socialLoginRedirect,
-    socialLoginPopup
+    socialLoginPopup,
+    reset,
 }

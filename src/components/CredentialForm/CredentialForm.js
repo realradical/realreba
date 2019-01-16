@@ -103,6 +103,11 @@ class CredentialForm extends Component {
             />)
             :null;
 
+        let forgotPassword = this.props.formType==="Signup" ? null : (
+            <div style={{marginBottom: "10px"}}>
+                <span onClick={this.props.onClick}>Forgot Your Password?</span>
+            </div>        );
+
         return (
             <>
                 <h3 className={classes["welcome-message"]}>{this.props.title}</h3>
@@ -126,9 +131,10 @@ class CredentialForm extends Component {
                         ref={this.password}
                         onChange={this.props.onChange}
                     />
+                    {forgotPassword}
                     {confirmPassword}
                     <FlashMessage/>
-                    <div style={{textAlign:"center", paddingBottom:"10px"}}>
+                    <div style={{textAlign:"center"}}>
                         <Button block
                                 color="info"
                                 size="lg"

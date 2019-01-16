@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 
 import {Consumer} from "../../components/AppProvider";
 import CredentialForm from "../../components/CredentialForm/CredentialForm";
+import ResetPassword from "../../components/ResetPassword/ResetPassword";
+
 import WithContext from "../../hoc/WithContext";
 
 
@@ -25,6 +27,10 @@ class Login extends Component {
         this.setState({toggleActive: toggleType});
     };
 
+    clickResetHandler = () => {
+        this.setState({toggleActive: "Reset"});
+    }
+
     credentialFormRender = (action, title) => {
         return (<Consumer>
             {({  ...context }) => (
@@ -40,6 +46,7 @@ class Login extends Component {
                     }}
                     onError={({ message }) => context.setMessage(`${message}`)}
                     onChange={context.clearMessage}
+                    onClick={this.clickResetHandler}
                 />
             )}
         </Consumer>)
@@ -60,25 +67,29 @@ class Login extends Component {
                 buttonCssLogin = `${classes["toggle-option"]} ${classes["toggle-option-active"]}`;
                 break;
             default:
-                loginForm = (<p>Toggle state is incorrect!</p>)
+                loginForm = null;
         }
 
-        return (
-                    <div className={classes["login-wrap"]}>
-                        <div className={classes["login-toggle"]}>
-                            <div
-                                className={buttonCssSignup}
-                                onClick={()=>this.clickHandler("Signup")}
-                            >Sign Up
-                            </div>
-                            <div
-                                className={buttonCssLogin}
-                                onClick={()=>this.clickHandler("Login")}
-                            >Login
-                            </div>
-                        </div>
-                        {loginForm}
+        let loginPage = (
+                <div className={classes["login-toggle"]}>
+                    <div
+                        className={buttonCssSignup}
+                        onClick={()=>this.clickHandler("Signup")}
+                    >Sign Up
                     </div>
+                    <div
+                        className={buttonCssLogin}
+                        onClick={()=>this.clickHandler("Login")}
+                    >Login
+                    </div>
+                </div>
+
+        );
+        return (
+            <div className={classes["login-wrap"]}>
+                {this.state.toggleActive === "Reset" ? <ResetPassword/> : loginPage}
+                {loginForm}
+            </div>
         );
     }
 }

@@ -82,11 +82,11 @@ class StartAuth extends Component {
         this.setState({[inputId] : event.target.value});
     };
 
-    checkItemNameValidity(itemName) {
+    static checkItemNameValidity(itemName) {
         return itemName.trim() !== ''
     }
 
-    checkDropItemValidity(dropItems) {
+    static checkDropItemValidity(dropItems) {
         const requiredItems = dropItems.filter(item => item.optional === false);
         const hasFileItems =requiredItems.filter(item => item.hasFile);
         return hasFileItems.length === requiredItems.length
@@ -196,7 +196,7 @@ class StartAuth extends Component {
                                           let dropItemValid = this._isSubmitted ? dropItem.hasFile : true;
                                           if (!dropItemValid && !dropItem.optional) {
                                               dragZoneCss = `${classes["dropzone-wrap"]} ${classes.invalid}`;
-                                          };
+                                          }
                                           if (isDragReject) {
                                               dragZoneCss = `${classes["dropzone-wrap"]} ${classes["dropzone-wrap-reject"]}`;
                                           } else if (isDragActive) {
