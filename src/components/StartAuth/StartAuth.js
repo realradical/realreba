@@ -5,7 +5,14 @@ import {isMobile} from "react-device-detect";
 import {Elements, StripeProvider} from 'react-stripe-elements';
 
 
-import overallImg from "../../assets/images/test_overall.png";
+import iconOverall from "../../assets/images/icon_overall.png";
+import iconBox from "../../assets/images/icon_box.png";
+import iconLabel from "../../assets/images/icon_label.png";
+import iconSeal from "../../assets/images/icon_seal.png";
+import iconSole from "../../assets/images/icon_sole.png";
+import iconStitching from "../../assets/images/icon_stitching.png";
+import iconOptional from "../../assets/images/icon_optional.png";
+
 import classes from "./StartAuth.module.css";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
 import OrderSummary from "../OrderSummary/OrderSummary";
@@ -25,42 +32,44 @@ class StartAuth extends Component {
             {
                 label: 'overall',
                 hasFile: false,
-                placeholder: overallImg,
+                placeholder: iconOverall,
                 optional: false
             },
             {
                 label: 'itemlabel',
                 hasFile: false,
-                placeholder: overallImg,
+                placeholder: iconLabel,
                 optional: false
             },
             {
                 label: 'stitching',
                 hasFile: false,
-                placeholder: overallImg,
+                placeholder: iconStitching,
                 optional: false
             },
             {
                 label: 'insole',
                 hasFile: false,
-                placeholder: overallImg,
+                placeholder: iconSole,
                 optional: false
             },
             {
                 label: 'boxlabel',
                 hasFile: false,
-                placeholder: overallImg,
+                placeholder: iconBox,
                 optional: false
             },
             {
                 label: 'seal',
                 hasFile: false,
-                placeholder: overallImg,
+                placeholder: iconSeal,
                 optional: false
             }
         ],
         valid: false,
     };
+
+    _placeholders = [iconOverall, iconLabel, iconStitching, iconSole, iconBox, iconSeal];
 
     _isSubmitted = false;
 
@@ -73,11 +82,11 @@ class StartAuth extends Component {
         this.setState({[inputId] : event.target.value});
     };
 
-    checkItemNameValidity(itemName) {
+    static checkItemNameValidity(itemName) {
         return itemName.trim() !== ''
     }
 
-    checkDropItemValidity(dropItems) {
+    static checkDropItemValidity(dropItems) {
         const requiredItems = dropItems.filter(item => item.optional === false);
         const hasFileItems =requiredItems.filter(item => item.hasFile);
         return hasFileItems.length === requiredItems.length
@@ -126,7 +135,7 @@ class StartAuth extends Component {
             this.setState({dropItems: newDropItems});
 
         } else {
-            newDropItems[foundIndex] = {...newDropItems[foundIndex], hasFile: false, placeholder: overallImg};
+            newDropItems[foundIndex] = {...newDropItems[foundIndex], hasFile: false, placeholder: this._placeholders[foundIndex]};
             this.setState({dropItems: newDropItems});
         }
     };
@@ -142,7 +151,7 @@ class StartAuth extends Component {
         newDropItems.push({
             label: 'additional' + (largestLabelNr + 1),
             hasFile: false,
-            placeholder: overallImg,
+            placeholder: iconOptional,
             optional: true
         });
         this.setState({dropItems: newDropItems});
@@ -187,7 +196,7 @@ class StartAuth extends Component {
                                           let dropItemValid = this._isSubmitted ? dropItem.hasFile : true;
                                           if (!dropItemValid && !dropItem.optional) {
                                               dragZoneCss = `${classes["dropzone-wrap"]} ${classes.invalid}`;
-                                          };
+                                          }
                                           if (isDragReject) {
                                               dragZoneCss = `${classes["dropzone-wrap"]} ${classes["dropzone-wrap-reject"]}`;
                                           } else if (isDragActive) {
@@ -199,7 +208,7 @@ class StartAuth extends Component {
                                                    className={dragZoneCss}
                                               >
                                                   <input {...getInputProps()}/>
-                                                  <img src={i.placeholder} alt=" "/>
+                                                  <img src={i.placeholder} alt="please drag and drop"/>
                                               </div>
                                           )
                                       }}
