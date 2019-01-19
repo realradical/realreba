@@ -1,3 +1,26 @@
-.AboutUs h1 {
+.AboutUs {
+    background-image: url("../../assets/images/test_authBanner.jpg");
+    height: 100%;
+    width: 100%;
+    /*background-repeat: no-repeat;*/
+}
+
+.AboutUs1 {
+    padding: 1%;
+}
+
+.AboutUs2 {
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: white;
+    opacity: 0.8;
+}
+
+.AboutUs2 h1 {
     text-align:center;
 }
+.AboutUs2 p {
+    padding: 2%;
+    text-align:center;
+}
+

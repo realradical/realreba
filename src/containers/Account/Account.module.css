@@ -1,3 +1,47 @@
-.AboutUs h1 {
+.Myaccount {
+    background-image: url("../../assets/images/test_authBanner.jpg");
+    height: 100%;
+    width:100%;
+}
+
+.Myaccount1 {
+    padding: 2%;
+}
+
+.Myaccount h1 {
     text-align:center;
+}
+
+.Myaccount2 {
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-left: 18%;
+    margin-right: 18%;
+    background-color: white;
+    text-align:left;
+    opacity: 0.8;
+}
+
+.Myaccount2 p {
+    padding: 2%;
+    text-align:center;
+}
+
+
+.table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  text-align:center;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+
 }
