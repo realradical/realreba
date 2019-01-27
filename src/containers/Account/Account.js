@@ -3,7 +3,7 @@ import classes from "./Account.module.css";
 import WithContext from "../../hoc/WithContext";
 import bckimg from '../../assets/images/mnz-1151552-unsplash.jpg';
 
-const aboutUs = () => {
+const myaccount = () => {
     return (
    <div>
        <img src = {bckimg} alt = "text" height= {"100%"} width = {"100%"}/>
@@ -146,4 +146,4 @@ const aboutUs = () => {
     );
 };
 
-export default WithContext(aboutUs);
+export default WithContext(myaccount);
