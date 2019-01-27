@@ -6,6 +6,7 @@ import Layout from './hoc/Layout/Layout';
 import HomeContent from './containers/HomeContent/HomeContent';
 import AboutUs from "./containers/AboutUs/AboutUs";
 import Login from "./containers/Login/Login";
+import Faq from "./containers/F.A.Q/FAQ";
 import Account from "./containers/Account/Account";
 import Error from "./containers/ErrorPage/ErrorPage";
 import PrivateRoute from "./hoc/PrivateRoute";
@@ -32,6 +33,7 @@ class App extends Component {
         <Layout>
             <Switch>
                 <Route path="/about-us" component={AboutUs}/>
+                <Route path="/Faq" component={Faq}/>
                 <Route path="/authentication"  component={Authentication}/>
                 <Route path="/login" render={() => <Login redirect/>}/>
                 <PrivateRoute path="/myaccount" component={Account}/>
