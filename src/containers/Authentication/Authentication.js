@@ -53,7 +53,7 @@ class Authentication extends Component {
         return (
             <>
                 <div className={classes.banner}>
-                    {<img src={BannerImg} alt='Home Content'/>}
+                    {<img src={BannerImg} alt='Home Content' />}
                 </div>
                 <div className={classes.content}>
                     <div className={classes["menu-toggle"]}>

@@ -1,26 +1,20 @@
-.AboutUs {
-    background-image: url("../../assets/images/test_authBanner.jpg");
-    height: 100%;
-    width: 100%;
-    /*background-repeat: no-repeat;*/
+.container {
+  position: relative;
 }
-
-.AboutUs1 {
-    padding: 1%;
+.textblock {
+  position: absolute;
+  top: 5%;
+  margin-left: 15%;
+  margin-right: 10%;
+  background-color: white;
+  color: black;
+  opacity: 0.6;
+  padding-left: 4%;
+  padding-right: 4%;
 }
-
-.AboutUs2 {
-    margin-left: 20%;
-    margin-right: 20%;
-    background-color: white;
-    opacity: 0.8;
+.textblock h1 {
+    text-align: center;
 }
-
-.AboutUs2 h1 {
-    text-align:center;
+.textblock p{
+    text-align: center;
 }
-.AboutUs2 p {
-    padding: 2%;
-    text-align:center;
-}
-

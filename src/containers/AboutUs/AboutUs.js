@@ -1,13 +1,13 @@
 import React from 'react';
-// import bckimg from '../../assets/images/test_authBanner.jpg'
+import bckimg from '../../assets/images/mnz-1151552-unsplash.jpg';
 import classes from "./AboutUs.module.css";
 
 
 const aboutUs = () => {
     return (
-            <div className={classes.AboutUs}>
-            <div className={classes.AboutUs1}>
-                <div className={classes.AboutUs2}>
+            <div className={classes.container}>
+                <img src = {bckimg} alt = "text" height= "10%" width = "100%"/>
+                <div className={classes.textblock}>
                     <h1>About Us</h1>
             <p>
                 <br/>
@@ -35,7 +35,7 @@ const aboutUs = () => {
                 <br/>
 
             </p>
-                </div>
+
                 </div>
             </div>
     );
