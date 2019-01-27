@@ -1,0 +1,40 @@
+.textblock {
+  margin-left: 15%;
+  margin-right: 10%;
+  background-color: #f3f3f3;
+  color: black;
+  padding-left: 4%;
+  padding-right: 4%;
+  text-align: center;
+}
+
+
+.textblock h3{
+  font-style: normal;
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+
+
+div.gallery {
+  display: grid;
+  margin: 10px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 30%;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 1%;
+  text-align: center;
+}
