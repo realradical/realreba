@@ -1,23 +1,15 @@
-/*.container{*/
-    /*background-image: url("../../assets/images/mnz-1151552-unsplash.jpg");*/
-    /*width: 100%;*/
-    /*background-size: cover;*/
-    /*background-repeat: no-repeat;*/
-    /*background-position: center;*/
-    /*min-height: 700px;*/
-/*}*/
-
 .overflowTest {
-  margin-top: -60%;
-  margin-left: 20%;
+  margin-top: -80%;
+  margin-left: 25%;
   margin-right: 20%;
   background: white;
-  width: 60%;
-  height: 450px;
+  color: black;
+  padding: 15px;
+  width: 50%;
+  height: 400px;
   overflow: scroll;
   border: 1px solid #ccc;
   opacity: 0.7;
-  padding: 5%;
 }
 
 .overflowTest h1{

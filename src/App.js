@@ -6,7 +6,7 @@ import Layout from './hoc/Layout/Layout';
 import HomeContent from './containers/HomeContent/HomeContent';
 import AboutUs from "./containers/AboutUs/AboutUs";
 import Login from "./containers/Login/Login";
-import Faq from "./containers/F.A.Q/FAQ";
+import Faq from "./containers/FAQ/Faq";
 import Account from "./containers/Account/Account";
 import Error from "./containers/ErrorPage/ErrorPage";
 import PrivateRoute from "./hoc/PrivateRoute";
@@ -27,7 +27,7 @@ class App extends Component {
     componentWillUnmount() {
         this.unlisten();
     }
-
+S
     render() {
     return (
         <Layout>
