@@ -27,11 +27,11 @@ const homeContent = () => {
             <CountUp
                 className={classes.responseSpan}
                 start={168}
-                end={23}
+                end={24}
                 duration={2}
                 separator=","
-                prefix="Average "
-                suffix=" Hours In Response Time"
+                prefix="Response within "
+                suffix=" Hours"
             />
         </div>
     );

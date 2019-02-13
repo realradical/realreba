@@ -84,7 +84,6 @@ function pushorder(req, res) {
 
     const fileHyperlink = fileDownloadURL.map(item => "<a href=\"" + item + "\">fileDownloadURL</a>");
     const fileDownloadURLString = fileHyperlink.join(" <br> ");
-    console.log(fileDownloadURLString);
 
     const msg = {
         to: 'jacob.z.shao@gmail.com',
