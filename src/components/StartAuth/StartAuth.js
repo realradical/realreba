@@ -82,11 +82,11 @@ class StartAuth extends Component {
         this.setState({[inputId] : event.target.value});
     };
 
-    static checkItemNameValidity(itemName) {
+    checkItemNameValidity(itemName) {
         return itemName.trim() !== ''
     }
 
-    static checkDropItemValidity(dropItems) {
+    checkDropItemValidity(dropItems) {
         const requiredItems = dropItems.filter(item => item.optional === false);
         const hasFileItems =requiredItems.filter(item => item.hasFile);
         return hasFileItems.length === requiredItems.length
