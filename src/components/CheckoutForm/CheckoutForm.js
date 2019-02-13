@@ -5,7 +5,7 @@ import {storage} from "../../firebase/firebase";
 import mime from 'react-native-mime-types';
 
 
-import Api from "axios";
+import Api from "../../axios";
 import Spinner from "../Spinner/Spinner";
 import "./StripeElement.css";
 import WithContext from "../../hoc/WithContext";

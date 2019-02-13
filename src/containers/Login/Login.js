@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import {Consumer} from "../../components/AppProvider";
 import CredentialForm from "../../components/CredentialForm/CredentialForm";
-// import ResetPassword from "../../components/ResetPassword/ResetPassword";
+import ResetPassword from "../../components/ResetPassword/ResetPassword";
 
 import WithContext from "../../hoc/WithContext";
 
@@ -87,7 +87,7 @@ class Login extends Component {
         );
         return (
             <div className={classes["login-wrap"]}>
-                {/*{this.state.toggleActive === "Reset" ? <ResetPassword/> : loginPage}*/}
+                {this.state.toggleActive === "Reset" ? <ResetPassword/> : loginPage}
                 {loginForm}
             </div>
         );
