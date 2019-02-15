@@ -2,16 +2,17 @@ import React , {Component}  from 'react';
 import {db} from "../../firebase/firebase";
 import classes from "./Account.module.css";
 import img from "../../assets/images/test_authBanner.jpg";
+import WithContext from "../../hoc/WithContext";
 
 class myaccount extends Component {
     state = {
         useraccountdata: [],
-        result : null
+        result : null,
     };
     componentDidMount() {
         const userdata = [];
         const citiesRef = db.collection("orders");
-        const query = citiesRef.where("status", "==", "no");
+        const query = citiesRef.where("uid", "==", this.props.context.state.currentUser.uid);
         query.get().then(results => {
           if(results.empty) {
             this.setState({result: "You dont have any orders yet."});
@@ -26,7 +27,7 @@ class myaccount extends Component {
         }).catch(function(error) {
             console.log("Error getting documents:", error);
         });
-            }
+        }
 
     render() {
         let userlist =  this.state.useraccountdata.map(item => {
@@ -63,6 +64,8 @@ class myaccount extends Component {
        if (this.state.useraccountdata.length == 0) {
            const style = {
                textAlign: 'center',
+               fontWeight: 'bold',
+               fontSize: '20px'
            }
          display = (<p style = {style} > {this.state.result} </p>);
         };
@@ -81,4 +84,4 @@ class myaccount extends Component {
         }
     }
 
-export default myaccount;
+export default WithContext(myaccount);

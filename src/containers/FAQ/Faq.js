@@ -20,13 +20,12 @@ const Faq = () => {
 
             <CardHeader tag="h5">Question : How can I contact Authworks?</CardHeader>
             <CardBody>
-                <CardText> Email support@authworks.com<br/>
+                <CardText> Email : support@authworks.com<br/>
                     To assist you as quickly as possible, please provide the following info:
                     <br/>• &nbsp; &nbsp; Email address associated with your Authworks account or your Authworks username
                     <br/>• &nbsp; &nbsp; Order# if related to a specific order
                     <br/>• &nbsp; &nbsp; Thorough description of your case
-                    <br/>You may also be able to find answers to your questions even quicker on our
-                    FAQ page! Otherwise we look forward to connecting with you soon.
+                    <br/>We look forward to connecting with you soon.
                     We do not currently offer support via phone or in-person,
                     but may be something we offer in the future. </CardText>
             </CardBody>
