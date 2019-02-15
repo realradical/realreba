@@ -27,7 +27,8 @@ class myaccount extends Component {
         }).catch(function(error) {
             console.log("Error getting documents:", error);
         });
-        }
+                    console.log(this.props.context.state.currentUser);
+}
 
     render() {
         let userlist =  this.state.useraccountdata.map(item => {
@@ -61,7 +62,7 @@ class myaccount extends Component {
 
         );
 
-       if (this.state.useraccountdata.length == 0) {
+       if (this.state.useraccountdata.length === 0) {
            const style = {
                textAlign: 'center',
                fontWeight: 'bold',
