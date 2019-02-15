@@ -65,7 +65,7 @@ class myaccount extends Component {
            const style = {
                textAlign: 'center',
                fontWeight: 'bold',
-               fontSize: '20px'
+               fontSize: '18px'
            }
          display = (<p style = {style} > {this.state.result} </p>);
         };
