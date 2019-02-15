@@ -67,9 +67,9 @@ class myaccount extends Component {
                textAlign: 'center',
                fontWeight: 'bold',
                fontSize: '18px'
-           }
+           };
          display = (<p style = {style} > {this.state.result} </p>);
-        };
+        }
 
         return (<>
                 <div className={classes.banner}>
