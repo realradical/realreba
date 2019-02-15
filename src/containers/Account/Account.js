@@ -1,178 +1,84 @@
-import React from 'react';
-import classes from "./Account.module.css";
-import WithContext from "../../hoc/WithContext";
-import bckimg from '../../assets/images/mnz-1151552-unsplash.jpg';
+import React , {Component}  from 'react';
 import {db} from "../../firebase/firebase";
+import classes from "./Account.module.css";
+import img from "../../assets/images/test_authBanner.jpg";
 
-const myaccount = () => {
-
-    const docRef = db.collection('users').doc('tomide');
-            docRef.get().then((doc) => {
-                if (doc.exists) {
-                    let data = doc.data();
-                    console.log("Document data:", Object.keys(data));
-                } else {
-                    // doc.data() will be undefined in this case
-                    console.log("No such document!");
-                }
-
-            }).catch(function (error) {
-                console.log("Error getting document:", error);
+class myaccount extends Component {
+    state = {
+        useraccountdata: [],
+        result : null
+    };
+    componentDidMount() {
+        const userdata = [];
+        const citiesRef = db.collection("orders");
+        const query = citiesRef.where("status", "==", "no");
+        query.get().then(results => {
+          if(results.empty) {
+            this.setState({result: "You dont have any orders yet."});
+          } else {
+            // go through all results
+            results.forEach((doc) => {
+                userdata.push(doc.data())
             });
+            // or if you only want the first result you can also do something like this:
+              this.setState({useraccountdata: userdata});
+          }
+        }).catch(function(error) {
+            console.log("Error getting documents:", error);
+        });
+            }
 
-    const docRef2 = db.collection('orders').doc('07dnz4GPgemmelQZ0I90');
-            docRef2.get().then((doc) => {
-                if (doc.exists) {
-                    let data = doc.data();
-                    console.log("Document data:", Object.keys(data));
-                } else {
-                    // doc.data() will be undefined in this case
-                    console.log("No such document!");
-                }
+    render() {
+        let userlist =  this.state.useraccountdata.map(item => {
+            return (
+                 <>
+                <tr>
+                    <td>{item.itemName}</td>
+                    <td>{item.description}</td>
+                    <td>{item.status}</td>
+                    <td>{item.uid}</td>
+                </tr>
+                 </>)
+        });
 
-            }).catch(function (error) {
-                console.log("Error getting document:", error);
-            });
-
-
-    return (
-   <>
-       <img src = {bckimg} alt = "text" height= {"100%"} width = {"100%"}/>
-        <div className={classes.overflowTest}>
-                <h1>My Account</h1>
-
-        <table>
-            <thead>
-            <tr>
-                <th>Order Name</th>
-                <th>Order Date</th>
-                <th>Order Result</th>
-            </tr>
-            </thead>
-            <tbody>
-               <tr>
-                    <td>Yeezy 350 boost</td>
-                    <td>Oct-18-2018</td>
-                    <td>Legit</td>
-                </tr>
+        let display = (
+            <div className={classes.textblock}>
+                <table>
+                <thead>
                 <tr>
-                    <td>Yeezy 350 boost</td>
-                    <td>Oct-18-2018</td>
-                    <td>Legit</td>
+                    <th>Order Name</th>
+                    <th>Order Date</th>
+                    <th>Order Status</th>
+                    <th>Order Result</th>
                 </tr>
-                <tr>
-                    <td>Yeezy 350 boost</td>
-                    <td>Oct-18-2018</td>
-                    <td>Legit</td>
-                </tr>
-                <tr>
-                    <td>Classics Jordan 11 - blue and black color ways</td>
-                    <td>Nov -08 -2017</td>
-                    <td>Fake</td>
-                </tr>
-                <tr>
-                    <td>Yeezy 350 boost</td>
-                    <td>Oct-18-2018</td>
-                    <td>Legit</td>
-                </tr>
-                <tr>
-                    <td>Classics Jordan 11 - blue and black color ways</td>
-                    <td>Nov -08 -2017</td>
-                    <td>Fake</td>
-                </tr>
-                <tr>
-                    <td>Yeezy 350 boost</td>
-                    <td>Oct-18-2018</td>
-                    <td>Legit</td>
-                </tr>
-                <tr>
-                    <td>Classics Jordan 11 - blue and black color ways</td>
-                    <td>Nov -08 -2017</td>
-                    <td>Fake</td>
-                </tr>
-                <tr>
-                    <td>Yeezy 350 boost</td>
-                    <td>Oct-18-2018</td>
-                    <td>Legit</td>
-                </tr>
-                <tr>
-                    <td>Classics Jordan 11 - blue and black color ways</td>
-                    <td>Nov -08 -2017</td>
-                    <td>Fake</td>
-                </tr>
-                <tr>
-                    <td>Yeezy 350 boost</td>
-                    <td>Oct-18-2018</td>
-                    <td>Legit</td>
-                </tr>
-                <tr>
-                    <td>Classics Jordan 11 - blue and black color ways</td>
-                    <td>Nov -08 -2017</td>
-                    <td>Fake</td>
-                </tr>
-                <tr>
-                    <td>Yeezy 350 boost</td>
-                    <td>Oct-18-2018</td>
-                    <td>Legit</td>
-                </tr>
-                <tr>
-                    <td>Classics Jordan 11 - blue and black color ways</td>
-                    <td>Nov -08 -2017</td>
-                    <td>Fake</td>
-                </tr>
-                <tr>
-                    <td>Yeezy 350 boost</td>
-                    <td>Oct-18-2018</td>
-                    <td>Legit</td>
-                </tr>
-                <tr>
-                    <td>Classics Jordan 11 - blue and black color ways</td>
-                    <td>Nov -08 -2017</td>
-                    <td>Fake</td>
-                </tr>
-                <tr>
-                    <td>Yeezy 350 boost</td>
-                    <td>Oct-18-2018</td>
-                    <td>Legit</td>
-                </tr>
-                <tr>
-                    <td>Classics Jordan 11 - blue and black color ways</td>
-                    <td>Nov -08 -2017</td>
-                    <td>Fake</td>
-                </tr>
-                <tr>
-                    <td>Yeezy 350 boost</td>
-                    <td>Oct-18-2018</td>
-                    <td>Legit</td>
-                </tr>
-                <tr>
-                    <td>Classics Jordan 11 - blue and black color ways</td>
-                    <td>Nov -08 -2017</td>
-                    <td>Fake</td>
-                </tr>
-                <tr>
-                    <td>Yeezy 350 boost</td>
-                    <td>Oct-18-2018</td>
-                    <td>Legit</td>
-                </tr>
-                <tr>
-                    <td>Classics Jordan 11 - blue and black color ways</td>
-                    <td>Nov -08 -2017</td>
-                    <td>Fake</td>
-                </tr>
-                <tr>
-                    <td>Yeezy 350 boost</td>
-                    <td>Oct-18-2018</td>
-                    <td>Legit</td>
-                </tr>
+                </thead>
+                <tbody>
+                    {userlist}
                 </tbody>
-            </table>
-            <br/>
-            <br/>
+                </table>
             </div>
-            </>
 
-    );
-};
+        );
 
-export default WithContext(myaccount);
+       if (this.state.useraccountdata.length == 0) {
+           const style = {
+               textAlign: 'center',
+           }
+         display = (<p style = {style} > {this.state.result} </p>);
+        };
+
+        return (<>
+                <div className={classes.banner}>
+                <img src = {img} alt = "text" /> </div>
+                <div className={classes.header}> <h1> My Account </h1> </div>
+
+                {display}
+
+                <br/>
+                <br/>
+                </>
+                );
+        }
+    }
+
+export default myaccount;
