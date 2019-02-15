@@ -9,6 +9,14 @@ const Faq = () => {
             <img src = {img} alt = "text" /> </div>
         <div className={classes.header}> <h1> Frequently Asked Questions  </h1> </div>
         <div className={classes.textblock}>
+            <CardHeader tag="h5">Question : What is Authworks?</CardHeader>
+            <CardBody >
+            <CardText>Authworks is a sneaker verification company, established privately
+                15years ago. We have been private verifier for elite brands and clients,
+                but we decided to go public in 2014. We are a collection of sneaker
+                heads and sneaker enthusiast, who love the culture, street wear and anything
+                fly. </CardText>
+            </CardBody>
 
             <CardHeader tag="h5">Question : How can I contact Authworks?</CardHeader>
             <CardBody>
