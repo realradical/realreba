@@ -28,16 +28,6 @@
     height: 100%;
 }
 
-.Logo {
-    height: 80%;
-}
-
-.name {
-    color:#FFFFFF;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 34px;
-}
-
 @media (max-width: 499px) {
     .DesktopOnly {
         display: none;

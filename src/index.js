@@ -8,11 +8,15 @@ import * as serviceWorker from './serviceWorker';
 import WebFont from 'webfontloader';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AppProvider from "./components/AppProvider"
+import ScrollToTop from "./hoc/ScrollToTop";
+
 
 ReactDOM.render(
     <AppProvider>
         <BrowserRouter>
-            <App />
+            <ScrollToTop>
+                <App />
+            </ScrollToTop>
         </BrowserRouter>
     </AppProvider>,
     document.getElementById('root'));
