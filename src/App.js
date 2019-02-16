@@ -32,11 +32,12 @@ class App extends Component {
     return (
         <Layout>
             <Switch>
-                <Route path="/about-us" component={AboutUs}/>
-                <Route path="/Faq" component={Faq}/>
-                <Route path="/authentication"  component={Authentication}/>
-                <Route path="/login" render={() => <Login redirect/>}/>
-                <PrivateRoute path="/myaccount" component={Account}/>
+                <Route path="/about-us" exact component={AboutUs}/>
+                <Route path="/Faq" exact component={Faq}/>
+                <Route path="/authentication" exact component={Authentication}/>
+                <Route path="/authentication/:id" component={Authentication}/>
+                <Route path="/login" exact render={() => <Login redirect/>}/>
+                <PrivateRoute path="/myaccount" exact component={Account}/>
                 <Route path="/" exact component={HomeContent}/>
                 <Route component={Error}/>
             </Switch>

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import WithContext from "../../hoc/WithContext";
 import classes from "./Authentication.module.css";
-import BannerImg from "../../assets/images/test_authBanner.jpg";
+import BannerImg from "../../assets/images/test_banner.jpg";
 import HowItWorks from "../../components/HowItWorks/HowItWorks";
 import RecentWork from "../../components/RecentWork/RecentWork";
 import StartAuth from '../../components/StartAuth/StartAuth.js';
@@ -20,6 +20,14 @@ class Authentication extends Component {
     clickHandler = (toggleType) => {
         this.setState({toggleActive: toggleType});
     };
+
+    componentDidMount() {
+        const {match: {params}} = this.props;
+
+        if (params.id === "how-it-works") {
+            this.setState({toggleActive: "T2"});
+        }
+    }
 
     render() {
         let contentComponent = null;
@@ -52,8 +60,7 @@ class Authentication extends Component {
 
         return (
             <>
-                <div className={classes.banner}>
-                    {<img src={BannerImg} alt='Home Content' />}
+                <div className={classes.banner} style={{backgroundImage: "url(" + BannerImg + ")" }}>
                 </div>
                 <div className={classes.content}>
                     <div className={classes["menu-toggle"]}>
