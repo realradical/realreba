@@ -11,7 +11,6 @@
 
 .banner img {
     position: relative;
-    top: 50%;
     transform: translateY(-50%);
     display:block;
     margin: auto;
@@ -27,7 +26,6 @@
 
 .textblock {
   position: absolute;
-  top: 33%;
   margin-left: 15%;
   margin-right: 10%;
   background-color: #ecedec;
