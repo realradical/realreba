@@ -1,20 +1,46 @@
-.container {
-  position: relative;
+.banner {
+  width: 100%;
+  padding: 0;
+  margin: 0 auto;
+  box-sizing: border-box;
+  height: 300px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.textblock {
-  position: absolute;
-  top: 5%;
-  margin-left: 15%;
-  margin-right: 10%;
-  background-color: white;
-  color: black;
-  opacity: 0.6;
-  padding-left: 4%;
-  padding-right: 4%;
+
+.bannerText {
+  color: #fff;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  display: inline-block;
+  /*background-color: rgba(156, 156, 156, 0.7);*/
 }
-.textblock h1 {
-    text-align: center;
+
+.form-wrap {
+  max-width: 1200px;
+  min-width: 500px;
+  margin: 50px auto 50px;
+  padding: 10px 50px 10px;
+  background: #ecedec;
+  box-sizing: border-box;
+  overflow: hidden;
 }
-.textblock p{
-    text-align: center;
+
+.form-wrap h1{
+  font-size: 1.75rem;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
+
+.subtitle {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
