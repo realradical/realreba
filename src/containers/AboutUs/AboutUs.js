@@ -17,23 +17,25 @@ const aboutUs = () => {
                 <h1>About Us</h1>
                 <p className={classes.subtitle}>Our Passion</p>
                 <p>
-                    Sneakers Sneakers Sneakers! that's all we know. We have been verifying sneakers for over 15 years and we
-                    know the counterfeit market. We have a team of sneakerhead authenticators, who have verified sneakers
-                    from the classic "J's 11", to the infamous "Yeezy boost 750's". We know sneakers and we know when they
-                    are counterfeit or legit.
+                    Sneakers Sneakers Sneakers! that's all we know. From the classic "J's 11", to the infamous "Yeezy
+                    boost 750's". We have been verifying sneakers for years and we know what authenticity means to all
+                    sneaker heads like us.
                 </p>
-                <p className={classes.subtitle}>Our Expertise</p>
+                <p className={classes.subtitle}>Our Team</p>
                 <p>
-                    We have seen 99% replicas and can tell they are fake - even better than the actual
-                    manufacturers. Our elite team of authenticators have verified over 65000 shoes since 2004, and we are
-                    the leading authentication service provider in North America.
+                    We are a small team of sneaker enthusiasts with a professional background in quality assurances and
+                    inspection services. Our independent inspectors have access to our large up-to-date database of
+                    counterfeit sneakers and forgery methods. Their keen eyes can detect any replica shoes from just a
+                    few pictures of any sneakers.
                 </p>
-                <p className={classes.subtitle}>Our Value</p>
+                <p className={classes.subtitle}>Our Mission</p>
                 <p>
-                    Our authentication process generates a full report on the sneakers and we provide detailed reasons why
-                    a sneaker is counterfeit or legit. The detailed report generated on the authenticated sneaker is also hosted
-                    online as a record and a link to this report can be used on other sneaker retail sites
-                    (e.g. Stockx, Craiglist, Facebook etc..) to help boost the trust of the buyers.
+                    Every year millions of fake sneakers enter the American and European retail and second-hand market.
+                    The counterfeiters constantly develop new methods to trick you into buying their knock-off
+                    products. We are here to oppose those counterfeiters and put the safety back into the sneaker
+                    sale. Our team of sneaker inspectors receives regular training to keep up with the latest forgery
+                    efforts. Within one day we deliver a detailed inspection report, so you can rest assured that your
+                    shoes are the real deal.
                 </p>
             </div>
         </>

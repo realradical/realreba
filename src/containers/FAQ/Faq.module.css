@@ -34,11 +34,12 @@
     text-align: left;
     color: #010203;
     font-weight: bolder;
-    font-size: 15px;
+    font-size: 1rem;
 }
+
 .textblock p{
     text-align: left;
     color: #010203;
     font-weight: normal;
-    font-size:15px;
+    font-size: 1rem;
 }
