@@ -35,7 +35,7 @@ class RecentWork extends Component {
         processedOrderQuery.get().then((querySnapshot) => {
             querySnapshot.forEach(
                 (doc) => {
-                    let orderStorageRef = ordersStorageRef.child(doc.id + '/thumbnail-' + doc.id + '.jpg');
+                    let orderStorageRef = ordersStorageRef.child(doc.id + '/thumb_overall.jpg');
                     orderStorageRef.getDownloadURL().then(
                         (response) => {
                             imgArray.push({
