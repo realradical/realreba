@@ -1,0 +1,44 @@
+.banner {
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
+    height: 150px;
+    overflow: hidden;
+    background-color: #cbcccb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bannerText {
+    color: #000000;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 800;
+    display: inline-block;
+    /*background-color: rgba(156, 156, 156, 0.7);*/
+}
+
+.form-wrap {
+    max-width: 1200px;
+    min-width: 500px;
+    margin: 50px auto 50px;
+    padding: 25px 50px 25px;
+    background: #ecedec;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.form-wrap h2{
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.form-wrap p{
+    font-size: 0.9rem;
+}
+
+

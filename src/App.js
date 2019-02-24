@@ -13,6 +13,7 @@ import Error from "./containers/ErrorPage/ErrorPage";
 import PrivateRoute from "./hoc/PrivateRoute";
 import Authentication from "./containers/Authentication/Authentication";
 import ContactUs from "./containers/ContactUs/ContactUs";
+import Privacy from "./containers/Privacy/Privacy";
 import WithContext from "./hoc/WithContext";
 
 
@@ -42,6 +43,7 @@ class App extends Component {
                 <Route path="/about-us" exact component={AboutUs}/>
                 <Route path="/faq" exact component={Faq}/>
                 <Route path="/contact-us" exact component={ContactUs}/>
+                <Route path="/privacy" exact component={Privacy}/>
                 <Route path="/authentication" exact component={Authentication}/>
                 <Route path="/authentication/:id" component={Authentication}/>
                 <Route path="/login" exact render={() => <Login redirect/>}/>
