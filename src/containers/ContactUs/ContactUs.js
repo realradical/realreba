@@ -5,8 +5,6 @@ import { ReCaptcha } from 'react-recaptcha-v3'
 import bgImg from "../../assets/images/bg.jpg";
 import classes from "./ContactUs.module.css";
 import Api from "../../axios";
-import FlashMessage from "../../components/FlashMessage/FlashMessage";
-import WithContext from "../../hoc/WithContext";
 
 
 class ContactUs extends Component {
@@ -16,7 +14,7 @@ class ContactUs extends Component {
         orderid: '',
         message: '',
         valid: false,
-        emailSent: false,
+        emailSentStatus: null,
         recaptchaToken: ''
     };
 
@@ -25,7 +23,7 @@ class ContactUs extends Component {
 
     verifyCallback = (recaptchaToken) => {
         // Here you will get the final recaptchaToken!!!
-        console.log(recaptchaToken)
+        // console.log(recaptchaToken);
         this.setState({recaptchaToken});
     };
 
@@ -57,9 +55,8 @@ class ContactUs extends Component {
 
                 Api.post("/contactus/", {name, email, orderid, message, recaptchaToken})
                     .then(res => {
-                    });
-
-                this.setState({emailSent: true});
+                        this.setState({emailSentStatus: true});
+                    }).catch(err => this.setState({emailSentStatus: false}));
             }
         }
     };
@@ -74,6 +71,15 @@ class ContactUs extends Component {
                 <div className={classes["form-wrap"]}>
                     <h2>Your Message Sent!</h2>
                     <p>Thank you! We will get back to you as soon as possible.</p>
+                </div>
+            </div>
+        );
+
+        let errorContent = (
+            <div className={classes.pageWrapper} style={{backgroundImage: "url(" + bgImg + ")"}}>
+                <div className={classes["form-wrap"]}>
+                    <h2>Something Went Wrong!</h2>
+                    <p>Please make sure your email address is correct and send your message again.</p>
                 </div>
             </div>
         );
@@ -121,7 +127,6 @@ class ContactUs extends Component {
                                invalid={!messageValid}
                         />
                     </FormGroup>
-                    <FlashMessage/>
                     <FormGroup style={{textAlign: 'center'}}>
                         <Button onClick={this.onClickProceedHandler} block size="lg" color="info">Send</Button>
                         <small>This site is protected by reCAPTCHA and the Google
@@ -133,10 +138,23 @@ class ContactUs extends Component {
             </div>
         </div>);
 
+        let component = null;
+
+        switch(this.state.emailSentStatus) {
+            case false:
+                component = errorContent;
+                break;
+            case true:
+                component = confirmContent;
+                break;
+            default:
+                component = contactForm;
+        }
+
         return (
-            this.state.emailSent ? confirmContent : contactForm
+            component
         );
     }
 }
 
-export default WithContext(ContactUs);
+export default ContactUs;

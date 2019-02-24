@@ -29,7 +29,7 @@ class Login extends Component {
 
     clickResetHandler = () => {
         this.setState({toggleActive: "Reset"});
-    }
+    };
 
     credentialFormRender = (action, title) => {
         return (<Consumer>
