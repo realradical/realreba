@@ -6,8 +6,7 @@ import classes from './HomeContent.module.css';
 
 const homeContent = () => {
     return (
-        <div className={classes.HomeContent}>
-            <img src={HomeImg} alt='Home Content'/>
+        <div className={classes.HomeContent} style={{backgroundImage: "url(" + HomeImg + ")" }}>
             <CountUp
                 className={classes.itemsSpan}
                 start={10000}

@@ -119,7 +119,7 @@ class CredentialForm extends Component {
                     <input
                         name="email"
                         type="email"
-                        placeholder="Email Address"
+                        placeholder="Email address"
                         ref={this.email}
                         onChange={this.props.onChange}
                     />

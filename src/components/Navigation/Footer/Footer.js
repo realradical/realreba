@@ -24,7 +24,7 @@ const footer = () => {
                     <Link to="/about-us" className="link-1" href="#">About Us</Link>
                     <Link to="/authentication/how-it-works">How It Works</Link>
                     <Link to="/faq">FAQ</Link>
-                    <Link to="/about-us">Contact Us</Link>
+                    <Link to="/contact-us">Contact Us</Link>
                     <Link to="/about-us">Privacy Policy</Link>
                 </p>
 
