@@ -45,8 +45,8 @@ module.exports = functions.storage.object().onFinalize((object) => {
         }).then(() => {
             console.log('Image downloaded locally to', tempFilePathPrev);
             // Generate a thumbnail using ImageMagick.
-            return spawn('convert', [tempFilePathPrev, '-thumbnail', '60000@', '-gravity', 'center',
-                 '-background', 'black', '-extent', '300x200', tempFilePath]);
+            return spawn('convert', [tempFilePathPrev, '-thumbnail', '200x200>', '-gravity', 'center',
+                 '-background', '#ecedec', '-extent', '200x200', tempFilePath]);
         }).then(() => {
             console.log('Thumbnail created at', tempFilePath);
             // We add a 'thumb_' prefix to thumbnails file name. That's where we'll upload the thumbnail.

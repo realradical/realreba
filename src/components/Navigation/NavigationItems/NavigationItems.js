@@ -17,7 +17,7 @@ const navigationItems = () => (
         {({  ...context }) => (
         <ul className={classes.NavigationItems}>
             <NavigationItem link="/about-us">About Us</NavigationItem>
-            <NavigationItem link="/Faq">FAQ</NavigationItem>
+            <NavigationItem link="/faq">FAQ</NavigationItem>
             <NavigationItem link="/authentication">Authentication</NavigationItem>
             {context.state.currentUser ?
                 (<>

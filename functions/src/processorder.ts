@@ -1,5 +1,5 @@
 import * as functions from 'firebase-functions';
-var FieldValue = require("firebase-admin").firestore.FieldValue;
+const FieldValue = require("firebase-admin").firestore.FieldValue;
 const {db} = require('./admin');
 const express = require('express');
 const cors = require('cors');

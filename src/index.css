@@ -27,3 +27,8 @@ textarea:focus {
     outline: none;
 }
 
+/*Hide reCAPTCHA Badge*/
+.grecaptcha-badge {
+    visibility: hidden;
+}
+
