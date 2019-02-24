@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const appPushOrder = express();
 
-// TODO: Remember to set token using >> firebase functions:config:set stripe.token="SECRET_STRIPE_TOKEN_HERE"
+// TODO: Remember to set api key using >> firebase functions:config:set sendgrid.apikey="SECRET_SENDGRID_APIKEY_HERE"
 const MY_SENDGRID_API_KEY = functions.config().sendgrid.apikey;
 sendgridemail.setApiKey(MY_SENDGRID_API_KEY);
 
