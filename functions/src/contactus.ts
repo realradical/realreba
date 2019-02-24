@@ -5,9 +5,11 @@ const cors = require('cors');
 const appContactUs = express();
 const axios = require('axios');
 
-
+// TODO: Remember to set api key using >> firebase functions:config:set sendgrid.apikey="SECRET_SENDGRID_APIKEY_HERE"
 const MY_SENDGRID_API_KEY = functions.config().sendgrid.apikey;
 sendgridemail.setApiKey(MY_SENDGRID_API_KEY);
+// TODO: Remember to set secret using >> firebase functions:config:set recapatcha.secret="SECRET_RECAPATCHA_HERE"
+const MY_reCAPATCHA_SECRET = functions.config().recapatcha.secret;
 
 const allowedOrigins = ['http://localhost:3000', 'https://realreba-c557f.firebaseapp.com'];
 
@@ -21,7 +23,7 @@ function contactus(req, res) {
 
     axios.post("https://www.google.com/recaptcha/api/siteverify", null, {
         params: {
-            secret: '6LenfZMUAAAAAPCEAmpC957d2wO_2wY3OkUZfJhN',
+            secret: MY_reCAPATCHA_SECRET,
             response: recaptchaToken
         }
     }).then(response => {

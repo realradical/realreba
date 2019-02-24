@@ -5,7 +5,7 @@ const cors = require('cors');
 const appCharge = express();
 
 
-// TODO: Remember to set sendgrid api key using >> firebase functions:config:set sendgrid.apikey="SECRET_STRIPE_TOKEN_HERE"
+// TODO: Remember to set stripe token using >> firebase functions:config:set stripe.token="SECRET_STRIPE_TOKEN_HERE"
 const stripe = require('stripe')(functions.config().stripe.token);
 
 const allowedOrigins = ['http://localhost:3000', 'https://realreba-c557f.firebaseapp.com'];
