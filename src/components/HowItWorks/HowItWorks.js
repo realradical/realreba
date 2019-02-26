@@ -2,12 +2,12 @@ import React from 'react';
 import {CardHeader, CardBody, CardText } from 'reactstrap';
 
 import classes from "./HowItWorks.module.css";
-import bckimg1 from '../../assets/images/how_overall.jpeg';
-import bckimg2 from '../../assets/images/how_label.jpeg';
-import bckimg3 from '../../assets/images/how_stitching.jpeg';
-import bckimg4 from '../../assets/images/how_sole.jpeg';
-import bckimg5 from '../../assets/images/how_box.jpeg';
-import bckimg6 from '../../assets/images/how_seal.jpeg';
+// import bckimg1 from '../../assets/images/how_overall.jpeg';
+// import bckimg2 from '../../assets/images/how_label.jpeg';
+// import bckimg3 from '../../assets/images/how_stitching.jpeg';
+// import bckimg4 from '../../assets/images/how_sole.jpeg';
+// import bckimg5 from '../../assets/images/how_box.jpeg';
+// import bckimg6 from '../../assets/images/how_seal.jpeg';
 
 
 const howItWorks = () => {

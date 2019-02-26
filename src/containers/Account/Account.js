@@ -27,7 +27,7 @@ class myaccount extends Component {
         }).catch(function(error) {
             console.log("Error getting documents:", error);
         });
-                    console.log(this.props.context.state.currentUser);
+            console.log(this.props.context.state.currentUser);
 }
 
     render() {

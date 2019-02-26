@@ -11,6 +11,7 @@ import Account from "./containers/Account/Account";
 import Error from "./containers/ErrorPage/ErrorPage";
 import PrivateRoute from "./hoc/PrivateRoute";
 import Authentication from "./containers/Authentication/Authentication";
+import Report from "./containers/Reports/Reports";
 import WithContext from "./hoc/WithContext";
 
 
@@ -36,6 +37,7 @@ class App extends Component {
                 <Route path="/Faq" exact component={Faq}/>
                 <Route path="/authentication" exact component={Authentication}/>
                 <Route path="/authentication/:id" component={Authentication}/>
+                <Route path="/report/:id" component={Report}/>
                 <Route path="/login" exact render={() => <Login redirect/>}/>
                 <PrivateRoute path="/myaccount" exact component={Account}/>
                 <Route path="/" exact component={HomeContent}/>
