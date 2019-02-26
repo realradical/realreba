@@ -1,0 +1,22 @@
+.pageWrapper {
+    height: 100vh;
+    padding: 0;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow:auto
+}
+
+.form-wrap {
+    max-width: 33%;
+    min-width: 500px;
+    margin: 50px auto;
+    padding: 25px 50px 10px;
+    background: #ecedec;
+    box-sizing: border-box;
+}
+
+.form-wrap h1 {
+    text-align: center;
+}
