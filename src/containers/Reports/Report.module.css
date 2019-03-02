@@ -1,13 +1,12 @@
 .outerWrap {
 position: absolute;
 z-index: 0;
-/*background-color: #eff0f1;*/
-height: 85%;
-width: 60%;
-margin-top: 2%;
-margin-left: 25%;
-margin-right: 20%;
 background-image: url("../../assets/images/certificate-frame.jpg");
+    height: 85%;
+    width: 60%;
+    margin-top: 2%;
+    margin-left: 25%;
+    margin-right: 20%;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -15,7 +14,7 @@ background-image: url("../../assets/images/certificate-frame.jpg");
 
 .layer1 {
 position: absolute;
-    padding-top: 12%;
+padding-top: 15%;
 z-index: 1;
 height: 10%;
 width: 100%;
@@ -39,7 +38,7 @@ position: absolute;
 z-index: 3;
 width: 100%;
 padding-left: 20%;
-    margin-top: -5%;
+    margin-top: -7%;
 }
 .layer4 {
 position: absolute;
@@ -54,7 +53,7 @@ transform: rotate(-30deg);
 
 div.gallery {
   display: grid;
-  margin: 10px;
+  margin: 2%;
   border: 1px solid #ccc;
   float: left;
   width: 22%;
@@ -66,8 +65,8 @@ div.gallery:hover {
 }
 
 div.gallery img {
-  width: 100%;
-  height: auto;
+  width: 120px;
+  height: 120px;
 }
 
 div.desc {
@@ -78,11 +77,11 @@ div.desc {
 
 .layer1 h3 {
     font-family: "IM Fell English SC", cursive;
-    font-size: 30px;
+    font-size: 180%;
     font-style: normal;
     font-variant: normal;
     font-weight: bolder;
-    line-height: 23px;
+    line-height: 22%;
 }
 
 
@@ -90,6 +89,6 @@ div.desc {
     font-size: 150%;
     font-style: normal;
     font-variant: normal;
-    font-weight: 300;
-    line-height: 23px;
+    font-weight: normal;
+    line-height: 150%;
 }

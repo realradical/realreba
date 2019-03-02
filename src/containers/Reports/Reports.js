@@ -1,8 +1,8 @@
 import React , {Component}  from 'react';
 import { db, storage } from "../../firebase/firebase";
 import classes from './Report.module.css';
-import legit from '../../assets/images/legit_1.png';
-import fake from '../../assets/images/legit_1.png';
+import legit from '../../assets/images/Main_Legit.png';
+import Fake from '../../assets/images/Main_Fake.png';
 import Spinner from "../../components/Spinner/Spinner";
 
 
@@ -10,6 +10,7 @@ import Spinner from "../../components/Spinner/Spinner";
 class reports extends Component {
     state = {
         header : <Spinner/>,
+
         orderdata : [],
         validfile : null,
         fake_legit : null,
@@ -39,13 +40,12 @@ class reports extends Component {
                     docRef2.get().then((doc) => {
                         if (doc.exists) {
                             if (doc.data().legit === true) {
-                            this.setState({fake_legit : {legit}})
-                            console.log(this.state.fake_legit)
+                            this.setState({fake_legit : true});
                                 }else{
-                                this.setState({fake_legit : {fake}})
+                                this.setState({fake_legit : "Fake"})
                                 }
                             }
-                    })
+                    });
             this.setState({status : "processed"});
 
             let storageRef = storage.ref();
@@ -100,25 +100,36 @@ class reports extends Component {
     };
 
     render() {
-    let header = this.state.header
+
+    let result_img = null;
+
+    if (this.state.fake_legit === true){
+        result_img = (<img src={legit} width="100" height="80" alt="fake_or_legit" />);
+    }
+
+    if (this.state.fake_legit === "Fake"){
+        result_img = (<img src={Fake} width="100" height="80" alt="fake_or_legit"/>);
+    }
+
+    let header = this.state.header;
 
     if (this.state.status === "processed") {
         let img_area = <>
             <div className={classes.gallery}>
                 <a target="_blank" href={this.state.bckimg1} rel="noopener noreferrer">
-                    <img src={this.state.bckimg1} alt="Forest" width="600" height="400"/>
+                    <img src={this.state.bckimg1}  alt="Forest" width={80} height={80} />
                 </a>
             </div>
 
             <div className={classes.gallery}>
                 <a target="_blank" href={this.state.bckimg2} rel="noopener noreferrer">
-                    <img src={this.state.bckimg2} alt="Forest" width="600" height="400"/>
+                    <img src={this.state.bckimg2} alt="Forest" width={80} height={80} />
                 </a>
             </div>
 
             <div className={classes.gallery}>
                 <a target="_blank" href={this.state.bckimg3} rel="noopener noreferrer">
-                    <img src={this.state.bckimg3} alt="Forest" width="600" height="400"/>
+                    <img src={this.state.bckimg3} sizes={100} alt="Forest" width={80} height={80}/>
                 </a>
             </div>
 
@@ -140,7 +151,8 @@ class reports extends Component {
                 </a>
             </div>
             <div className={classes.layer4}>
-                <img src={legit} width="100" height="80" alt="fake_or_legit"/>
+                {/*<img src={legit} width="100" height="80" alt="fake_or_legit"/>*/}
+                {result_img}
             </div>
         </>;
 
