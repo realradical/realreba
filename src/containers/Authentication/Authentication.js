@@ -26,6 +26,8 @@ class Authentication extends Component {
 
         if (params.id === "how-it-works") {
             this.setState({toggleActive: "T2"});
+        } else if (params.id === "start") {
+            this.setState({toggleActive: "T3"});
         }
     }
 

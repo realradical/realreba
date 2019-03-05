@@ -3,10 +3,6 @@
     text-align: center;
     position: relative;
     box-sizing: border-box;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    height: 100vh;
     width: 100%;
 }
 
@@ -16,29 +12,140 @@
     }
 }
 
-.HomeContent span {
-    background-color: #e8e4e3;
-    color: #2e2e2e;
-    padding: 10px 20px;
-    font-size: 28px;
-    font-weight: bold;
-    font-style: italic;
-    position:absolute;
-    z-index: 50;
-    /*font-family: "Ubuntu";*/
+
+.bannerWrapper {
+    width: 100%;
+    padding: 100px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    height: 600px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
 }
 
-.itemsSpan {
-    top: 0;
-    right: -50px;
+.banner h1 {
+    color: white;
+    font-size: 3.5rem;
+    font-weight: 800;
 }
 
-.yearsSpan {
-    top: 180px;
-    left: -20px;
+.banner p {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 50px;
 }
 
-.responseSpan {
-    bottom: 10px;
-    right: -40px;
+.buttonWrapper {
+    box-sizing: border-box;
+    padding-bottom: 70px;
+    text-align: center;
+}
+
+.buttonWrapper button {
+    box-sizing: border-box;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    box-shadow: none;
+    background-color: transparent;
+    padding: 1rem 1.75rem;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.133;
+    transition: 150ms ease;
+    transition-property: background-color, border-color, box-shadow, color;
+    cursor: pointer;
+    user-select: none;
+}
+
+.buttonWrapper button:hover {
+    background-color: #ffffff;
+    color: #050d1e;
+}
+
+.buttonWrapper button:active {
+    background-color: #ffffff;
+    color: #050d1e;
+}
+
+.pillarContainer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.pillarContainer ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    list-style: none;
+    color: #FFFFFF;
+    font-size: 1.5rem;
+}
+
+.pillarContainer span {
+    font-size: 1.5rem;
+}
+
+.sectionWrapper {
+    padding-top: 3.625rem;
+    padding-bottom: 5.625rem;
+}
+
+.middleSection {
+    margin: 0 auto 90px;
+    width: 75%;
+}
+
+.middleSection h2 {
+    width: 65%;
+    margin: 0 auto 20px;
+    font-size: 2.125rem;
+    line-height: 1.222;
+    font-weight: 700;
+}
+
+.middleSection p {
+    width: 75%;
+    margin: 0 auto;
+    color: #637381;
+    font-size: 1.25rem;
+}
+
+.instructionWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px
+}
+
+.instructionWrapper span {
+    max-width: 500px;
+    max-height: 500px;
+    overflow: hidden;
+    margin: 0 40px;
+}
+
+.instructionWrapper img {
+    max-width:100%;
+    max-height:100%;
+}
+
+.instruction {
+    margin: 0 40px;
+    max-width: 500px;
+    max-height: 500px;
+}
+
+.instruction h3 {
+    font-size: 2rem;
+    line-height: 1.222;
+    font-weight: 700;
 }
