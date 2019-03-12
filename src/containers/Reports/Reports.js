@@ -1,8 +1,8 @@
 import React , {Component}  from 'react';
 import { db, storage } from "../../firebase/firebase";
 import classes from './Report.module.css';
-// import legit from '../../assets/images/Main_Legit.png';
-// import Fake from '../../assets/images/Main_Fake.png';
+import legit from '../../assets/images/Main_Legit.png';
+import Fake from '../../assets/images/Main_Fake.png';
 import Spinner from "../../components/Spinner/Spinner";
 
 
@@ -104,11 +104,11 @@ class reports extends Component {
     let result_img = null;
 
     if (this.state.fake_legit === true){
-        // result_img = (<img src={legit} width="100" height="80" alt="fake_or_legit" />);
+        result_img = (<img src={legit} width="100" height="80" alt="fake_or_legit" />);
     }
 
     if (this.state.fake_legit === "Fake"){
-        // result_img = (<img src={Fake} width="100" height="80" alt="fake_or_legit"/>);
+        result_img = (<img src={Fake} width="100" height="80" alt="fake_or_legit"/>);
     }
 
     let header = this.state.header;
