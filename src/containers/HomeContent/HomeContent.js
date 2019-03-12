@@ -28,7 +28,7 @@ class HomeContent extends Component {
             <div className={classes.HomeContent}>
                 <Jumbotron fluid className={classes.bannerWrapper} style={{backgroundImage: "url(" + HomeImg + ")" }}>
                     <Container fluid className={classes.banner}>
-                        <h1 className="display-5">Are Your Sneakers Real or Fake?</h1>
+                        <h1 className="display-5">Are Your Sneakers Legit or Fake?</h1>
                         <p className="lead">Your sneakers deserve a certificate.</p>
 
                         <div className={classes.buttonWrapper}>
