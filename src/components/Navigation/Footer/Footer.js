@@ -11,10 +11,8 @@ const footer = () => {
 
             <div className={classes["footer-right"]}>
 
-                <Link to="/"><i className="fab fa-facebook"></i></Link>
-                <Link to="/"><i className="fab fa-twitter"></i></Link>
-                <Link to="/"><i className="fab fa-linkedin"></i></Link>
-                <Link to="/"><i className="fab fa-instagram"></i></Link>
+                <a href="https://www.facebook.com/authwork/" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/authworksocial" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
 
             </div>
 

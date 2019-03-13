@@ -12,20 +12,21 @@ import NavigationItem from './NavigationItem/NavigationItem';
 // })
 // }
 
-const navigationItems = () => (
+const navigationItems = (props) => (
     <Consumer>
         {({  ...context }) => (
         <ul className={classes.NavigationItems}>
-            <NavigationItem link="/about-us">About Us</NavigationItem>
-            <NavigationItem link="/faq">FAQ</NavigationItem>
-            <NavigationItem link="/authentication">Authentication</NavigationItem>
+            <NavigationItem link="/about-us" clickHandler={props.clicked}>About Us</NavigationItem>
+            <NavigationItem link="/faq" clickHandler={props.clicked}>FAQ</NavigationItem>
+            <NavigationItem link="/authentication" clickHandler={props.clicked}>Authentication</NavigationItem>
             {context.state.currentUser ?
                 (<>
-                    <NavigationItem link="/myaccount">My Account</NavigationItem>
+                    <NavigationItem link="/myaccount" clickHandler={props.clicked}>My Account</NavigationItem>
                     <NavigationItem link="/signout"
                                     clickHandler={
                                         (event) => {
                                             event.preventDefault();
+                                            props.clicked();
                                             auth.logout().then(() => {
                                                 context.clearMessage();
                                                 context.destroySession();
@@ -35,7 +36,7 @@ const navigationItems = () => (
                                     }>Sign Out</NavigationItem>
                 </>)
                 :
-                <NavigationItem link="/login">Login</NavigationItem>
+                <NavigationItem link="/login" clickHandler={props.clicked}>Login</NavigationItem>
             }
         </ul>
         )}
