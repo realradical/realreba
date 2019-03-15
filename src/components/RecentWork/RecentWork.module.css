@@ -1,3 +1,5 @@
 .container {
-    overflow: hidden;
+    overflowY: scroll;
+    height: 100px;
+    width: 50px;
 }

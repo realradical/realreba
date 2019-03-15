@@ -62,7 +62,8 @@ class Authentication extends Component {
 
         return (
             <>
-                <div className={classes.banner} style={{backgroundImage: "url(" + BannerImg + ")" }}>
+                <div className={classes.banner}
+                     style={{backgroundImage: "url(" + BannerImg + ")" }}>
                 </div>
                 <div className={classes.content}>
                     <div className={classes["menu-toggle"]}>
@@ -72,8 +73,8 @@ class Authentication extends Component {
                         >Recent Work
                         </div>
                         <div
-                            className={buttonCssT2}
-                            onClick={()=>this.clickHandler("T2")}
+                         className={buttonCssT2}
+                         onClick={()=>this.clickHandler("T2")}
                         >How It Works
                         </div>
                         <div

@@ -12,17 +12,23 @@ class myaccount extends Component {
     componentDidMount() {
         const userdata = [];
         const citiesRef = db.collection("orders");
-        const query = citiesRef.where("uid", "==", this.props.context.state.currentUser.uid);
+        const query = citiesRef.where("uid", "==", "fqTYVtoHXXedtRhF1DGG3vmroGH2");
         query.get().then(results => {
           if(results.empty) {
             this.setState({result: "You dont have any orders yet."});
           } else {
             // go through all results
             results.forEach((doc) => {
-                userdata.push(doc.data())
+                const temp_doc = Object(doc.data());
+                temp_doc.orderid = "localhost:3000/report/" + doc.id;
+                userdata.push(temp_doc)
+                console.log(userdata);
+
             });
             // or if you only want the first result you can also do something like this:
               this.setState({useraccountdata: userdata});
+              console.log(userdata)
+
           }
         }).catch(function(error) {
             console.log("Error getting documents:", error);
@@ -32,15 +38,14 @@ class myaccount extends Component {
 
     render() {
         let userlist =  this.state.useraccountdata.map(item => {
-            return (
-                 <>
+            return <>
                 <tr>
                     <td>{item.itemName}</td>
                     <td>{item.description}</td>
                     <td>{item.status}</td>
-                    <td>{item.uid}</td>
+                    <td><a href= {item.orderid} >Report</a></td>
                 </tr>
-                 </>)
+            </>
         });
 
         let display = (

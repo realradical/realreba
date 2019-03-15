@@ -32,7 +32,7 @@
   color: #010203;
   padding-left:10%;
   padding-right: 5%;
-  overflow: scroll;
+  overflow: auto;
   width: 60%;
   height: 400px;
 

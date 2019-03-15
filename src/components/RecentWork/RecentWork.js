@@ -1,11 +1,10 @@
 import React,{Component} from 'react';
 
-import { Container, Row, Col } from 'reactstrap/lib';
+import {Row, Col } from 'reactstrap/lib';
 import Image from "./Image/Image";
 import Spinner from "../Spinner/Spinner";
 import {db, storage} from "../../firebase/firebase";
-import classes from "./RecentWork.module.css";
-
+// import classes from "./RecentWork.module.css";
 
 
 // import classes from './RecentWork.module.css';
@@ -16,6 +15,10 @@ class RecentWork extends Component {
     state = {
         loading: true,
         imgArray: []
+    };
+
+    handleScroller = () => {
+        console.log(this.scroller.scrollTop);
     };
 
     componentWillUnmount() {
@@ -41,8 +44,8 @@ class RecentWork extends Component {
                             imgArray.push({
                                 orderId: doc.id,
                                 legit: doc.data().legit,
-                                thumbnailLink: response
-                        });
+                                thumbnailLink: response});
+
                             if (this._isMounted) {
                                 this.setState({imgArray: imgArray, loading: false});
                             }
@@ -76,10 +79,14 @@ class RecentWork extends Component {
 
 
         return (
-            <Container className={classes.container}>
+            <div style = {{height: '10',
+                            overflowY: 'auto'
+                            }}
+                onScroll={this.handleScroller}
+                ref = {(scroller) => {this.scroller = scroller;}} >
                 {this.state.loading ? <Spinner/> : null}
                 {gallery}
-            </Container>
+            </div>
         );
     };
 }
