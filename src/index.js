@@ -4,9 +4,9 @@ import {BrowserRouter} from "react-router-dom";
 
 import './index.css';
 import App from './App';
+import 'bootstrap/dist/css/bootstrap.css';
 import * as serviceWorker from './serviceWorker';
 import WebFont from 'webfontloader';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import AppProvider from "./components/AppProvider"
 import ScrollToTop from "./hoc/ScrollToTop";
 
