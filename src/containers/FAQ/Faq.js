@@ -1,5 +1,8 @@
 import React from 'react';
 import {CardHeader, CardBody, CardText } from 'reactstrap';
+import {Link} from 'react-router-dom';
+
+
 import faqBanner from "../../assets/images/test_faqBanner.jpg";
 import classes from './Faq.module.css';
 
@@ -12,25 +15,23 @@ const Faq = () => {
                 <div className={classes["form-wrap"]}>
                     <h1>Frequently Asked Questions</h1>
                     <div className={classes.textblock}>
-                        <CardHeader tag="h5">Question : What is Authworks?</CardHeader>
+                        <CardHeader tag="h5">Question : What is Authwork?</CardHeader>
                         <CardBody >
-                        <CardText>Authworks is a sneaker verification company, established privately
-                            15years ago. We have been private verifier for elite brands and clients,
-                            but we decided to go public in 2014. We are a collection of sneaker
-                            heads and sneaker enthusiast, who love the culture, street wear and anything
+                        <CardText>Authwork is a sneaker verification company. We have been a private verifier for elite brands and clients,
+                            but we decided to go public in 2016. We are a collection of sneaker
+                            heads and sneaker enthusiast, who love the culture, streetwear and anything
                             fly. </CardText>
                         </CardBody>
 
-                        <CardHeader tag="h5">Question : How can I contact Authworks?</CardHeader>
+                        <CardHeader tag="h5">Question : How can I contact Authwork?</CardHeader>
                         <CardBody>
-                            <CardText> Email : support@authworks.com<br/>
+                            <CardText> Please use our <Link to={"/contact-us"}>contact form</Link>.<br/>
                                 To assist you as quickly as possible, please provide the following info:
-                                <br/>• &nbsp; &nbsp; Email address associated with your Authworks account or your Authworks username
-                                <br/>• &nbsp; &nbsp; Order# if related to a specific order
+                                <br/>• &nbsp; &nbsp; Email address associated with your Authwork account
+                                <br/>• &nbsp; &nbsp; Order number if the inquiry is related to a specific order
                                 <br/>• &nbsp; &nbsp; Thorough description of your case
                                 <br/>We look forward to connecting with you soon.
-                                We do not currently offer support via phone or in-person,
-                                but may be something we offer in the future. </CardText>
+                                </CardText>
                         </CardBody>
                         <CardHeader tag="h5">Question : How does AuthWork verify my sneakers?</CardHeader>
                         <CardBody>
@@ -38,11 +39,11 @@ const Faq = () => {
                                 platform, our verification team looks at every single picture. No exceptions.
                                 They review every picture to make sure they are legit and are also in deadstock condition.
                                 Once confirmed, a report is generated stating if the sneakers are legit or fake,
-                                a copy of the report is email to the customer </CardText>
+                                a copy of the report is emailed to the customer. </CardText>
                         </CardBody>
-                        <CardHeader tag="h5">Question : Can i complete a verification without the original sneakers box? </CardHeader>
+                        <CardHeader tag="h5">Question : Can I complete a verification without the original sneakers box? </CardHeader>
                         <CardBody>
-                            <CardText>We currently require all sneakers verified by Authworks to be new and come in
+                            <CardText>We currently require all sneakers verified by Authwork to be new and come in
                                 the original box.
                                 Most of our users are sneaker collectors and expect a certain quality.
                                 We do allow the original box to be slightly damaged, such as minor dents.
@@ -52,25 +53,24 @@ const Faq = () => {
                         </CardBody>
                         <CardHeader tag="h5">Question : What are Authwork Verification Fees?</CardHeader>
                         <CardBody>
-                            <CardText>Our verification fees are the lowest the game right now, we charge only $5USD
-                                for each verification, and a credit on our platform is rei-ssued to the user,
+                            <CardText>Our verification fees are the lowest in the game right now, we charge only $5 USD
+                                for each verification, and a credit on our platform is refunded to the user,
                                 if we are not able to complete the verification process. </CardText>
                         </CardBody>
                         <CardHeader tag="h5">Question : What happens if the pictures I uploaded have poor
                             quality(minimum 300 dpi or 1500 x 2100 pixels)</CardHeader>
                         <CardBody>
-                            <CardText>A high resolution picture is determined by its number of pixels;
-                                more pixels improves the sharpness of the picture. If our verifiers are not able to
-                                verifier your sneakers before he picture qualities are poor, you get a credit of the
-                                amount paid on your account. You can upload new pictures and resubmit the sneakers for
+                            <CardText>A high-resolution picture is determined by its number of pixels.
+                                More pixels improve the sharpness of the picture. If our verifiers are not able to
+                                verify your sneakers because the picture qualities are poor, you will get a credit of the
+                                amount paid on your account. You can take new pictures and resubmit your order for
                                 verification.</CardText>
                         </CardBody>
                         <CardHeader tag="h5">Question : How long does it take to complete a verification? </CardHeader>
                         <CardBody>
-                            <CardText>We try our best to complete verifications in less than 24 hours. An email
-                                will be received
-                                <br/> from us if the verification process would take longer, stating why the
-                                verification took longer and when the verification would be completed.</CardText>
+                            <CardText>We try our best to complete verifications in less than 24 hours. We will notify you
+                            via email if and why an authentication process takes longer than the original 24 hours.
+                            </CardText>
                         </CardBody>
 
                         <CardHeader tag="h5">Question : Can I get expedited verification?</CardHeader>

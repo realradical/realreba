@@ -20,7 +20,6 @@ import WithContext from "./hoc/WithContext";
 
 
 
-
 class App extends Component {
 
     componentWillMount() {

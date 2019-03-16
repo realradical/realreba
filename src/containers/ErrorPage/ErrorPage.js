@@ -14,7 +14,7 @@ const errorPage = () => {
             <p>Oops! We couldn't find what you were looking for, but you can check out our <Link to={"/"}>home page</Link>.</p>
 
             <div className={classes.imgContainer}>
-                <img src={errorImg} alt="error image"></img>
+                <img src={errorImg} alt="error 404"></img>
             </div>
         </div>
     );

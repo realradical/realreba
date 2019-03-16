@@ -26,10 +26,9 @@ const howItWorks = () => {
         <div className={classes.textblock}>
         <CardHeader tag="h5">Step 1</CardHeader>
         <CardBody >
-        <CardText>Sign In if you already have an account or sign in/up
-            using your already existing gmail or facebook account or
-            you can sign up with us by navigating to the sign up page.
-            click on sign in, then register an account.
+        <CardText>Log in if you already have an account or sign-up
+            using your already existing Google Plus or Facebook account or
+            you can register a new account by navigating to the sign-up page.
         </CardText>
         </CardBody>
 
@@ -90,7 +89,7 @@ const howItWorks = () => {
             <CardBody>
             <CardText>In 24hours you will get an email containing a link to the
                 authentication certificate report and a final result, stating
-                if the sneakers is legit or fake.</CardText>
+                if the sneakers are legit or fake.</CardText>
         </CardBody>
 
         </div>

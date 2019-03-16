@@ -5,6 +5,7 @@
     width: 100%;
     text-align: left;
     padding: 45px 50px;
+    min-width: 320px;
 }
 
 .footer-distributed .footer-left p {

@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter} from "react-router-dom";
 
 import './index.css';
-import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
+import App from './App';
+
+
 import * as serviceWorker from './serviceWorker';
 import WebFont from 'webfontloader';
 import AppProvider from "./components/AppProvider"

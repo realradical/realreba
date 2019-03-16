@@ -19,7 +19,7 @@ const aboutUs = () => {
                 <p>
                     Sneakers Sneakers Sneakers! that's all we know. From the classic "J's 11", to the infamous "Yeezy
                     boost 750's". We have been verifying sneakers for years and we know what authenticity means to all
-                    sneaker heads like us.
+                    sneakerheads like us.
                 </p>
                 <p className={classes.subtitle}>Our Team</p>
                 <p>
