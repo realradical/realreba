@@ -13,6 +13,8 @@ import Error from "./containers/ErrorPage/ErrorPage";
 import PrivateRoute from "./hoc/PrivateRoute";
 import Authentication from "./containers/Authentication/Authentication";
 import ContactUs from "./containers/ContactUs/ContactUs";
+import SignedInRoute from "./hoc/SignedInRoute";
+
 
 import Privacy from "./containers/Privacy/Privacy";
 
@@ -44,7 +46,7 @@ class App extends Component {
                 <Route path="/report" exact component={Report}/>
                 <Route path="/authentication/:id" component={Authentication}/>
                 <Route path="/report/:id" component={Report}/>
-                <Route path="/login" exact render={() => <Login redirect/>}/>
+                <SignedInRoute path="/login" exact component={Login}/>
                 <PrivateRoute path="/myaccount" exact component={Account}/>
                 <Route path="/" exact component={HomeContent}/>
                 <Route component={Error}/>
