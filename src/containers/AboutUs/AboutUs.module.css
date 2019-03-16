@@ -1,5 +1,6 @@
 .banner {
   width: 100%;
+  min-width: 320px;
   padding: 0;
   margin: 0 auto;
   box-sizing: border-box;
@@ -24,7 +25,7 @@
 
 .form-wrap {
   max-width: 1000px;
-  min-width: 500px;
+  min-width: 320px;
   margin: 50px auto 50px;
   padding: 25px 50px 25px;
   background: #ecedec;
@@ -39,8 +40,11 @@
   margin-bottom: 20px;
 }
 
+.form-wrap p {
+  color: #4e555b;
+}
+
 .subtitle {
   font-weight: bold;
   margin-bottom: 20px;
 }
-

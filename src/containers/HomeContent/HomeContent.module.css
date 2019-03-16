@@ -6,9 +6,9 @@
     width: 100%;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1265px) {
     .HomeContent{
-        width: 1200px;
+        width: 1265px;
     }
 }
 
@@ -18,7 +18,7 @@
     padding: 100px;
     margin: 0 auto;
     box-sizing: border-box;
-    height: 600px;
+    height: 620px;
     overflow: hidden;
     background-repeat: no-repeat;
     background-size: cover;
@@ -88,6 +88,8 @@
     list-style: none;
     color: #FFFFFF;
     font-size: 1.5rem;
+    padding-inline-start: 0;
+    padding: 0 1rem;
 }
 
 .pillarContainer span {
@@ -147,5 +149,56 @@
 .instruction h3 {
     font-size: 2rem;
     line-height: 1.222;
-    font-weight: 700;
+    font-weight: 500;
+}
+
+@media (max-width: 991px) {
+    .instructionWrapper {
+        flex-direction: column
+    }
+
+    .instructionWrapper span {
+        order: 2;
+        margin-bottom: 2rem
+    }
+
+    .instruction {
+        order: 1;
+    }
+}
+
+@media (max-width: 575px) {
+    .pillarContainer ul{
+        font-size: 1.2rem;
+    }
+
+    .pillarContainer span {
+        font-size: 1.2rem;
+    }
+
+    .banner h1 {
+        font-size: 3rem;
+        font-weight: 600;
+    }
+
+    .middleSection h2 {
+        width: 100%;
+        margin: 0 auto 20px;
+        font-size: 2rem;
+        line-height: 1.222;
+        font-weight: 700;
+    }
+
+    .middleSection p {
+        width: 80%;
+        margin: 0 auto;
+        color: #637381;
+        font-size: 1.1rem;
+    }
+
+    .instruction h3 {
+        font-size: 1.5rem;
+        line-height: 1.222;
+        font-weight: 600;
+    }
 }

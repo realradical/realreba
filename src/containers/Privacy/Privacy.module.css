@@ -32,16 +32,18 @@
 
 .form-wrap h2{
     font-size: 1.5rem;
-    color: #333;
+    color: #4e555b;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
 .form-wrap p{
     font-size: 0.9rem;
+    color: #4e555b;
 }
 
 .form-wrap li{
     font-size: 0.9rem;
+    color: #4e555b;
 }
 

@@ -26,7 +26,11 @@ const navigationItems = (props) => (
                                     clickHandler={
                                         (event) => {
                                             event.preventDefault();
-                                            props.clicked();
+                                            try {
+                                                props.clicked();
+                                            } catch (e) {
+                                                //execute from desktop version, no clickhandler available
+                                            }
                                             auth.logout().then(() => {
                                                 context.clearMessage();
                                                 context.destroySession();

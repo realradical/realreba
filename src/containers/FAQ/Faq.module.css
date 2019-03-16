@@ -1,5 +1,6 @@
 .banner {
     width: 100%;
+    min-width: 320px;
     padding: 0;
     margin: 0 auto;
     box-sizing: border-box;
@@ -15,7 +16,7 @@
 
 .form-wrap {
     max-width: 1000px;
-    min-width: 500px;
+    min-width: 320px;
     margin: 50px auto 50px;
     padding: 25px 50px 25px;
     background: #ecedec;
@@ -39,7 +40,7 @@
 
 .textblock p{
     text-align: left;
-    color: #010203;
+    color: #4e555b;
     font-weight: normal;
     font-size: 1rem;
 }
