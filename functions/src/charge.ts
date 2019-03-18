@@ -1,4 +1,5 @@
 import * as functions from 'firebase-functions';
+const FieldValue = require("firebase-admin").firestore.FieldValue;
 const {db} = require('./admin');
 const express = require('express');
 const cors = require('cors');
@@ -37,6 +38,7 @@ async function charge(req, res) {
                     status: 'paid',
                     itemName: itemname,
                     description: description,
+                    createddAt: FieldValue.serverTimestamp()
                 }, {merge: true});
 
                 const updatePaymentCall = db.collection('payments').doc(orderRef.id).set({

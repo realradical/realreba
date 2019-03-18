@@ -1,5 +1,6 @@
 .banner {
     width: 100%;
+    min-width: 320px;
     padding: 0;
     margin: 0 auto;
     box-sizing: border-box;
@@ -14,7 +15,7 @@
 .bannerText {
     color: #000000;
     text-align: center;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 800;
     display: inline-block;
     /*background-color: rgba(156, 156, 156, 0.7);*/
@@ -28,6 +29,12 @@
     background: #ecedec;
     box-sizing: border-box;
     overflow: hidden;
+}
+
+.form-wrap h1{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 .form-wrap h2{
@@ -45,5 +52,12 @@
 .form-wrap li{
     font-size: 0.9rem;
     color: #4e555b;
+}
+
+@media (max-width: 575px) {
+    .bannerText {
+        padding: 2rem;
+        font-size: 2rem;
+    }
 }
 

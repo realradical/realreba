@@ -1,3 +1,7 @@
 .container {
     overflow: hidden;
 }
+
+.col-div {
+    text-align: center;
+}

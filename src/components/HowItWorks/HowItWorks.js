@@ -23,76 +23,76 @@ const howItWorks = () => {
 
     return (
         <div className={classes["form-wrap"]}>
-        <div className={classes.textblock}>
-        <CardHeader tag="h5">Step 1</CardHeader>
-        <CardBody >
-        <CardText>Log in if you already have an account or sign-up
-            using your already existing Google Plus or Facebook account or
-            you can register a new account by navigating to the sign-up page.
-        </CardText>
-        </CardBody>
-
-        <CardHeader tag="h5">Step 2</CardHeader>
-        <CardBody >
-        <CardText>Upload Pictures - We would need you to upload 6 compulsory pictures/images of the sneaker
-
-        </CardText>
-                        <div className={classes.gallery}>
-                        <a target="_blank" href= {bckimg1} rel="noopener noreferrer">
-                        <img src={bckimg1}  alt="Forest" width="600" height="400"/>
-                        <img src={bckimg1_1} alt="Forest" width="600" height="400"/>
-                        </a>
-                        </div>
-
-                        <div className={classes.gallery}>
-                        <a target="_blank" href={bckimg2}  rel="noopener noreferrer">
-                        <img src={bckimg2}  alt="Forest" width="600" height="400"/>
-                        <img src={bckimg2_1}  alt="Forest" width="600" height="400"/>
-                        </a>
-                        </div>
-
-                        <div className={classes.gallery}>
-                        <a target="_blank" href={bckimg3} rel="noopener noreferrer">
-                        <img src={bckimg3}  alt="Forest" width="600" height="400"/>
-                        <img src={bckimg3_1} alt="Forest" width="600" height="400"/>
-                        </a>
-                        </div>
-
-                        <div className={classes.gallery}>
-                        <a target="_blank" href={bckimg3} rel="noopener noreferrer">
-                        <img src={bckimg4} alt="Forest" width="600" height="400"/>
-                        <img src={bckimg4_1} alt="Forest" width="600" height="400"/>
-                        </a>
-                        </div>
-
-                        <div className={classes.gallery}>
-                        <a target="_blank" href={bckimg5} rel="noopener noreferrer">
-                        <img src={bckimg5} alt="Forest" width="600" height="400"/>
-                        <img src={bckimg5_1} alt="Forest" width="600" height="400"/>
-                        </a>
-                        </div>
-
-                        <div className={classes.gallery}>
-                        <a target="_blank" href={bckimg6} rel="noopener noreferrer">
-                        <img src={bckimg6} alt="Forest" width="600" height="400"/>
-                        <img src={bckimg6_1} alt="Forest" width="600" height="400"/>
-                        </a>
-                        </div>
-        <p style={style}> **feel free to add more images/pictured after adding
-            the compulsory 6 images/picture** </p>  </CardBody>
-
-        <CardHeader tag="h5">Step 3</CardHeader>
-            <CardBody>
-            <CardText>Proceed to Checkout and make payment.</CardText>
+            <div className={classes.textblock}>
+            <CardHeader tag="h5">Step 1</CardHeader>
+            <CardBody >
+            <CardText>Log in if you already have an account or sign-up
+                using your already existing Google or Facebook account or
+                you can register a new account by navigating to the sign-up page.
+            </CardText>
             </CardBody>
-        <CardHeader tag="h5">Step 4</CardHeader>
-            <CardBody>
-            <CardText>In 24hours you will get an email containing a link to the
-                authentication certificate report and a final result, stating
-                if the sneakers are legit or fake.</CardText>
-        </CardBody>
 
-        </div>
+            <CardHeader tag="h5">Step 2</CardHeader>
+            <CardBody >
+            <CardText>Upload Pictures - We would need you to upload 6 compulsory pictures/images of the sneaker
+
+            </CardText>
+                            <div className={classes.gallery}>
+                            <a target="_blank" href= {bckimg1} rel="noopener noreferrer">
+                            <img src={bckimg1}  alt="Forest" width="600" height="400"/>
+                            <img src={bckimg1_1} alt="Forest" width="600" height="400"/>
+                            </a>
+                            </div>
+
+                            <div className={classes.gallery}>
+                            <a target="_blank" href={bckimg2}  rel="noopener noreferrer">
+                            <img src={bckimg2}  alt="Forest" width="600" height="400"/>
+                            <img src={bckimg2_1}  alt="Forest" width="600" height="400"/>
+                            </a>
+                            </div>
+
+                            <div className={classes.gallery}>
+                            <a target="_blank" href={bckimg3} rel="noopener noreferrer">
+                            <img src={bckimg3}  alt="Forest" width="600" height="400"/>
+                            <img src={bckimg3_1} alt="Forest" width="600" height="400"/>
+                            </a>
+                            </div>
+
+                            <div className={classes.gallery}>
+                            <a target="_blank" href={bckimg3} rel="noopener noreferrer">
+                            <img src={bckimg4} alt="Forest" width="600" height="400"/>
+                            <img src={bckimg4_1} alt="Forest" width="600" height="400"/>
+                            </a>
+                            </div>
+
+                            <div className={classes.gallery}>
+                            <a target="_blank" href={bckimg5} rel="noopener noreferrer">
+                            <img src={bckimg5} alt="Forest" width="600" height="400"/>
+                            <img src={bckimg5_1} alt="Forest" width="600" height="400"/>
+                            </a>
+                            </div>
+
+                            <div className={classes.gallery}>
+                            <a target="_blank" href={bckimg6} rel="noopener noreferrer">
+                            <img src={bckimg6} alt="Forest" width="600" height="400"/>
+                            <img src={bckimg6_1} alt="Forest" width="600" height="400"/>
+                            </a>
+                            </div>
+            <p style={style}> **feel free to add more images/pictured after adding
+                the compulsory 6 images/picture** </p>  </CardBody>
+
+            <CardHeader tag="h5">Step 3</CardHeader>
+                <CardBody>
+                <CardText>Proceed to checkout and make payment.</CardText>
+                </CardBody>
+            <CardHeader tag="h5">Step 4</CardHeader>
+                <CardBody>
+                <CardText>In 24hours you will get an email containing a link to the
+                    certificate of authenticity report and a final result, stating
+                    if the sneakers are legit or fake.</CardText>
+            </CardBody>
+
+            </div>
         </div>
     );
 };

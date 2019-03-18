@@ -65,7 +65,7 @@ class RecentWork extends Component {
                 return (
                     <Row key={index}>
                         {item.map((i) => (
-                            <Col sm={6} md={4} lg={4} xl={3} key={i.orderId}>
+                            <Col sm={6} md={4} lg={4} xl={3} key={i.orderId} className={classes["col-div"]}>
                                 <Image imglink={i.thumbnailLink} legit={i.legit}/>
                             </Col>
                         ))}

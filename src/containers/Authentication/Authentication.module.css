@@ -1,5 +1,6 @@
 .banner {
     width: 100%;
+    min-width: 320px;
     padding: 0;
     margin: 0 auto;
     box-sizing: border-box;
@@ -34,9 +35,9 @@
 
 .menu-toggle {
     display: flex;
-    align-items: center;
     text-align: center;
     margin-bottom: 10px;
+    min-width: 320px;
 }
 
 .toggle-option {
