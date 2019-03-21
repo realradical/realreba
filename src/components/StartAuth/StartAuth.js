@@ -28,42 +28,49 @@ class StartAuth extends Component {
         currentuser: this.props.user,
         itemName: '',
         itemDescription: '',
+        list_of_files:[],
         dropItems: [
             {
                 label: 'overall',
                 hasFile: false,
                 placeholder: iconOverall,
-                optional: false
+                optional: false,
+                filename:null
             },
             {
                 label: 'itemlabel',
                 hasFile: false,
                 placeholder: iconLabel,
-                optional: false
+                optional: false,
+                filename:null
             },
             {
                 label: 'stitching',
                 hasFile: false,
                 placeholder: iconStitching,
-                optional: false
+                optional: false,
+                filename:null
             },
             {
                 label: 'insole',
                 hasFile: false,
                 placeholder: iconSole,
-                optional: false
+                optional: false,
+                filename:null
             },
             {
                 label: 'boxlabel',
                 hasFile: false,
                 placeholder: iconBox,
-                optional: false
+                optional: false,
+                filename:null
             },
             {
                 label: 'seal',
                 hasFile: false,
                 placeholder: iconSeal,
-                optional: false
+                optional: false,
+                filename:null
             }
         ],
         valid: false,
@@ -82,7 +89,7 @@ class StartAuth extends Component {
         this.setState({[inputId] : event.target.value});
     };
 
-    checkItemNameValidity(itemName) {
+    static checkItemNameValidity(itemName) {
         return itemName.trim() !== ''
     }
 
@@ -110,6 +117,10 @@ class StartAuth extends Component {
     };
 
     onDropHandler = (files, rejectedFiles, selectedLabel) => {
+        if (this.state.list_of_files.includes(files[0].name)) {
+            alert("You have already selected this file")
+        }else{
+            this.state.list_of_files.push(files[0].name);
         if (files && files.length>0) {
             let foundIndex = this.state.dropItems.findIndex(x => x.label === selectedLabel);
             const newDropItems = [...this.state.dropItems];
@@ -117,10 +128,11 @@ class StartAuth extends Component {
                 ...newDropItems[foundIndex],
                 hasFile: true,
                 placeholder: URL.createObjectURL(files[0]),
-                file: files[0]
-            };
+                file: files[0],
+                filename:files[0].name
+            };;
             this.setState({dropItems: newDropItems});
-        }
+        }}
         if (rejectedFiles && rejectedFiles.length>0) {
           this.verifyFile(rejectedFiles);
         }
@@ -129,11 +141,17 @@ class StartAuth extends Component {
     onClickRemoveHandler = (selectedLabel) => {
         let foundIndex = this.state.dropItems.findIndex(x => x.label === selectedLabel);
         const newDropItems = [...this.state.dropItems];
+        const filename = [...this.state.list_of_files];
+
+        const index = filename.indexOf(newDropItems[foundIndex].filename);
+
+        filename[index] = "";
+
+        this.setState({list_of_files: filename});
 
         if (newDropItems[foundIndex].optional) {
             newDropItems.splice(foundIndex,1);
             this.setState({dropItems: newDropItems});
-
         } else {
             newDropItems[foundIndex] = {...newDropItems[foundIndex], hasFile: false, placeholder: this._placeholders[foundIndex]};
             this.setState({dropItems: newDropItems});
@@ -160,7 +178,7 @@ class StartAuth extends Component {
     onClickProceedHandler = (event) => {
         event.preventDefault();
 
-        let valid = this.checkItemNameValidity(this.state.itemName) && this.checkDropItemValidity(this.state.dropItems);
+        let valid = StartAuth.checkItemNameValidity(this.state.itemName) && this.checkDropItemValidity(this.state.dropItems);
         this._isSubmitted = true;
         valid ? this.setState({checkout: true, valid: valid}) : this.setState({valid});
         //this.setState({checkout: true});
@@ -168,7 +186,7 @@ class StartAuth extends Component {
 
 
     render() {
-        let valid = this._isSubmitted ? this.checkItemNameValidity(this.state.itemName) : true;
+        let valid = this._isSubmitted ? StartAuth.checkItemNameValidity(this.state.itemName) : true;
 
         let rowArray = this.state.dropItems.map(
           (item, index) => {

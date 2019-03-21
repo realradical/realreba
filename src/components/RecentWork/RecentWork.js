@@ -17,9 +17,6 @@ class RecentWork extends Component {
         imgArray: []
     };
 
-    handleScroller = () => {
-        console.log(this.scroller.scrollTop);
-    };
 
     componentWillUnmount() {
         this._isMounted = false;
@@ -79,11 +76,7 @@ class RecentWork extends Component {
 
 
         return (
-            <div style = {{height: '10',
-                            overflowY: 'auto'
-                            }}
-                onScroll={this.handleScroller}
-                ref = {(scroller) => {this.scroller = scroller;}} >
+            <div>
                 {this.state.loading ? <Spinner/> : null}
                 {gallery}
             </div>
