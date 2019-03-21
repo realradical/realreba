@@ -13,7 +13,6 @@ code {
 }
 
 /*Override Bootstrap CSS*/
-a:focus,
 button:focus,
 input:focus,
 textarea:focus {

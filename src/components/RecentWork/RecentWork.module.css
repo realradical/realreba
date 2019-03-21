@@ -1,5 +1,7 @@
 .container {
-    overflowY: scroll;
-    height: 100px;
-    width: 50px;
+    overflow: hidden;
+}
+
+.col-div {
+    text-align: center;
 }

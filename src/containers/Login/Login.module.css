@@ -1,6 +1,6 @@
 .login-wrap {
-    max-width: 33%;
-    min-width: 500px;
+    max-width: 500px;
+    min-width: 320px;
     margin: 50px auto;
     background: #ecedec;
     box-sizing: border-box;

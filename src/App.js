@@ -12,8 +12,13 @@ import Report from "./containers/Reports/Reports";
 import Error from "./containers/ErrorPage/ErrorPage";
 import PrivateRoute from "./hoc/PrivateRoute";
 import Authentication from "./containers/Authentication/Authentication";
-import WithContext from "./hoc/WithContext";
+import ContactUs from "./containers/ContactUs/ContactUs";
+import SignedInRoute from "./hoc/SignedInRoute";
 
+
+import Privacy from "./containers/Privacy/Privacy";
+
+import WithContext from "./hoc/WithContext";
 
 
 
@@ -34,12 +39,14 @@ class App extends Component {
         <Layout>
             <Switch>
                 <Route path="/about-us" exact component={AboutUs}/>
-                <Route path="/Faq" exact component={Faq}/>
+                <Route path="/faq" exact component={Faq}/>
+                <Route path="/privacy" exact component={Privacy}/>
+                <Route path="/contact-us" exact component={ContactUs}/>
                 <Route path="/authentication" exact component={Authentication}/>
                 <Route path="/report" exact component={Report}/>
                 <Route path="/authentication/:id" component={Authentication}/>
                 <Route path="/report/:id" component={Report}/>
-                <Route path="/login" exact render={() => <Login redirect/>}/>
+                <SignedInRoute path="/login" exact component={Login}/>
                 <PrivateRoute path="/myaccount" exact component={Account}/>
                 <Route path="/" exact component={HomeContent}/>
                 <Route component={Error}/>

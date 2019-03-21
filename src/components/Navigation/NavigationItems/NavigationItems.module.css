@@ -8,8 +8,14 @@
     white-space: nowrap;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 992px) {
     .NavigationItems {
         flex-flow: row;
+    }
+}
+
+@media (max-width: 991px) {
+    .NavigationItems {
+        flex-flow: column;
     }
 }

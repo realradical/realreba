@@ -41,7 +41,7 @@ class HomeContent extends Component {
                         <ul >
                             <li>
                                 <i className="fas fa-tasks"></i>
-                                <div>Items Authenticated</div>
+                                <div>Authenticated Items</div>
                                 <CountUp
                                     start={1000}
                                     end={3000+11*difference_day}
