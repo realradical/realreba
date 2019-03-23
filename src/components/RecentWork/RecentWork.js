@@ -7,9 +7,6 @@ import {db, storage} from "../../firebase/firebase";
 import classes from "./RecentWork.module.css";
 
 
-
-// import classes from './RecentWork.module.css';
-
 class RecentWork extends Component {
     _isMounted = false;
 
