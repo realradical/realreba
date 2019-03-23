@@ -1,10 +1,11 @@
 import React,{Component} from 'react';
 
-import {Row, Col } from 'reactstrap/lib';
+import { Container, Row, Col } from 'reactstrap/lib';
 import Image from "./Image/Image";
 import Spinner from "../Spinner/Spinner";
 import {db, storage} from "../../firebase/firebase";
-// import classes from "./RecentWork.module.css";
+import classes from "./RecentWork.module.css";
+
 
 
 // import classes from './RecentWork.module.css';
@@ -16,7 +17,6 @@ class RecentWork extends Component {
         loading: true,
         imgArray: []
     };
-
 
     componentWillUnmount() {
         this._isMounted = false;
@@ -41,12 +41,12 @@ class RecentWork extends Component {
                             imgArray.push({
                                 orderId: doc.id,
                                 legit: doc.data().legit,
-                                thumbnailLink: response});
-
+                                thumbnailLink: response
+                            });
                             if (this._isMounted) {
                                 this.setState({imgArray: imgArray, loading: false});
                             }
-                    });
+                        });
                 }
             );
         });
@@ -65,7 +65,7 @@ class RecentWork extends Component {
                 return (
                     <Row key={index}>
                         {item.map((i) => (
-                            <Col sm={6} md={4} lg={4} xl={3} key={i.orderId}>
+                            <Col sm={6} md={4} lg={4} xl={3} key={i.orderId} className={classes["col-div"]}>
                                 <Image imglink={i.thumbnailLink} legit={i.legit}/>
                             </Col>
                         ))}
@@ -76,10 +76,10 @@ class RecentWork extends Component {
 
 
         return (
-            <div>
+            <Container className={classes.container}>
                 {this.state.loading ? <Spinner/> : null}
                 {gallery}
-            </div>
+            </Container>
         );
     };
 }
