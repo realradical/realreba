@@ -2,6 +2,8 @@ import React , {Component}  from 'react';
 import {db} from "../../firebase/firebase";
 import classes from "./Account.module.css";
 import img from "../../assets/images/test_authBanner.jpg";
+import {CardHeader, CardText } from 'reactstrap';
+
 import WithContext from "../../hoc/WithContext";
 
 class myaccount extends Component {
@@ -12,59 +14,67 @@ class myaccount extends Component {
     componentDidMount() {
         const userdata = [];
         const citiesRef = db.collection("orders");
-        const query = citiesRef.where("uid", "==", "fqTYVtoHXXedtRhF1DGG3vmroGH2");
+        const query = citiesRef.where("uid", "==", this.props.context.state.currentUser.uid);
         query.get().then(results => {
-          if(results.empty) {
-            this.setState({result: "You dont have any orders yet."});
-          } else {
-            // go through all results
-            results.forEach((doc) => {
-                const temp_doc = Object(doc.data());
-                temp_doc.orderid = "localhost:3000/report/" + doc.id;
-                userdata.push(temp_doc)
-                console.log(userdata);
+            if (!results.empty) {
+                results.forEach((doc) => {
+                    const temp_doc = Object(doc.data());
+                    temp_doc.orderid = 'https://www.authwork.com/report/' + doc.id;
+                    userdata.push(temp_doc);
+                    const num = String(userdata.length - 1);
+                    userdata[num].createdAt = String(Date(userdata[num].createdAt));
+                    const time_data = userdata[num].createdAt.split(" ");
+                    userdata[num].createdAt = "   " + time_data[1] + "-" + time_data[2] + "-" + time_data[3] + "   ";
+                    userdata[num].button_status = userdata[num].status !== "processed";
+                    if (userdata[num].status === "processed"){
+                        userdata[num].button_color  = "blue";
+                        userdata[num].text_color = "white"
+                    }else{
+                        userdata[num].button_color ="grey";
+                        userdata[num].text_color = "black"
+                    }
+                });
+                this.setState({useraccountdata: userdata});
 
-            });
-            // or if you only want the first result you can also do something like this:
-              this.setState({useraccountdata: userdata});
-              console.log(userdata)
-
-          }
+            } else {
+                this.setState({result: "You dont have any orders yet."});
+            }
         }).catch(function(error) {
             console.log("Error getting documents:", error);
-        });
-            console.log(this.props.context.state.currentUser);
-}
+        });}
 
     render() {
         let userlist =  this.state.useraccountdata.map(item => {
+            const style_button = {
+                backgroundColor : item.button_color,
+                color: item.text_color};
             return <>
-                <tr>
-                    <td>{item.itemName}</td>
-                    <td>{item.description}</td>
-                    <td>{item.status}</td>
-                    <td><a href= {item.orderid} >Report</a></td>
-                </tr>
-            </>
+                <CardHeader tag="h5">Date : {item.createdAt} </CardHeader>
+                <div className={classes.wrapper}>
+                <div className={classes.first}>
+                <CardText>
+                        Sneaker : {item.itemName}
+                        <br/>
+                        Description : {item.description}
+                        <br/>
+                        Status: {item.status}
+                </CardText>
+                </div>
+                <div className={classes.second}>
+
+                    <form action={item.orderid}  target="_blank">
+                                <button style={style_button} disabled = {item.button_status}
+                                 type="submit">Report</button>
+                    </form>
+                 </div>
+                 </div>
+                    </>
         });
 
         let display = (
             <div className={classes.textblock}>
-                <table>
-                <thead>
-                <tr>
-                    <th>Order Name</th>
-                    <th>Order Date</th>
-                    <th>Order Status</th>
-                    <th>Order Result</th>
-                </tr>
-                </thead>
-                <tbody>
                     {userlist}
-                </tbody>
-                </table>
             </div>
-
         );
 
        if (this.state.useraccountdata.length === 0) {
