@@ -5,6 +5,8 @@ import { ReCaptcha } from 'react-recaptcha-v3'
 import bgImg from "../../assets/images/bg.jpg";
 import classes from "./ContactUs.module.css";
 import Api from "../../axios";
+import WithContext from "../../hoc/WithContext";
+import FlashMessage from "../../components/FlashMessage/FlashMessage";
 
 
 class ContactUs extends Component {
@@ -23,7 +25,7 @@ class ContactUs extends Component {
 
     verifyCallback = (recaptchaToken) => {
         // Here you will get the final recaptchaToken!!!
-        // console.log(recaptchaToken);
+        console.log(recaptchaToken);
         this.setState({recaptchaToken});
     };
 
@@ -127,6 +129,7 @@ class ContactUs extends Component {
                                invalid={!messageValid}
                         />
                     </FormGroup>
+                    <FlashMessage/>
                     <FormGroup style={{textAlign: 'center'}}>
                         <Button onClick={this.onClickProceedHandler} block size="lg" color="info">Send</Button>
                         <small>This site is protected by reCAPTCHA and the Google
@@ -157,4 +160,4 @@ class ContactUs extends Component {
     }
 }
 
-export default ContactUs;
+export default WithContext(ContactUs);

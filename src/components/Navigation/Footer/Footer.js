@@ -20,7 +20,7 @@ const footer = () => {
 
                 <p className={classes["footer-links"]}>
                     <Link to="/about-us" className="link-1" href="#">About Us</Link>
-                    <Link to="/authentication/how-it-works">How It Works</Link>
+                    <Link to={{pathname: "/authentication/how-it-works", state: "T2"}}>How It Works</Link>
                     <Link to="/faq">FAQ</Link>
                     <Link to="/contact-us">Contact Us</Link>
                     <Link to="/privacy">Privacy Policy</Link>

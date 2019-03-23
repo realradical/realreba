@@ -2,7 +2,7 @@
   max-width: 1000px;
   min-width: 320px;
   margin: 50px auto 50px;
-  padding: 50px 50px 10px;
+  padding: 50px 50px 25px;
   background: #ecedec;
   box-sizing: border-box;
   overflow: hidden;
@@ -16,31 +16,43 @@
 }
 .textblock p{
   text-align: left;
-  color: #010203;
+  color: #4e555b;
   font-weight: normal;
   font-size: 1rem;
 }
 
-
-
-div.gallery {
-  display: grid;
-  margin: 10px;
-  border: 1px solid #ccc;
-  float: left;
-  width: 30%;
+.container {
+  overflow: hidden;
 }
 
-div.gallery:hover {
-  border: 1px solid #777;
-}
 
-div.gallery img {
-  width: 50%;
-  height: auto;
-}
-
-div.desc {
-  padding: 1%;
+.col-div {
   text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.title-div {
+  margin-bottom: 0.5rem;
+}
+
+.text-block {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.text-block img{
+  margin-right: 0.5rem;
+}
+
+.example-container {
+  display: inline-block;
+  position: relative;
+  padding-top: 55px;
+}
+
+@media (max-width: 575px) {
+  .form-wrap {
+    padding: 25px 0 10px
+  }
 }

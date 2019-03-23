@@ -31,6 +31,13 @@ class Authentication extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps){
+        if (nextProps.location.state === 'T2') {
+            this.setState({toggleActive: "T2"});
+            window.scrollTo(0, 0);
+        }
+    }
+
     render() {
         let contentComponent = null;
         let buttonCssT1 = classes["toggle-option"];

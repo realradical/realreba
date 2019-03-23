@@ -2,18 +2,19 @@ import React from 'react';
 import {CardHeader, CardBody, CardText } from 'reactstrap';
 
 import classes from "./HowItWorks.module.css";
-import bckimg1 from '../../assets/images/how_overall.jpeg';
-import bckimg2 from '../../assets/images/how_label.jpeg';
-import bckimg3 from '../../assets/images/how_stitching.jpeg';
-import bckimg4 from '../../assets/images/how_sole.jpeg';
-import bckimg5 from '../../assets/images/how_box.jpeg';
-import bckimg6 from '../../assets/images/how_seal.jpeg';
-import bckimg1_1 from '../../assets/images/icon_overall.png';
-import bckimg2_1 from '../../assets/images/icon_label.png';
-import bckimg3_1 from '../../assets/images/icon_stitching.png';
-import bckimg4_1 from '../../assets/images/icon_sole.png';
-import bckimg5_1 from '../../assets/images/icon_box.png';
-import bckimg6_1 from '../../assets/images/icon_seal.png';
+import overallImg from '../../assets/images/how_overall.jpg';
+import labelImg from '../../assets/images/how_label.jpg';
+import stitchingImg from '../../assets/images/how_stitching.jpg';
+import soleImg from '../../assets/images/how_sole.jpg';
+import boxImg from '../../assets/images/how_box.jpg';
+import sealImg from '../../assets/images/how_seal.jpg';
+import overallIcon from '../../assets/images/icon_overall.png';
+import labelIcon from '../../assets/images/icon_label.png';
+import stitchingIcon from '../../assets/images/icon_stitching.png';
+import soleIcon from '../../assets/images/icon_sole.png';
+import boxIcon from '../../assets/images/icon_box.png';
+import sealIcon from '../../assets/images/icon_seal.png';
+import {Col, Container, Row} from "reactstrap/lib";
 
 
 const howItWorks = () => {
@@ -24,73 +25,96 @@ const howItWorks = () => {
     return (
         <div className={classes["form-wrap"]}>
             <div className={classes.textblock}>
-            <CardHeader tag="h5">Step 1</CardHeader>
-            <CardBody >
-            <CardText>Log in if you already have an account or sign-up
-                using your already existing Google or Facebook account or
-                you can register a new account by navigating to the sign-up page.
-            </CardText>
-            </CardBody>
+                <CardHeader tag="h5">Step 1</CardHeader>
+                <CardBody >
+                    <CardText>Log in if you already have an account or sign-up
+                        using your already existing Google or Facebook account or
+                        you can register a new account by navigating to the sign-up page.
+                    </CardText>
+                </CardBody>
 
-            <CardHeader tag="h5">Step 2</CardHeader>
-            <CardBody >
-            <CardText>Upload Pictures - We would need you to upload 6 compulsory pictures/images of the sneaker
+                <CardHeader tag="h5">Step 2</CardHeader>
+                    <CardBody >
+                        <CardText>We would need you to upload 6 compulsory pictures of the sneaker (see below instructions).
+                            Feel free to add additional pictures for more details.
+                        </CardText>
 
-            </CardText>
-                            <div className={classes.gallery}>
-                            <a target="_blank" href= {bckimg1} rel="noopener noreferrer">
-                            <img src={bckimg1}  alt="Forest" width="600" height="400"/>
-                            <img src={bckimg1_1} alt="Forest" width="600" height="400"/>
-                            </a>
-                            </div>
+                        <Container className={classes.container}>
+                            <Row>
+                                <Col sm={6} md={6} lg={6} xl={6} className={classes["col-div"]}>
+                                    <div className={classes["example-container"]}>
+                                        <img src={overallImg} className="img-fluid" alt="overall"/>
+                                        <span className={classes["text-block"]}>
+                                            <img src={overallIcon} alt="overall icon" width="50" height="50"/>
+                                            Overall look
+                                        </span>
+                                    </div>
+                                </Col>
+                                <Col sm={6} md={6} lg={6} xl={6} className={classes["col-div"]}>
+                                    <div className={classes["example-container"]}>
+                                        <img src={labelImg} className="img-fluid" alt="label"/>
+                                        <span className={classes["text-block"]}>
+                                            <img src={labelIcon} alt="label icon" width="50" height="50"/>
+                                            Label inside
+                                        </span>
+                                    </div>
+                                </Col>
+                            </Row>
 
-                            <div className={classes.gallery}>
-                            <a target="_blank" href={bckimg2}  rel="noopener noreferrer">
-                            <img src={bckimg2}  alt="Forest" width="600" height="400"/>
-                            <img src={bckimg2_1}  alt="Forest" width="600" height="400"/>
-                            </a>
-                            </div>
+                            <Row>
+                                <Col sm={6} md={6} lg={6} xl={6} className={classes["col-div"]}>
+                                    <div className={classes["example-container"]}>
+                                        <img src={stitchingImg} className="img-fluid" alt="stitching"/>
+                                        <span className={classes["text-block"]}>
+                                            <img src={stitchingIcon} alt="stitching icon" width="50" height="50"/>
+                                            Sole stitching
+                                        </span>
+                                    </div>
+                                </Col>
+                                <Col sm={6} md={6} lg={6} xl={6} className={classes["col-div"]}>
+                                    <div className={classes["example-container"]}>
+                                        <img src={soleImg} className="img-fluid" alt="sole"/>
+                                        <span className={classes["text-block"]}>
+                                            <img src={soleIcon} alt="sole icon" width="50" height="50"/>
+                                            Inner sole
+                                        </span>
+                                    </div>
+                                </Col>
+                            </Row>
 
-                            <div className={classes.gallery}>
-                            <a target="_blank" href={bckimg3} rel="noopener noreferrer">
-                            <img src={bckimg3}  alt="Forest" width="600" height="400"/>
-                            <img src={bckimg3_1} alt="Forest" width="600" height="400"/>
-                            </a>
-                            </div>
-
-                            <div className={classes.gallery}>
-                            <a target="_blank" href={bckimg3} rel="noopener noreferrer">
-                            <img src={bckimg4} alt="Forest" width="600" height="400"/>
-                            <img src={bckimg4_1} alt="Forest" width="600" height="400"/>
-                            </a>
-                            </div>
-
-                            <div className={classes.gallery}>
-                            <a target="_blank" href={bckimg5} rel="noopener noreferrer">
-                            <img src={bckimg5} alt="Forest" width="600" height="400"/>
-                            <img src={bckimg5_1} alt="Forest" width="600" height="400"/>
-                            </a>
-                            </div>
-
-                            <div className={classes.gallery}>
-                            <a target="_blank" href={bckimg6} rel="noopener noreferrer">
-                            <img src={bckimg6} alt="Forest" width="600" height="400"/>
-                            <img src={bckimg6_1} alt="Forest" width="600" height="400"/>
-                            </a>
-                            </div>
-            <p style={style}> **feel free to add more images/pictured after adding
-                the compulsory 6 images/picture** </p>  </CardBody>
+                            <Row>
+                                <Col sm={6} md={6} lg={6} xl={6} className={classes["col-div"]}>
+                                    <div className={classes["example-container"]}>
+                                        <img src={boxImg} className="img-fluid" alt="box"/>
+                                        <span className={classes["text-block"]}>
+                                            <img src={boxIcon} alt="box icon" width="50" height="50"/>
+                                            Product label
+                                        </span>
+                                    </div>
+                                </Col>
+                                <Col sm={6} md={6} lg={6} xl={6} className={classes["col-div"]}>
+                                    <div className={classes["example-container"]}>
+                                        <img src={sealImg} className="img-fluid" alt="seal"/>
+                                        <span className={classes["text-block"]}>
+                                            <img src={sealIcon} alt="seal icon" width="50" height="50"/>
+                                            Box seal
+                                        </span>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </Container>
+                    </CardBody>
 
             <CardHeader tag="h5">Step 3</CardHeader>
                 <CardBody>
-                <CardText>Proceed to checkout and make payment.</CardText>
+                    <CardText>Proceed to checkout and make payment.</CardText>
                 </CardBody>
             <CardHeader tag="h5">Step 4</CardHeader>
                 <CardBody>
-                <CardText>In 24hours you will get an email containing a link to the
+                    <CardText>In 24 hours you will get an email containing a link to the
                     certificate of authenticity report and a final result, stating
                     if the sneakers are legit or fake.</CardText>
-            </CardBody>
+                </CardBody>
 
             </div>
         </div>

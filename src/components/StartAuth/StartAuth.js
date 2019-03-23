@@ -180,7 +180,7 @@ class StartAuth extends Component {
               return (
                   <Row form key={index}>
                       {item.map((i) => (
-                          <Col sm={12} md={6} lg={6} xl={4} key={i.label}>
+                          <Col sm={6} md={6} lg={4} xl={4} key={i.label}>
                               <FormGroup>
                                   <Dropzone onDrop={(file, rejectedFiles) => this.onDropHandler(file, rejectedFiles, i.label)}
                                             onDropRejected={this.onDropRejectedHandler}

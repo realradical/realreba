@@ -18,7 +18,7 @@
     max-width: 1000px;
     min-width: 320px;
     margin: 50px auto 50px;
-    padding: 25px 50px 25px;
+    padding: 50px 50px 25px;
     background: #ecedec;
     box-sizing: border-box;
     overflow: hidden;
@@ -43,4 +43,10 @@
     color: #4e555b;
     font-weight: normal;
     font-size: 1rem;
+}
+
+@media (max-width: 575px) {
+    .form-wrap {
+        padding: 25px 25px 10px
+    }
 }

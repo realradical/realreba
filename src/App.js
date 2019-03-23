@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Route, Switch, withRouter} from "react-router-dom";
+import { loadReCaptcha } from 'react-recaptcha-v3'
 
 
 import Layout from './hoc/Layout/Layout';
@@ -24,11 +25,16 @@ import WithContext from "./hoc/WithContext";
 
 class App extends Component {
 
-    componentWillMount() {
+    constructor(props) {
+        super(props);
         this.unlisten = this.props.history.listen(() => {
             this.props.context.clearMessage();
         });
     };
+
+    componentDidMount() {
+        loadReCaptcha("6LenfZMUAAAAAEBOZexD6GwokA2Gyav_QokiEs6C");
+    }
 
     componentWillUnmount() {
         this.unlisten();
