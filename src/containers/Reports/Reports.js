@@ -1,188 +1,119 @@
 import React , {Component}  from 'react';
 import { db, storage } from "../../firebase/firebase";
-import classes from './Report.module.css';
-import legit from '../../assets/images/Main_Legit.png';
-import Fake from '../../assets/images/Main_Fake.png';
-import Spinner from "../../components/Spinner/Spinner";
 
+import ErrorPage from "../../containers/ErrorPage/ErrorPage"
+import classes from './Report.module.css';
+import legitStamp from '../../assets/images/Main_Legit.png';
+import fakeStamp from '../../assets/images/Main_Fake.png';
+import {Col, Container, Row} from "reactstrap/lib";
+import labelIcon from "../../assets/images/icon_label.png";
 
 
 class reports extends Component {
     state = {
-        header : <Spinner/>,
-
-        orderdata : [],
-        validfile : null,
-        fake_legit : null,
-        status  : null,
-        bckimg1 : null,
-        bckimg2 : null,
-        bckimg3 : null,
-        bckimg4 : null,
-        bckimg5 : null,
-        bckimg6 : null,
-        loading : true
+        redirect: false,
+        legit: null,
+        imgArray: [],
+        itemName: null
 
     };
 
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
     componentDidMount() {
+        this._isMounted = true;
 
-    const {match: {params}} = this.props;
-    console.log(params.id);
+        const {match: {params}} = this.props;
 
-    const docRef = db.collection("orders").doc(params.id);
-    docRef.get().then((doc) => {
-        if (doc.exists) {
-            this.setState({orderdata : doc.data()});
+        if (params.id !== undefined) {
+            const docRef = db.collection("orders").doc(params.id);
 
-            if (this.state.orderdata.status === "processed") {
-                const docRef2 = db.collection("processedOrders").doc(params.id);
-                    docRef2.get().then((doc) => {
+            docRef.get().then((orderdoc) => {
+                if (orderdoc.exists) {
+                    const processedOrdersRef = db.collection("processedOrders").doc(params.id);
+                    processedOrdersRef.get().then((doc) => {
                         if (doc.exists) {
-                            if (doc.data().legit === true) {
-                            this.setState({fake_legit : true});
-                                }else{
-                                this.setState({fake_legit : "Fake"})
+                            let imgArray = [];
+                            const storageRef = storage.ref();
+                            const promise1 = storageRef.child('orders/'+ params.id+'/thumb_overall.jpg').getDownloadURL();
+                            const promise2 = storageRef.child('orders/'+ params.id+'/thumb_itemlabel.jpg').getDownloadURL();
+                            const promise3 = storageRef.child('orders/'+ params.id+'/thumb_stitching.jpg').getDownloadURL();
+                            const promise4 = storageRef.child('orders/'+ params.id+'/thumb_insole.jpg').getDownloadURL();
+                            const promise5 = storageRef.child('orders/'+ params.id+'/thumb_boxlabel.jpg').getDownloadURL();
+                            const promise6 = storageRef.child('orders/'+ params.id+'/thumb_seal.jpg').getDownloadURL();
+                            Promise.all([promise1, promise2, promise3, promise4, promise5, promise6]).then(results => {
+                                results.forEach(result => imgArray.push(result));
+                                if (this._isMounted) {
+                                    this.setState({
+                                        legit: doc.data().legit,
+                                        redirect: false,
+                                        imgArray: imgArray,
+                                        itemName: orderdoc.data().itemName
+                                    })
                                 }
+                            }).catch(err => console.log("Error getting image URLs:", err));
+
+                        } else {
+                            if (this._isMounted) {
+                                this.setState({
+                                    redirect: true
+                                })
                             }
-                    });
-            this.setState({status : "processed"});
-
-            let storageRef = storage.ref();
-
-            storageRef.child('orders/'+ params.id+'/boxlabel.jpeg')
-            .getDownloadURL().then((imgs) => {
-            this.setState({bckimg1:imgs})
-            });
-
-            storageRef.child('orders/'+ params.id +'/insole.jpeg')
-            .getDownloadURL().then((imgs) => {
-            this.setState({bckimg2:imgs})
-            });
-
-            storageRef.child('orders/'+ params.id +'/itemlabel.jpeg')
-            .getDownloadURL().then((imgs) => {
-            this.setState({bckimg3:imgs})
-            });
-
-            storageRef.child('orders/'+ params.id +'/overall.jpeg')
-            .getDownloadURL().then((imgs) => {
-            this.setState({bckimg4:imgs})
-            });
-
-            storageRef.child('orders/'+ params.id +'/seal.jpeg')
-            .getDownloadURL().then((imgs) => {
-            this.setState({bckimg5:imgs})
-            });
-
-            storageRef.child('orders/'+ params.id +'/stitching.jpeg')
-            .getDownloadURL().then((imgs) => {
-            this.setState({bckimg6:imgs})
-            });
-
-            console.log(this.state.status);
-
-        }
-            else{
-                this.setState({ validafile : "Your Certificate is yet to be processed"});
-                console.log(this.state.status);
+                        }
+                    }).catch(err => console.log("Error getting processedOrders document:", err));
+                } else {
+                    if (this._isMounted) {
+                        this.setState({
+                            redirect: true
+                        })
+                }}
+            }).catch((error) => {
+                    console.log("Error getting orders document:", error);
+                });
+        } else {
+            if (this._isMounted) {
+                this.setState({redirect: true})
             }
         }
-        else {
-            this.setState({ validafile : "Invalid Certificate Number"});
-
-            // doc.data() will be undefined in this case
-            console.log(this.state.validafile);
-        }}).catch((error) => {
-        console.log("Error getting document:", error);
-        });
-
     };
 
     render() {
+        let imgArray = this.state.imgArray;
+        let stamp = this.state.legit ? legitStamp : fakeStamp;
+        let reportName = this.state.legit ? "CERTIFICATE OF AUTHENTICITY" : "Authentication Report";
 
-    let result_img = null;
+        let gallery = imgArray.map(
+            (item, index) => {
+                return(
+                    <Col sm={6} md={4} lg={4} xl={4} key={index} className={classes["col-div"]}>
+                        <img src={item}></img>
+                    </Col>)
+            });
 
-    if (this.state.fake_legit === true){
-        result_img = (<img src={legit} width="100" height="80" alt="fake_or_legit" />);
-    }
 
-    if (this.state.fake_legit === "Fake"){
-        result_img = (<img src={Fake} width="100" height="80" alt="fake_or_legit"/>);
-    }
 
-    let header = this.state.header;
-
-    if (this.state.status === "processed") {
-        let img_area = <>
-            <div className={classes.gallery}>
-                <a target="_blank" href={this.state.bckimg1} rel="noopener noreferrer">
-                    <img src={this.state.bckimg1}  alt="Forest" width={80} height={80} />
-                </a>
-            </div>
-
-            <div className={classes.gallery}>
-                <a target="_blank" href={this.state.bckimg2} rel="noopener noreferrer">
-                    <img src={this.state.bckimg2} alt="Forest" width={80} height={80} />
-                </a>
-            </div>
-
-            <div className={classes.gallery}>
-                <a target="_blank" href={this.state.bckimg3} rel="noopener noreferrer">
-                    <img src={this.state.bckimg3} sizes={100} alt="Forest" width={80} height={80}/>
-                </a>
-            </div>
-
-            <div className={classes.gallery}>
-                <a target="_blank" href={this.state.bckimg4} rel="noopener noreferrer">
-                    <img src={this.state.bckimg4} alt="Forest" width="600" height="400"/>
-                </a>
-            </div>
-
-            <div className={classes.gallery}>
-                <a target="_blank" href={this.state.bckimg5} rel="noopener noreferrer">
-                    <img src={this.state.bckimg5} alt="Forest" width="600" height="400"/>
-                </a>
-            </div>
-
-            <div className={classes.gallery}>
-                <a target="_blank" href={this.state.bckimg6} rel="noopener noreferrer">
-                    <img src={this.state.bckimg6} alt="Forest" width="600" height="400"/>
-                </a>
-            </div>
-            <div className={classes.layer4}>
-                {/*<img src={legit} width="100" height="80" alt="fake_or_legit"/>*/}
-                {result_img}
-            </div>
-        </>;
-
-        let header = (
-            <div className={classes.outerWrap}>
-                <div className={classes.layer1}>
-                    {/*<h3> {this.state.orderdata.itemName} </h3>*/}
-                    <h3> CERTIFICATE OF AUTHENTICATION</h3>
-                    <div className={classes.layer2}>
-                        <p> {this.state.orderdata.itemName}
-                        </p>
-                        <div className={classes.layer3}>
-                            {img_area}
-                        </div>
-                    </div>
+        let report = (
+            <div className={classes["form-wrap"]}>
+                <div className={classes.title}>
+                    <h3> {reportName}</h3>
+                    <p> {this.state.itemName}</p>
+                    <span className={classes["text-block"]}>
+                        <img src={stamp} alt="stamp"/>
+                    </span>
                 </div>
-            </div>);
-        return (header)}
-        if (this.state.status !== "processed"){
-        const style = {
-               textAlign: 'center',
-               fontWeight: 'bold',
-               fontSize: '18px'
-           };
-         header = (<p style = {style} > {this.state.validafile} </p>);
-        }
-        return (<>
-                {header}
-                </>
+
+                <Container className={classes.container}>
+                    <Row>
+                        {gallery}
+                    </Row>
+                </Container>
+
+            </div>
         );
+
+        return this.state.redirect ? <ErrorPage/> : report
     }
 }
 

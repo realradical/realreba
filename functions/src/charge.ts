@@ -14,6 +14,7 @@ const allowedOrigins = ['http://localhost:3000', 'https://realreba-c557f.firebas
 async function charge(req, res) {
     const body = req.body;
     const uid = body.uid;
+    const userEmail = body.userEmail;
     const token = body.token;
     const itemname = body.itemName;
     const description = body.itemDescription;
@@ -28,13 +29,14 @@ async function charge(req, res) {
             currency,
             description: 'Authentication Service',
             source: token.id,
-            metadata: {orderId: orderRef.id},
+            metadata: {orderId: orderRef.id, userEmail: userEmail},
         },{
             idempotency_key: orderRef.id
         }).then(async chargeItem => {
             try {
                 const updateOrderCall = db.collection('orders').doc(orderRef.id).set({
                     uid: uid,
+                    userEmail: userEmail,
                     status: 'paid',
                     itemName: itemname,
                     description: description,

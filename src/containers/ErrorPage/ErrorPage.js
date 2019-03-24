@@ -6,7 +6,6 @@ import classes from "./ErrorPage.module.css";
 import errorImg from "../../assets/images/error-img.jpg";
 
 
-
 const errorPage = () => {
     return (
         <div className={classes["error-page"]}>

@@ -51,7 +51,7 @@ class App extends Component {
                 <Route path="/authentication" exact component={Authentication}/>
                 <Route path="/report" exact component={Report}/>
                 <Route path="/authentication/:id" component={Authentication}/>
-                <Route path="/report/:id" component={Report}/>
+                <Route path="/report/:id" exact component={Report}/>
                 <SignedInRoute path="/login" exact component={Login}/>
                 <PrivateRoute path="/myorders" exact component={Orders}/>
                 <Route path="/" exact component={HomeContent}/>

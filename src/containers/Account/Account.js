@@ -28,14 +28,6 @@ class myaccount extends Component {
                     userdata[num].createdAt = String(Date(userdata[num].createdAt));
                     const time_data = userdata[num].createdAt.split(" ");
                     userdata[num].createdAt = "   " + time_data[1] + "-" + time_data[2] + "-" + time_data[3] + "   ";
-                    userdata[num].button_status = userdata[num].status !== "processed";
-                    if (userdata[num].status === "processed"){
-                        userdata[num].button_color  = "blue";
-                        userdata[num].text_color = "white"
-                    }else{
-                        userdata[num].button_color ="grey";
-                        userdata[num].text_color = "black"
-                    }
                 });
                 this.setState({useraccountdata: userdata});
 
@@ -43,7 +35,7 @@ class myaccount extends Component {
                 this.setState({result: "You dont have any orders yet."});
             }
         }).catch(function(error) {
-            console.log("Error getting documents:", error);
+            console.log("Error getting orders:", error);
         });}
 
     render() {

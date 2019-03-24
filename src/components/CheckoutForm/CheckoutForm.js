@@ -89,11 +89,12 @@ class CheckoutForm extends Component {
         if (valid) {
             const {token} = await this.props.stripe.createToken({name: this.state.holderName});
             const uid = this.props.context.state.currentUser.uid;
+            const userEmail = this.props.context.state.currentUser.email;
             const itemName = this.props.state.itemName;
             const itemDescription = this.props.state.itemDescription;
             this.startLoading();
 
-            Api.post("/charge/", {token, uid, itemName, itemDescription})
+            Api.post("/charge/", {token, uid, userEmail, itemName, itemDescription})
                 .then(res => {
                     if (this._isMounted) {
                         this.setState({paymentSuccess: true});
