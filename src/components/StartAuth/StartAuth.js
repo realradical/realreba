@@ -254,7 +254,7 @@ class StartAuth extends Component {
         );
 
         const payForm = (
-            <StripeProvider apiKey="pk_test_8N728o3SWuoCjeXHczqnetIK">
+            <StripeProvider apiKey="pk_live_W5rGRd2gPRYU6xGHb2Uw0CFq">
                 <>
                     <OrderSummary/>
                     {checkoutForm}

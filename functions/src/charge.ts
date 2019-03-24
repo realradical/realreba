@@ -9,7 +9,7 @@ const appCharge = express();
 // TODO: Remember to set stripe token using >> firebase functions:config:set stripe.token="SECRET_STRIPE_TOKEN_HERE"
 const stripe = require('stripe')(functions.config().stripe.token);
 
-const allowedOrigins = ['http://localhost:3000', 'https://realreba-c557f.firebaseapp.com'];
+const allowedOrigins = ['http://localhost:3000', 'https://realreba-c557f.firebaseapp.com', 'https://authwork.com'];
 
 async function charge(req, res) {
     const body = req.body;
@@ -40,7 +40,7 @@ async function charge(req, res) {
                     status: 'paid',
                     itemName: itemname,
                     description: description,
-                    createddAt: FieldValue.serverTimestamp()
+                    createdAt: FieldValue.serverTimestamp()
                 }, {merge: true});
 
                 const updatePaymentCall = db.collection('payments').doc(orderRef.id).set({

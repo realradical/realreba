@@ -10,8 +10,7 @@ const sendgridemail = require('@sendgrid/mail');
 const MY_SENDGRID_API_KEY = functions.config().sendgrid.apikey;
 sendgridemail.setApiKey(MY_SENDGRID_API_KEY);
 
-const allowedOrigins = ['http://localhost:3000', 'https://realreba-c557f.firebaseapp.com'];
-
+const allowedOrigins = ['http://localhost:3000', 'https://realreba-c557f.firebaseapp.com', 'https://authwork.com'];
 
 function processorder(req, res) {
     const body = req.body;
@@ -44,7 +43,7 @@ function processorder(req, res) {
                 subject: 'Your authentication report - OrderID: ' + email.orderid,
                 html: "<p>Hello,</p>\n" +
                     "<p>Follow this link to see your authentication report.</p>\n" +
-                    "<p><a href=\"https://authwork.com/report/\""+ email.orderid + ">Please click HERE</a></p>\n" +
+                    "<p><a href=\"https://authwork.com/report/" + email.orderid + "\">Please click HERE</a></p>\n" +
                     "<p>Thanks,</p>\n" +
                     "<p>AuthWork</p>"
             };

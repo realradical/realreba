@@ -17,7 +17,9 @@ class myaccount extends Component {
     componentDidMount() {
         const userdata = [];
         const citiesRef = db.collection("orders");
-        const query = citiesRef.where("uid", "==", this.props.context.state.currentUser.uid);
+        const query = citiesRef.where("uid", "==", this.props.context.state.currentUser.uid)
+            .orderBy("createdAt", "desc");
+
         query.get().then(results => {
             if (!results.empty) {
                 results.forEach((doc) => {
@@ -28,6 +30,7 @@ class myaccount extends Component {
                     userdata[num].createdAt = String(Date(userdata[num].createdAt));
                     const time_data = userdata[num].createdAt.split(" ");
                     userdata[num].createdAt = "   " + time_data[1] + "-" + time_data[2] + "-" + time_data[3] + "   ";
+                    userdata[num].button_status = userdata[num].status !== "processed";
                 });
                 this.setState({useraccountdata: userdata});
 
@@ -73,8 +76,8 @@ class myaccount extends Component {
         });
 
         let display = (
-            <div className={classes.textblock}>
-                    {userlist}
+            <div>
+                {userlist}
             </div>
         );
 

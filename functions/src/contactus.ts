@@ -11,7 +11,7 @@ sendgridemail.setApiKey(MY_SENDGRID_API_KEY);
 // TODO: Remember to set secret using >> firebase functions:config:set recapatcha.secret="SECRET_RECAPATCHA_HERE"
 const MY_reCAPATCHA_SECRET = functions.config().recapatcha.secret;
 
-const allowedOrigins = ['http://localhost:3000', 'https://realreba-c557f.firebaseapp.com'];
+const allowedOrigins = ['http://localhost:3000', 'https://realreba-c557f.firebaseapp.com', 'https://authwork.com'];
 
 function contactus(req, res) {
     const body = req.body;

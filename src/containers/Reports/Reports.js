@@ -6,7 +6,6 @@ import classes from './Report.module.css';
 import legitStamp from '../../assets/images/Main_Legit.png';
 import fakeStamp from '../../assets/images/Main_Fake.png';
 import {Col, Container, Row} from "reactstrap/lib";
-import labelIcon from "../../assets/images/icon_label.png";
 
 
 class reports extends Component {
@@ -88,7 +87,7 @@ class reports extends Component {
             (item, index) => {
                 return(
                     <Col sm={6} md={4} lg={4} xl={4} key={index} className={classes["col-div"]}>
-                        <img src={item}></img>
+                        <img src={item} alt="user uploads"></img>
                     </Col>)
             });
 
