@@ -21,7 +21,7 @@ const navigationItems = (props) => (
             <NavigationItem link="/authentication" clickHandler={props.clicked}>Authentication</NavigationItem>
             {context.state.currentUser ?
                 (<>
-                    <NavigationItem link="/myaccount" clickHandler={props.clicked}>My Account</NavigationItem>
+                    <NavigationItem link="/myorders" clickHandler={props.clicked}>My Orders</NavigationItem>
                     <NavigationItem link="/signout"
                                     clickHandler={
                                         (event) => {

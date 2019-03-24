@@ -8,7 +8,7 @@ import HomeContent from './containers/HomeContent/HomeContent';
 import AboutUs from "./containers/AboutUs/AboutUs";
 import Login from "./containers/Login/Login";
 import Faq from "./containers/FAQ/Faq";
-import Account from "./containers/Account/Account";
+import Orders from "./containers/Account/Account";
 import Report from "./containers/Reports/Reports";
 import Error from "./containers/ErrorPage/ErrorPage";
 import PrivateRoute from "./hoc/PrivateRoute";
@@ -53,7 +53,7 @@ class App extends Component {
                 <Route path="/authentication/:id" component={Authentication}/>
                 <Route path="/report/:id" component={Report}/>
                 <SignedInRoute path="/login" exact component={Login}/>
-                <PrivateRoute path="/myaccount" exact component={Account}/>
+                <PrivateRoute path="/myorders" exact component={Orders}/>
                 <Route path="/" exact component={HomeContent}/>
                 <Route component={Error}/>
             </Switch>

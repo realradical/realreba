@@ -1,16 +1,19 @@
 import React , {Component}  from 'react';
+import {Link} from "react-router-dom";
+
 import {db} from "../../firebase/firebase";
 import classes from "./Account.module.css";
-import img from "../../assets/images/test_authBanner.jpg";
-import {CardHeader, CardText } from 'reactstrap';
-
+import {CardHeader} from 'reactstrap';
 import WithContext from "../../hoc/WithContext";
 
+
 class myaccount extends Component {
+
     state = {
         useraccountdata: [],
         result : null,
     };
+
     componentDidMount() {
         const userdata = [];
         const citiesRef = db.collection("orders");
@@ -19,7 +22,7 @@ class myaccount extends Component {
             if (!results.empty) {
                 results.forEach((doc) => {
                     const temp_doc = Object(doc.data());
-                    temp_doc.orderid = 'https://www.authwork.com/report/' + doc.id;
+                    temp_doc.orderid = doc.id;
                     userdata.push(temp_doc);
                     const num = String(userdata.length - 1);
                     userdata[num].createdAt = String(Date(userdata[num].createdAt));
@@ -45,30 +48,36 @@ class myaccount extends Component {
 
     render() {
         let userlist =  this.state.useraccountdata.map(item => {
-            const style_button = {
-                backgroundColor : item.button_color,
-                color: item.text_color};
-            return <>
-                <CardHeader tag="h5">Date : {item.createdAt} </CardHeader>
-                <div className={classes.wrapper}>
-                <div className={classes.first}>
-                <CardText>
-                        Sneaker : {item.itemName}
-                        <br/>
-                        Description : {item.description}
-                        <br/>
-                        Status: {item.status}
-                </CardText>
-                </div>
-                <div className={classes.second}>
 
-                    <form action={item.orderid}  target="_blank">
-                                <button style={style_button} disabled = {item.button_status}
-                                 type="submit">Report</button>
-                    </form>
-                 </div>
-                 </div>
-                    </>
+            return <div key={item.orderid}>
+                        <CardHeader tag="h5">Order #: {item.orderid}
+                            <div className={classes.buttonWrapper}>
+                                <Link to={"/report/"+item.orderid} target="_blank">
+                                    <button disabled = {item.button_status} type="submit">Report
+                                    </button>
+                                </Link>
+                            </div>
+                        </CardHeader>
+
+                        <div className={classes.orderWrapper}>
+                            <div className={classes["order-div"]}>
+                                <span className={classes.colname}>Order Date</span>
+                                <span className={classes.colval}>{item.createdAt}</span>
+                            </div>
+                            <div className={classes["order-div"]}>
+                                <span className={classes.colname}>Item Name</span>
+                                <span className={classes.colval}>{item.itemName}</span>
+                            </div>
+                            <div className={classes["order-div"]}>
+                                <span className={classes.colname}>Description</span>
+                                <span className={classes.colval}>{item.description}</span>
+                            </div>
+                            <div className={classes["order-div"]}>
+                                <span className={classes.colname}>Order Status</span>
+                                <span className={classes.colval}>{item.status}</span>
+                            </div>
+                        </div>
+                    </div>
         });
 
         let display = (
@@ -87,14 +96,17 @@ class myaccount extends Component {
         }
 
         return (<>
-                <div className={classes.banner}>
-                <img src = {img} alt = "text" /> </div>
-                <div className={classes.header}> <h1> My Account </h1> </div>
+                    <div className={classes.banner} >
+                        <div className={classes.bannerText}>
+                            My Orders
+                        </div>
+                    </div>
+                    <div className={classes["form-wrap"]}>
+                        <h1>Your Order History</h1>
+                        <h6>To get the result on your processed orders, click the report link.</h6>
+                        {display}
+                    </div>
 
-                {display}
-
-                <br/>
-                <br/>
                 </>
                 );
         }

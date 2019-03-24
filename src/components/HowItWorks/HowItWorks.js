@@ -18,9 +18,6 @@ import {Col, Container, Row} from "reactstrap/lib";
 
 
 const howItWorks = () => {
-    const style = {
-        fontSize : 10
-    }
 
     return (
         <div className={classes["form-wrap"]}>
