@@ -8,13 +8,19 @@ import WithContext from "../../hoc/WithContext";
 
 
 class myaccount extends Component {
+    _isMounted = false;
 
     state = {
         useraccountdata: [],
         result : null,
     };
 
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
     componentDidMount() {
+        this._isMounted = true;
         const userdata = [];
         const citiesRef = db.collection("orders");
         const query = citiesRef.where("uid", "==", this.props.context.state.currentUser.uid)
@@ -32,10 +38,14 @@ class myaccount extends Component {
                     userdata[num].createdAt = "   " + time_data[1] + "-" + time_data[2] + "-" + time_data[3] + "   ";
                     userdata[num].button_status = userdata[num].status !== "processed";
                 });
-                this.setState({useraccountdata: userdata});
+                if (this._isMounted) {
+                    this.setState({useraccountdata: userdata});
+                }
 
             } else {
-                this.setState({result: "You dont have any orders yet."});
+                if (this._isMounted) {
+                    this.setState({result: "You dont have any orders yet."});
+                }
             }
         }).catch(function(error) {
             console.log("Error getting orders:", error);
