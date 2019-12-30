@@ -13,16 +13,17 @@ const allowedOrigins = ['http://localhost:3000', 'https://realreba-c557f.firebas
 function pushorder(req, res) {
     const body = req.body;
     const orderId = body.orderId;
+    const userEmail = body.userEmail
     const fileDownloadURL = body.fileDownloadURL;
 
-    const fileHyperlink = fileDownloadURL.map(item => "<a href=\"" + item + "\">fileDownloadURL</a>");
+    const fileHyperlink = fileDownloadURL.map(item => "<img src=\"" + item + "\" alt=\"picture\">");
     const fileDownloadURLString = fileHyperlink.join(" <br> ");
 
     const msg = {
-        to: 'jacob.z.shao@gmail.com',
+        to: ['jacob.z.shao@gmail.com','may.saihua.wang@gmail.com'],
         from: 'noreply@authwork.com',
         subject: 'Payment Success - OrderID: ' + orderId,
-        html: fileDownloadURLString,
+        html: userEmail + "<br>" + fileDownloadURLString,
     };
 
     sendgridemail.send(msg).then( () => {

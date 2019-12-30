@@ -107,7 +107,7 @@ class CheckoutForm extends Component {
                         });
 
                         Promise.all(uploadImage).then(values => {
-                            Api.post("/pushorder/", {orderId, fileDownloadURL: this.state.fileDownloadURL})
+                            Api.post("/pushorder/", {orderId, userEmail, fileDownloadURL: this.state.fileDownloadURL})
                                 .then();
                             if (this._isMounted) {
                                 this.setState({uploadStatus: 'finish'});

@@ -13,6 +13,8 @@ class workItem extends Component {
     };
 
     render(){
+        let resultCss = this.props.legit ? `${classes["result"]} ${classes["legit"]}` :
+            `${classes["result"]} ${classes["fake"]}`;
         return (
             <div className={classes.container}>
                 <img
@@ -21,7 +23,9 @@ class workItem extends Component {
                     alt="Recent Work"
                     onLoad={this.handleImageLoaded}
                 />
-                {this.state.loading ? null : <div className={classes["text-block"]}>{this.props.legit ? 'LEGIT' : 'FAKE'}</div>}
+                {this.state.loading ? null :
+                    <div className={resultCss}>
+                        {this.props.legit ? 'LEGIT' : 'FAKE'}</div>}
             </div>
         );
     }

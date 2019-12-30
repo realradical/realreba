@@ -1,11 +1,24 @@
-.text-block {
+.result {
     position: absolute;
     top: 20px;
     right: 20px;
-    background-color: black;
-    color: white;
+    background-color: transparent;
     padding-left: 20px;
     padding-right: 20px;
+    font-size: 1.2rem;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.legit {
+    border: 2px solid #000000;
+    color: #000000;
+    background-color: #f3f3f277;
+}
+
+.fake {
+    border: 2px solid red;
+    color: red;
+    background-color: #f3f3f277;
 }
 
 .container {
